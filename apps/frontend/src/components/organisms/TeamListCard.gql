@@ -1,0 +1,4 @@
+fragment TeamListCard on teams {
+  id
+  name
+}

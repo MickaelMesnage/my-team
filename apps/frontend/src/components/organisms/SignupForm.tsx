@@ -12,10 +12,14 @@ export const signupFormZodSchema = z.object({
 export type SignupFormFieldsValue = z.infer<typeof signupFormZodSchema>;
 
 export type SignupFormProps = {
+  isLoading: boolean;
   onSubmit: (data: SignupFormFieldsValue) => Promise<void>;
 };
 
-export const SignupForm = ({ onSubmit }: SignupFormProps) => {
+export const SignupForm = ({
+  onSubmit,
+  isLoading = false,
+}: SignupFormProps) => {
   const methods = useForm<SignupFormFieldsValue>({
     resolver: zodResolver(signupFormZodSchema),
   });
@@ -54,7 +58,12 @@ export const SignupForm = ({ onSubmit }: SignupFormProps) => {
             />
           )}
         />
-        <Button type="submit" color="primary">
+        <Button
+          isLoading={isLoading}
+          disabled={isLoading}
+          type="submit"
+          color="primary"
+        >
           S&apos;inscrire
         </Button>
       </form>

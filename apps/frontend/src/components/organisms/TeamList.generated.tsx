@@ -1,6 +1,7 @@
 import * as Types from '../../graphql/types';
 
 import { gql } from '@apollo/client';
+import { TeamListCardFragmentDoc } from './TeamListCard.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type TeamListSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
@@ -14,9 +15,10 @@ export const TeamListDocument = gql`
   teams {
     id
     name
+    ...TeamListCard
   }
 }
-    `;
+    ${TeamListCardFragmentDoc}`;
 
 /**
  * __useTeamListSubscription__

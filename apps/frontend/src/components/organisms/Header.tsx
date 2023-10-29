@@ -16,7 +16,7 @@ export const Header = ({ className, ...props }: ComponentProps<"header">) => {
       {!isLoading && (
         <nav className="flex items-center gap-8">
           <div className="hidden sm:flex gap-4 items-center">
-            <Link color="foreground" href="/" as={NextLink}>
+            <Link href="/" as={NextLink}>
               Accueil
             </Link>
             <Link href="/team/list" as={NextLink}>

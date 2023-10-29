@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { CenteredSpinner } from "@/components//molecules/CenteredSpinner";
 import { useTeamListSubscription } from "@/components/organisms/TeamList.generated";
+import { TeamListCard } from "@/components/organisms/TeamListCard";
 
 export const TeamList = () => {
   const router = useRouter();
@@ -18,8 +19,11 @@ export const TeamList = () => {
   }
 
   return (
-    <ul>
-      {data && data.teams.map((team) => <li key={team.id}>{team.name}</li>)}
-    </ul>
+    <section className="flex gap-4 flex-wrap">
+      {data &&
+        data.teams.map((team) => (
+          <TeamListCard key={team.id} fragment={team} />
+        ))}
+    </section>
   );
 };

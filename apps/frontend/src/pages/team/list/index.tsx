@@ -9,7 +9,7 @@ export default function TeamListPage() {
   return (
     <AuthenticatedRoute>
       <main>
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex items-center justify-between mb-4">
           <h1>Liste de mes équipes</h1>
           <Button onClick={disclosure.onOpen}>Créer une nouvelle équipe</Button>
         </div>

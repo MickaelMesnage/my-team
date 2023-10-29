@@ -17,11 +17,15 @@ import {
 
 export const SignupGateway = () => {
   const router = useRouter();
-  const { signUpEmailPassword } = useSignUpEmailPassword();
+  const { signUpEmailPassword, isLoading } = useSignUpEmailPassword();
 
   const onSubmit = async (data: SignupFormFieldsValue) => {
     try {
-      await signUpEmailPassword(data.email, data.password);
+      const { isSuccess } = await signUpEmailPassword(
+        data.email,
+        data.password
+      );
+      if (!isSuccess) throw new Error();
       toast.success("Vous êtes inscris ! Vérifiez vos mails");
       router.push("/");
     } catch (error) {
@@ -34,7 +38,7 @@ export const SignupGateway = () => {
       <CardHeader className="flex justify-center">Inscription</CardHeader>
       <Divider />
       <CardBody>
-        <SignupForm onSubmit={onSubmit} />
+        <SignupForm isLoading={isLoading} onSubmit={onSubmit} />
       </CardBody>
       <Divider />
       <CardFooter className="flex justify-center gap-1">

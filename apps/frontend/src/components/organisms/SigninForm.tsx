@@ -13,61 +13,69 @@ export const signinFormZodSchema = z.object({
 export type SigninFormFieldsValue = z.infer<typeof signinFormZodSchema>;
 
 export type SigninFormProps = {
+  isLoading: boolean;
   onSubmit: (data: SigninFormFieldsValue) => Promise<void>;
 };
-export const SigninForm = forwardRef(({ onSubmit }: SigninFormProps, ref) => {
-  const methods = useForm<SigninFormFieldsValue>({
-    resolver: zodResolver(signinFormZodSchema),
-  });
+export const SigninForm = forwardRef(
+  ({ onSubmit, isLoading = false }: SigninFormProps, ref) => {
+    const methods = useForm<SigninFormFieldsValue>({
+      resolver: zodResolver(signinFormZodSchema),
+    });
 
-  const { handleSubmit, control, reset } = methods;
+    const { handleSubmit, control, reset } = methods;
 
-  const resetForm = () => {
-    reset({ email: "", password: "" });
-  };
+    const resetForm = () => {
+      reset({ email: "", password: "" });
+    };
 
-  useImperativeHandle(ref, () => ({
-    resetForm,
-  }));
+    useImperativeHandle(ref, () => ({
+      resetForm,
+    }));
 
-  return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-        <Controller
-          control={control}
-          name="email"
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <Input
-              key="email"
-              type="email"
-              label="Email"
-              errorMessage={error?.message}
-              value={value}
-              onChange={onChange}
-              autoComplete="email"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="password"
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <PasswordInput
-              key="password"
-              label="Mot de passe"
-              errorMessage={error?.message}
-              value={value}
-              onChange={onChange}
-              autoComplete="current-password"
-            />
-          )}
-        />
-        <Button type="submit" color="primary">
-          Se connecter
-        </Button>
-      </form>
-    </FormProvider>
-  );
-});
+    return (
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <Controller
+            control={control}
+            name="email"
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <Input
+                key="email"
+                type="email"
+                label="Email"
+                errorMessage={error?.message}
+                value={value}
+                onChange={onChange}
+                autoComplete="email"
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <PasswordInput
+                key="password"
+                label="Mot de passe"
+                errorMessage={error?.message}
+                value={value}
+                onChange={onChange}
+                autoComplete="current-password"
+              />
+            )}
+          />
+          <Button
+            isLoading={isLoading}
+            disabled={isLoading}
+            type="submit"
+            color="primary"
+          >
+            Se connecter
+          </Button>
+        </form>
+      </FormProvider>
+    );
+  }
+);
 
 SigninForm.displayName = "SigninForm";

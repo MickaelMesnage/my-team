@@ -5,6 +5,8 @@ insert_permissions:
   - role: user
     permission:
       check: {}
+      set:
+        userId: x-hasura-User-Id
       columns:
         - name
     comment: ""

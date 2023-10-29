@@ -15,7 +15,7 @@ import { useRef } from "react";
 
 export const SigninGateway = () => {
   const router = useRouter();
-  const { signInEmailPassword } = useSignInEmailPassword();
+  const { signInEmailPassword, isLoading } = useSignInEmailPassword();
   const formRef = useRef(null);
 
   const resetForm = () => {
@@ -25,12 +25,17 @@ export const SigninGateway = () => {
 
   const onSubmit = async (data: SigninFormFieldsValue) => {
     try {
-      await signInEmailPassword(data.email, data.password);
-      toast("Vous êtes connecté !", { type: "success" });
+      const { isSuccess } = await signInEmailPassword(
+        data.email,
+        data.password
+      );
+
+      if (!isSuccess) throw new Error();
+      toast.success("Vous êtes connecté !");
       resetForm();
       router.push("/");
     } catch (error) {
-      toast("Une erreur est survenue", { type: "error" });
+      toast.error("Une erreur est survenue");
     }
   };
 
@@ -39,7 +44,7 @@ export const SigninGateway = () => {
       <CardHeader className="flex justify-center">Connexion</CardHeader>
       <Divider />
       <CardBody>
-        <SigninForm ref={formRef} onSubmit={onSubmit} />
+        <SigninForm isLoading={isLoading} ref={formRef} onSubmit={onSubmit} />
       </CardBody>
       <Divider />
       <CardFooter className="flex justify-center gap-1">
