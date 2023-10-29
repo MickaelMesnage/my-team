@@ -4,7 +4,9 @@ import { NextUIProvider } from "@nextui-org/react";
 import { NhostClient, NhostProvider } from "@nhost/nextjs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MainLayout } from "@/components/organisms/MainLayout";
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import { NhostApolloProvider } from "@nhost/react-apollo";
 
 const NHOST_SUBDOMAIN = process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN as string;
 const NHOST_REGION = process.env.NEXT_PUBLIC_NHOST_REGION as string;
@@ -16,12 +18,12 @@ const nhost = new NhostClient({
   region: NHOST_REGION,
 });
 
-import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
-import { NhostApolloProvider } from "@nhost/react-apollo";
-
-loadDevMessages();
-loadErrorMessages();
-
+// To show explicit apollo graphql error in dev mode
+const env = process.env.NODE_ENV;
+if (env == "development") {
+  loadDevMessages();
+  loadErrorMessages();
+}
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>

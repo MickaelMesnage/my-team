@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 
-export const ConnectedSigninForm = () => {
+export const SigninGateway = () => {
   const router = useRouter();
   const { signInEmailPassword } = useSignInEmailPassword();
   const formRef = useRef(null);

@@ -1,4 +1,4 @@
-query TeamList {
+subscription TeamList {
   teams {
     id
     name

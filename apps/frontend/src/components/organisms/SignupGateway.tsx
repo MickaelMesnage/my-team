@@ -15,7 +15,7 @@ import {
   SignupFormFieldsValue,
 } from "@/components/organisms/SignupForm";
 
-export const ConnectedSignupForm = () => {
+export const SignupGateway = () => {
   const router = useRouter();
   const { signUpEmailPassword } = useSignUpEmailPassword();
 

@@ -3,14 +3,14 @@ import * as Types from '../../graphql/types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type TeamListQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type TeamListSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type TeamListQuery = { __typename?: 'query_root', teams: Array<{ __typename?: 'teams', id: any, name: string }> };
+export type TeamListSubscription = { __typename?: 'subscription_root', teams: Array<{ __typename?: 'teams', id: any, name: string }> };
 
 
 export const TeamListDocument = gql`
-    query TeamList {
+    subscription TeamList {
   teams {
     id
     name
@@ -19,28 +19,23 @@ export const TeamListDocument = gql`
     `;
 
 /**
- * __useTeamListQuery__
+ * __useTeamListSubscription__
  *
- * To run a query within a React component, call `useTeamListQuery` and pass it any options that fit your needs.
- * When your component renders, `useTeamListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useTeamListSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useTeamListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useTeamListQuery({
+ * const { data, loading, error } = useTeamListSubscription({
  *   variables: {
  *   },
  * });
  */
-export function useTeamListQuery(baseOptions?: Apollo.QueryHookOptions<TeamListQuery, TeamListQueryVariables>) {
+export function useTeamListSubscription(baseOptions?: Apollo.SubscriptionHookOptions<TeamListSubscription, TeamListSubscriptionVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TeamListQuery, TeamListQueryVariables>(TeamListDocument, options);
+        return Apollo.useSubscription<TeamListSubscription, TeamListSubscriptionVariables>(TeamListDocument, options);
       }
-export function useTeamListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TeamListQuery, TeamListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TeamListQuery, TeamListQueryVariables>(TeamListDocument, options);
-        }
-export type TeamListQueryHookResult = ReturnType<typeof useTeamListQuery>;
-export type TeamListLazyQueryHookResult = ReturnType<typeof useTeamListLazyQuery>;
-export type TeamListQueryResult = Apollo.QueryResult<TeamListQuery, TeamListQueryVariables>;
+export type TeamListSubscriptionHookResult = ReturnType<typeof useTeamListSubscription>;
+export type TeamListSubscriptionResult = Apollo.SubscriptionResult<TeamListSubscription>;

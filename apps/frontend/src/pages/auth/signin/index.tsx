@@ -1,11 +1,11 @@
-import { ConnectedSigninForm } from "@/components/organisms/ConnectedSigninForm";
-import { UnauthenticatedRoute } from "@/pages/auth/UnauthenticatedRoute";
+import { SigninGateway } from "@/components/organisms/SigninGateway";
+import { UnauthenticatedRoute } from "@/components/providers/UnauthenticatedRoute";
 
 export default function SigninPage() {
   return (
     <UnauthenticatedRoute>
       <main className="w-full h-full flex items-center justify-center">
-        <ConnectedSigninForm />
+        <SigninGateway />
       </main>
     </UnauthenticatedRoute>
   );
