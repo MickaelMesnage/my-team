@@ -21,11 +21,9 @@ export const SignupGateway = () => {
 
   const onSubmit = async (data: SignupFormFieldsValue) => {
     try {
-      const { isSuccess } = await signUpEmailPassword(
-        data.email,
-        data.password
-      );
-      if (!isSuccess) throw new Error();
+      const { isError } = await signUpEmailPassword(data.email, data.password);
+      if (isError) throw new Error();
+
       toast.success("Vous êtes inscris ! Vérifiez vos mails");
       router.push("/");
     } catch (error) {
