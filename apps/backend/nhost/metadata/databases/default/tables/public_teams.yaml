@@ -1,3 +1,11 @@
 table:
   name: teams
   schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+      filter: {}
+    comment: ""
