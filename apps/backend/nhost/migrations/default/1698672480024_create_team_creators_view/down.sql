@@ -1,0 +1,5 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE VIEW public.team_creators AS
+--   SELECT id, display_name, avatar_url, phone_number, email, metadata
+--     FROM auth.users;

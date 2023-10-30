@@ -24,6 +24,7 @@ if (env == "development") {
   loadDevMessages();
   loadErrorMessages();
 }
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
@@ -32,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <MainLayout>
             <Component {...pageProps} />
           </MainLayout>
-          <ToastContainer />
+          <ToastContainer position="bottom-center" />
         </NextUIProvider>
       </NhostApolloProvider>
     </NhostProvider>

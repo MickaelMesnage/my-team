@@ -1,4 +1,4 @@
-import { TeamCreationFormFieldsValue } from "@/components/organisms/TeamCreationForm";
+import { TeamFormFieldsValue } from "@/components/organisms/TeamForm";
 import { useInsertTeamMutation } from "@/components/organisms/TeamCreationGateway.generated";
 import {
   TeamCreationModal,
@@ -15,7 +15,7 @@ export const TeamCreationGateway = (props: TeamCreationGatewayProps) => {
   const { disclosure } = props;
   const [insertTeam, { loading, error }] = useInsertTeamMutation();
 
-  const onTeamCreation = async (team: TeamCreationFormFieldsValue) => {
+  const onTeamCreation = async (team: TeamFormFieldsValue) => {
     try {
       await insertTeam({ variables: { team } });
       toast.success("Équipe créée !");

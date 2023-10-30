@@ -1,0 +1,17 @@
+table:
+  name: user_team
+  schema: public
+object_relationships:
+  - name: team
+    using:
+      foreign_key_constraint_on: teamId
+array_relationships:
+  - name: members
+    using:
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: team_members
+          schema: public

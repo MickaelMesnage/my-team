@@ -1,7 +1,4 @@
-import {
-  TeamCreationForm,
-  TeamCreationFormProps,
-} from "@/components/organisms/TeamCreationForm";
+import { TeamForm, TeamFormProps } from "@/components/organisms/TeamForm";
 import {
   Modal,
   ModalContent,
@@ -12,7 +9,7 @@ import {
 
 export type TeamCreationModalProps = {
   disclosure: ReturnType<typeof useDisclosure>;
-} & TeamCreationFormProps;
+} & TeamFormProps;
 
 export const TeamCreationModal = ({
   disclosure,
@@ -28,7 +25,7 @@ export const TeamCreationModal = ({
               Création d&apos;une équipe
             </ModalHeader>
             <ModalBody>
-              <TeamCreationForm onSubmit={onSubmit} />
+              <TeamForm onSubmit={onSubmit} />
             </ModalBody>
           </>
         )}

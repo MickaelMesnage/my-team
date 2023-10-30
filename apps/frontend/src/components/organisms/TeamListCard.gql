@@ -1,4 +1,14 @@
 fragment TeamListCard on teams {
   id
   name
+  description
+  creator {
+    email
+  }
+}
+
+query UserTest {
+  users {
+    email
+  }
 }

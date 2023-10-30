@@ -1,0 +1,10 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE OR REPLACE VIEW "public"."team_members" AS
+--  SELECT users.id,
+--     users.display_name,
+--     users.avatar_url,
+--     users.phone_number,
+--     users.email,
+--     users.metadata
+--    FROM auth.users;

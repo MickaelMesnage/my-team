@@ -4,28 +4,31 @@ import { Controller, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { forwardRef, useImperativeHandle } from "react";
 
-export const teamCreationformZodSchema = z.object({
+export const TeamFormZodSchema = z.object({
   name: z.string(),
+  description: z.string().optional(),
 });
 
-export type TeamCreationFormFieldsValue = z.infer<
-  typeof teamCreationformZodSchema
->;
+export type TeamFormFieldsValue = z.infer<typeof TeamFormZodSchema>;
 
-export type TeamCreationFormProps = {
-  onSubmit: (data: TeamCreationFormFieldsValue) => Promise<void>;
+export type TeamFormProps = {
+  onSubmit: (data: TeamFormFieldsValue) => Promise<void>;
+  defaultValues?: TeamFormFieldsValue;
 };
-export const TeamCreationForm = forwardRef(
-  ({ onSubmit }: TeamCreationFormProps, ref) => {
-    const methods = useForm<TeamCreationFormFieldsValue>({
-      resolver: zodResolver(teamCreationformZodSchema),
-      defaultValues: { name: "" },
+
+const DEFAULT_VALUES: TeamFormFieldsValue = { name: "", description: "" };
+
+export const TeamForm = forwardRef(
+  ({ onSubmit, defaultValues = DEFAULT_VALUES }: TeamFormProps, ref) => {
+    const methods = useForm<TeamFormFieldsValue>({
+      resolver: zodResolver(TeamFormZodSchema),
+      defaultValues,
     });
 
     const { handleSubmit, control, reset } = methods;
 
     const resetForm = () => {
-      reset({ name: "" });
+      reset(DEFAULT_VALUES);
     };
 
     useImperativeHandle(ref, () => ({
@@ -40,9 +43,22 @@ export const TeamCreationForm = forwardRef(
             name="name"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <Input
-                key="name"
                 type="text"
                 label="Nom de l'équipe"
+                errorMessage={error?.message}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <Input
+                isRequired={false}
+                type="text"
+                label="Descritpion de l'équipe"
                 errorMessage={error?.message}
                 value={value}
                 onChange={onChange}
@@ -58,4 +74,4 @@ export const TeamCreationForm = forwardRef(
   }
 );
 
-TeamCreationForm.displayName = "TeamCreationForm";
+TeamForm.displayName = "TeamForm";
