@@ -1,7 +1,7 @@
 import * as Types from "../../graphql/types";
 
 import { gql } from "@apollo/client";
-import { TeamListCardFragmentDoc } from "./TeamListCard.generated";
+import { TeamListCardFragmentDoc } from "../organisms/TeamListCard.generated";
 import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
 export type TeamListSubscriptionVariables = Types.Exact<{

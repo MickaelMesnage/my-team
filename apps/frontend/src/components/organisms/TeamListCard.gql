@@ -6,9 +6,3 @@ fragment TeamListCard on teams {
     email
   }
 }
-
-query UserTest {
-  users {
-    email
-  }
-}

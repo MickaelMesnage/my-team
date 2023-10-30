@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { NhostApolloProvider } from "@nhost/react-apollo";
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
 
 const NHOST_SUBDOMAIN = process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN as string;
 const NHOST_REGION = process.env.NEXT_PUBLIC_NHOST_REGION as string;
@@ -25,14 +27,22 @@ if (env == "development") {
   loadErrorMessages();
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page);
+
   return (
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
       <NhostApolloProvider nhost={nhost}>
         <NextUIProvider className="w-screen h-screen">
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
+          <MainLayout>{getLayout(<Component {...pageProps} />)}</MainLayout>
           <ToastContainer position="bottom-center" />
         </NextUIProvider>
       </NhostApolloProvider>
