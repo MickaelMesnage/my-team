@@ -145,6 +145,7 @@ select_permissions:
         - avatar_url
         - display_name
         - email
+        - id
         - metadata
         - phone_number
       filter:

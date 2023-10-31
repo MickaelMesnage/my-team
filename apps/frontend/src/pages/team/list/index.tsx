@@ -7,6 +7,7 @@ import { useTeamListSubscription } from "@/components/pageGraphqlRequests/TeamLi
 import { useRouter } from "next/router";
 import { TeamListCard } from "@/components/organisms/TeamListCard";
 import { TeamCreationGateway } from "@/components/organisms/TeamCreationGateway";
+import { handleApolloError } from "@/utils/handleApolloError";
 
 export default function TeamListPage() {
   const router = useRouter();
@@ -17,11 +18,7 @@ export default function TeamListPage() {
     return <CenteredSpinner />;
   }
 
-  if (error) {
-    toast.error("Une erreur est survenue");
-    router.push("/");
-    return;
-  }
+  handleApolloError(error, router.push);
 
   return (
     <main>

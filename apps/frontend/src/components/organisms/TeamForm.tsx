@@ -6,7 +6,7 @@ import { forwardRef, useImperativeHandle } from "react";
 
 export const TeamFormZodSchema = z.object({
   name: z.string(),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
 });
 
 export type TeamFormFieldsValue = z.infer<typeof TeamFormZodSchema>;
@@ -60,7 +60,7 @@ export const TeamForm = forwardRef(
                 type="text"
                 label="Descritpion de l'équipe"
                 errorMessage={error?.message}
-                value={value}
+                value={value || ""}
                 onChange={onChange}
               />
             )}

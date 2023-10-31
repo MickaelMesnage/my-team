@@ -1,0 +1,5 @@
+mutation TeamUpdate($teamId: uuid!, $data: teams_set_input!) {
+  update_teams_by_pk(pk_columns: { id: $teamId }, _set: $data) {
+    id
+  }
+}

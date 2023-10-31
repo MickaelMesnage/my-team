@@ -19,6 +19,7 @@ export const TeamListCard = ({ fragment }: TeamListCardProps) => {
         <div className="flex flex-col gap-2">
           <span>Createur: {fragment.creator?.email}</span>
           <span>{fragment.description}</span>
+          <span>Nombre de joueurs: {fragment.user_teams.length}</span>
         </div>
       </CardBody>
     </Card>

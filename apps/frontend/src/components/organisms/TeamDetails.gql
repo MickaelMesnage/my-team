@@ -1,0 +1,9 @@
+fragment TeamDetails on teams {
+  id
+  name
+  description
+  creator {
+    email
+    id
+  }
+}

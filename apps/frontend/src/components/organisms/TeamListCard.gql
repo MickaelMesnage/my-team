@@ -5,4 +5,9 @@ fragment TeamListCard on teams {
   creator {
     email
   }
+  user_teams {
+    members {
+      email
+    }
+  }
 }

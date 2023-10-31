@@ -24,6 +24,15 @@ insert_permissions:
       columns:
         - teamId
     comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns: []
+      filter:
+        members:
+          id:
+            _eq: X-Hasura-User-Id
+    comment: ""
 delete_permissions:
   - role: user
     permission:

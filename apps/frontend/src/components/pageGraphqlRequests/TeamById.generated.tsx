@@ -1,6 +1,7 @@
 import * as Types from '../../graphql/types';
 
 import { gql } from '@apollo/client';
+import { TeamDetailsFragmentDoc } from '../organisms/TeamDetails.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type TeamByIdQueryVariables = Types.Exact<{
@@ -8,7 +9,7 @@ export type TeamByIdQueryVariables = Types.Exact<{
 }>;
 
 
-export type TeamByIdQuery = { __typename?: 'query_root', teams_by_pk?: { __typename?: 'teams', id: any, name: string } | null };
+export type TeamByIdQuery = { __typename?: 'query_root', teams_by_pk?: { __typename?: 'teams', id: any, name: string, description?: string | null, creator?: { __typename?: 'users', email?: any | null, id: any } | null } | null };
 
 
 export const TeamByIdDocument = gql`
@@ -16,9 +17,10 @@ export const TeamByIdDocument = gql`
   teams_by_pk(id: $id) {
     id
     name
+    ...TeamDetails
   }
 }
-    `;
+    ${TeamDetailsFragmentDoc}`;
 
 /**
  * __useTeamByIdQuery__
