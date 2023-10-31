@@ -1,34 +1,24 @@
-import * as Types from "../../graphql/types";
+import * as Types from '../../graphql/types';
 
-import { gql } from "@apollo/client";
-import { TeamListCardFragmentDoc } from "../organisms/TeamListCard.generated";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import { TeamListCardFragmentDoc } from '../organisms/TeamListCard.generated';
+import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type TeamListSubscriptionVariables = Types.Exact<{
-  [key: string]: never;
-}>;
+export type TeamListSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type TeamListSubscription = {
-  __typename?: "subscription_root";
-  teams: Array<{
-    __typename?: "teams";
-    id: any;
-    name: string;
-    description?: string | null;
-    creator?: { __typename?: "users"; email?: any | null } | null;
-  }>;
-};
+
+export type TeamListSubscription = { __typename?: 'subscription_root', teams: Array<{ __typename?: 'teams', id: any, name: string, description?: string | null, creator?: { __typename?: 'users', email?: any | null } | null }> };
+
 
 export const TeamListDocument = gql`
-  subscription TeamList {
-    teams {
-      id
-      name
-      ...TeamListCard
-    }
+    subscription TeamList {
+  teams {
+    id
+    name
+    ...TeamListCard
   }
-  ${TeamListCardFragmentDoc}
-`;
+}
+    ${TeamListCardFragmentDoc}`;
 
 /**
  * __useTeamListSubscription__
@@ -45,20 +35,9 @@ export const TeamListDocument = gql`
  *   },
  * });
  */
-export function useTeamListSubscription(
-  baseOptions?: Apollo.SubscriptionHookOptions<
-    TeamListSubscription,
-    TeamListSubscriptionVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSubscription<
-    TeamListSubscription,
-    TeamListSubscriptionVariables
-  >(TeamListDocument, options);
-}
-export type TeamListSubscriptionHookResult = ReturnType<
-  typeof useTeamListSubscription
->;
-export type TeamListSubscriptionResult =
-  Apollo.SubscriptionResult<TeamListSubscription>;
+export function useTeamListSubscription(baseOptions?: Apollo.SubscriptionHookOptions<TeamListSubscription, TeamListSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<TeamListSubscription, TeamListSubscriptionVariables>(TeamListDocument, options);
+      }
+export type TeamListSubscriptionHookResult = ReturnType<typeof useTeamListSubscription>;
+export type TeamListSubscriptionResult = Apollo.SubscriptionResult<TeamListSubscription>;

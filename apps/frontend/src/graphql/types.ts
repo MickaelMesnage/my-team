@@ -2831,10 +2831,6 @@ export type Mutation_Root = {
   deleteVirus?: Maybe<Virus>;
   /** delete data from the table: "storage.virus" */
   deleteViruses?: Maybe<Virus_Mutation_Response>;
-  /** delete data from the table: "team_creators" */
-  delete_team_creators?: Maybe<Team_Creators_Mutation_Response>;
-  /** delete data from the table: "team_members" */
-  delete_team_members?: Maybe<Team_Members_Mutation_Response>;
   /** delete data from the table: "teams" */
   delete_teams?: Maybe<Teams_Mutation_Response>;
   /** delete single row from the table: "teams" */
@@ -2891,14 +2887,6 @@ export type Mutation_Root = {
   insertVirus?: Maybe<Virus>;
   /** insert data into the table: "storage.virus" */
   insertViruses?: Maybe<Virus_Mutation_Response>;
-  /** insert data into the table: "team_creators" */
-  insert_team_creators?: Maybe<Team_Creators_Mutation_Response>;
-  /** insert a single row into the table: "team_creators" */
-  insert_team_creators_one?: Maybe<Team_Creators>;
-  /** insert data into the table: "team_members" */
-  insert_team_members?: Maybe<Team_Members_Mutation_Response>;
-  /** insert a single row into the table: "team_members" */
-  insert_team_members_one?: Maybe<Team_Members>;
   /** insert data into the table: "teams" */
   insert_teams?: Maybe<Teams_Mutation_Response>;
   /** insert a single row into the table: "teams" */
@@ -2975,14 +2963,6 @@ export type Mutation_Root = {
   update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
   /** update multiples rows of table: "storage.files" */
   update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
-  /** update data of the table: "team_creators" */
-  update_team_creators?: Maybe<Team_Creators_Mutation_Response>;
-  /** update multiples rows of table: "team_creators" */
-  update_team_creators_many?: Maybe<Array<Maybe<Team_Creators_Mutation_Response>>>;
-  /** update data of the table: "team_members" */
-  update_team_members?: Maybe<Team_Members_Mutation_Response>;
-  /** update multiples rows of table: "team_members" */
-  update_team_members_many?: Maybe<Array<Maybe<Team_Members_Mutation_Response>>>;
   /** update data of the table: "teams" */
   update_teams?: Maybe<Teams_Mutation_Response>;
   /** update single row of the table: "teams" */
@@ -3143,18 +3123,6 @@ export type Mutation_RootDeleteVirusArgs = {
 /** mutation root */
 export type Mutation_RootDeleteVirusesArgs = {
   where: Virus_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Team_CreatorsArgs = {
-  where: Team_Creators_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Team_MembersArgs = {
-  where: Team_Members_Bool_Exp;
 };
 
 
@@ -3347,30 +3315,6 @@ export type Mutation_RootInsertVirusArgs = {
 export type Mutation_RootInsertVirusesArgs = {
   objects: Array<Virus_Insert_Input>;
   on_conflict?: InputMaybe<Virus_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Team_CreatorsArgs = {
-  objects: Array<Team_Creators_Insert_Input>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Team_Creators_OneArgs = {
-  object: Team_Creators_Insert_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Team_MembersArgs = {
-  objects: Array<Team_Members_Insert_Input>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Team_Members_OneArgs = {
-  object: Team_Members_Insert_Input;
 };
 
 
@@ -3687,42 +3631,6 @@ export type Mutation_RootUpdate_Files_ManyArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Team_CreatorsArgs = {
-  _append?: InputMaybe<Team_Creators_Append_Input>;
-  _delete_at_path?: InputMaybe<Team_Creators_Delete_At_Path_Input>;
-  _delete_elem?: InputMaybe<Team_Creators_Delete_Elem_Input>;
-  _delete_key?: InputMaybe<Team_Creators_Delete_Key_Input>;
-  _prepend?: InputMaybe<Team_Creators_Prepend_Input>;
-  _set?: InputMaybe<Team_Creators_Set_Input>;
-  where: Team_Creators_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Team_Creators_ManyArgs = {
-  updates: Array<Team_Creators_Updates>;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Team_MembersArgs = {
-  _append?: InputMaybe<Team_Members_Append_Input>;
-  _delete_at_path?: InputMaybe<Team_Members_Delete_At_Path_Input>;
-  _delete_elem?: InputMaybe<Team_Members_Delete_Elem_Input>;
-  _delete_key?: InputMaybe<Team_Members_Delete_Key_Input>;
-  _prepend?: InputMaybe<Team_Members_Prepend_Input>;
-  _set?: InputMaybe<Team_Members_Set_Input>;
-  where: Team_Members_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Team_Members_ManyArgs = {
-  updates: Array<Team_Members_Updates>;
-};
-
-
-/** mutation root */
 export type Mutation_RootUpdate_TeamsArgs = {
   _set?: InputMaybe<Teams_Set_Input>;
   where: Teams_Bool_Exp;
@@ -3851,14 +3759,6 @@ export type Query_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
-  /** fetch data from the table: "team_creators" */
-  team_creators: Array<Team_Creators>;
-  /** fetch aggregated fields from the table: "team_creators" */
-  team_creators_aggregate: Team_Creators_Aggregate;
-  /** fetch data from the table: "team_members" */
-  team_members: Array<Team_Members>;
-  /** fetch aggregated fields from the table: "team_members" */
-  team_members_aggregate: Team_Members_Aggregate;
   /** fetch data from the table: "teams" */
   teams: Array<Teams>;
   /** fetch aggregated fields from the table: "teams" */
@@ -4116,42 +4016,6 @@ export type Query_RootFilesAggregateArgs = {
 };
 
 
-export type Query_RootTeam_CreatorsArgs = {
-  distinct_on?: InputMaybe<Array<Team_Creators_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Creators_Order_By>>;
-  where?: InputMaybe<Team_Creators_Bool_Exp>;
-};
-
-
-export type Query_RootTeam_Creators_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Team_Creators_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Creators_Order_By>>;
-  where?: InputMaybe<Team_Creators_Bool_Exp>;
-};
-
-
-export type Query_RootTeam_MembersArgs = {
-  distinct_on?: InputMaybe<Array<Team_Members_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Members_Order_By>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
-};
-
-
-export type Query_RootTeam_Members_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Team_Members_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Members_Order_By>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
-};
-
-
 export type Query_RootTeamsArgs = {
   distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4325,18 +4189,6 @@ export type Subscription_Root = {
   filesAggregate: Files_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.files" */
   files_stream: Array<Files>;
-  /** fetch data from the table: "team_creators" */
-  team_creators: Array<Team_Creators>;
-  /** fetch aggregated fields from the table: "team_creators" */
-  team_creators_aggregate: Team_Creators_Aggregate;
-  /** fetch data from the table in a streaming manner: "team_creators" */
-  team_creators_stream: Array<Team_Creators>;
-  /** fetch data from the table: "team_members" */
-  team_members: Array<Team_Members>;
-  /** fetch aggregated fields from the table: "team_members" */
-  team_members_aggregate: Team_Members_Aggregate;
-  /** fetch data from the table in a streaming manner: "team_members" */
-  team_members_stream: Array<Team_Members>;
   /** fetch data from the table: "teams" */
   teams: Array<Teams>;
   /** fetch aggregated fields from the table: "teams" */
@@ -4672,56 +4524,6 @@ export type Subscription_RootFiles_StreamArgs = {
 };
 
 
-export type Subscription_RootTeam_CreatorsArgs = {
-  distinct_on?: InputMaybe<Array<Team_Creators_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Creators_Order_By>>;
-  where?: InputMaybe<Team_Creators_Bool_Exp>;
-};
-
-
-export type Subscription_RootTeam_Creators_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Team_Creators_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Creators_Order_By>>;
-  where?: InputMaybe<Team_Creators_Bool_Exp>;
-};
-
-
-export type Subscription_RootTeam_Creators_StreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<Team_Creators_Stream_Cursor_Input>>;
-  where?: InputMaybe<Team_Creators_Bool_Exp>;
-};
-
-
-export type Subscription_RootTeam_MembersArgs = {
-  distinct_on?: InputMaybe<Array<Team_Members_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Members_Order_By>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
-};
-
-
-export type Subscription_RootTeam_Members_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Team_Members_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Members_Order_By>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
-};
-
-
-export type Subscription_RootTeam_Members_StreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<Team_Members_Stream_Cursor_Input>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
-};
-
-
 export type Subscription_RootTeamsArgs = {
   distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4839,477 +4641,6 @@ export type Subscription_RootVirusesAggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Virus_Order_By>>;
   where?: InputMaybe<Virus_Bool_Exp>;
-};
-
-/** columns and relationships of "team_creators" */
-export type Team_Creators = {
-  __typename?: 'team_creators';
-  avatar_url?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
-  id?: Maybe<Scalars['uuid']>;
-  metadata?: Maybe<Scalars['jsonb']>;
-  phone_number?: Maybe<Scalars['String']>;
-  /** fetch data from the table: "teams" */
-  teams: Array<Teams>;
-  /** fetch aggregated fields from the table: "teams" */
-  teams_aggregate: Teams_Aggregate;
-};
-
-
-/** columns and relationships of "team_creators" */
-export type Team_CreatorsMetadataArgs = {
-  path?: InputMaybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "team_creators" */
-export type Team_CreatorsTeamsArgs = {
-  distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Teams_Order_By>>;
-  where?: InputMaybe<Teams_Bool_Exp>;
-};
-
-
-/** columns and relationships of "team_creators" */
-export type Team_CreatorsTeams_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Teams_Order_By>>;
-  where?: InputMaybe<Teams_Bool_Exp>;
-};
-
-/** aggregated selection of "team_creators" */
-export type Team_Creators_Aggregate = {
-  __typename?: 'team_creators_aggregate';
-  aggregate?: Maybe<Team_Creators_Aggregate_Fields>;
-  nodes: Array<Team_Creators>;
-};
-
-/** aggregate fields of "team_creators" */
-export type Team_Creators_Aggregate_Fields = {
-  __typename?: 'team_creators_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<Team_Creators_Max_Fields>;
-  min?: Maybe<Team_Creators_Min_Fields>;
-};
-
-
-/** aggregate fields of "team_creators" */
-export type Team_Creators_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Team_Creators_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** append existing jsonb value of filtered columns with new jsonb value */
-export type Team_Creators_Append_Input = {
-  metadata?: InputMaybe<Scalars['jsonb']>;
-};
-
-/** Boolean expression to filter rows from the table "team_creators". All fields are combined with a logical 'AND'. */
-export type Team_Creators_Bool_Exp = {
-  _and?: InputMaybe<Array<Team_Creators_Bool_Exp>>;
-  _not?: InputMaybe<Team_Creators_Bool_Exp>;
-  _or?: InputMaybe<Array<Team_Creators_Bool_Exp>>;
-  avatar_url?: InputMaybe<String_Comparison_Exp>;
-  display_name?: InputMaybe<String_Comparison_Exp>;
-  email?: InputMaybe<Citext_Comparison_Exp>;
-  id?: InputMaybe<Uuid_Comparison_Exp>;
-  metadata?: InputMaybe<Jsonb_Comparison_Exp>;
-  phone_number?: InputMaybe<String_Comparison_Exp>;
-  teams?: InputMaybe<Teams_Bool_Exp>;
-  teams_aggregate?: InputMaybe<Teams_Aggregate_Bool_Exp>;
-};
-
-/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-export type Team_Creators_Delete_At_Path_Input = {
-  metadata?: InputMaybe<Array<Scalars['String']>>;
-};
-
-/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-export type Team_Creators_Delete_Elem_Input = {
-  metadata?: InputMaybe<Scalars['Int']>;
-};
-
-/** delete key/value pair or string element. key/value pairs are matched based on their key value */
-export type Team_Creators_Delete_Key_Input = {
-  metadata?: InputMaybe<Scalars['String']>;
-};
-
-/** input type for inserting data into table "team_creators" */
-export type Team_Creators_Insert_Input = {
-  avatar_url?: InputMaybe<Scalars['String']>;
-  display_name?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['citext']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  metadata?: InputMaybe<Scalars['jsonb']>;
-  phone_number?: InputMaybe<Scalars['String']>;
-  teams?: InputMaybe<Teams_Arr_Rel_Insert_Input>;
-};
-
-/** aggregate max on columns */
-export type Team_Creators_Max_Fields = {
-  __typename?: 'team_creators_max_fields';
-  avatar_url?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
-  id?: Maybe<Scalars['uuid']>;
-  phone_number?: Maybe<Scalars['String']>;
-};
-
-/** aggregate min on columns */
-export type Team_Creators_Min_Fields = {
-  __typename?: 'team_creators_min_fields';
-  avatar_url?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
-  id?: Maybe<Scalars['uuid']>;
-  phone_number?: Maybe<Scalars['String']>;
-};
-
-/** response of any mutation on the table "team_creators" */
-export type Team_Creators_Mutation_Response = {
-  __typename?: 'team_creators_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Team_Creators>;
-};
-
-/** Ordering options when selecting data from "team_creators". */
-export type Team_Creators_Order_By = {
-  avatar_url?: InputMaybe<Order_By>;
-  display_name?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  metadata?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-  teams_aggregate?: InputMaybe<Teams_Aggregate_Order_By>;
-};
-
-/** prepend existing jsonb value of filtered columns with new jsonb value */
-export type Team_Creators_Prepend_Input = {
-  metadata?: InputMaybe<Scalars['jsonb']>;
-};
-
-/** select columns of table "team_creators" */
-export enum Team_Creators_Select_Column {
-  /** column name */
-  AvatarUrl = 'avatar_url',
-  /** column name */
-  DisplayName = 'display_name',
-  /** column name */
-  Email = 'email',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Metadata = 'metadata',
-  /** column name */
-  PhoneNumber = 'phone_number'
-}
-
-/** input type for updating data in table "team_creators" */
-export type Team_Creators_Set_Input = {
-  avatar_url?: InputMaybe<Scalars['String']>;
-  display_name?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['citext']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  metadata?: InputMaybe<Scalars['jsonb']>;
-  phone_number?: InputMaybe<Scalars['String']>;
-};
-
-/** Streaming cursor of the table "team_creators" */
-export type Team_Creators_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Team_Creators_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Team_Creators_Stream_Cursor_Value_Input = {
-  avatar_url?: InputMaybe<Scalars['String']>;
-  display_name?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['citext']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  metadata?: InputMaybe<Scalars['jsonb']>;
-  phone_number?: InputMaybe<Scalars['String']>;
-};
-
-export type Team_Creators_Updates = {
-  /** append existing jsonb value of filtered columns with new jsonb value */
-  _append?: InputMaybe<Team_Creators_Append_Input>;
-  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-  _delete_at_path?: InputMaybe<Team_Creators_Delete_At_Path_Input>;
-  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-  _delete_elem?: InputMaybe<Team_Creators_Delete_Elem_Input>;
-  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
-  _delete_key?: InputMaybe<Team_Creators_Delete_Key_Input>;
-  /** prepend existing jsonb value of filtered columns with new jsonb value */
-  _prepend?: InputMaybe<Team_Creators_Prepend_Input>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Team_Creators_Set_Input>;
-  /** filter the rows which have to be updated */
-  where: Team_Creators_Bool_Exp;
-};
-
-/** columns and relationships of "team_members" */
-export type Team_Members = {
-  __typename?: 'team_members';
-  avatar_url?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
-  id?: Maybe<Scalars['uuid']>;
-  metadata?: Maybe<Scalars['jsonb']>;
-  phone_number?: Maybe<Scalars['String']>;
-  /** An array relationship */
-  teams: Array<User_Team>;
-  /** An aggregate relationship */
-  teams_aggregate: User_Team_Aggregate;
-};
-
-
-/** columns and relationships of "team_members" */
-export type Team_MembersMetadataArgs = {
-  path?: InputMaybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "team_members" */
-export type Team_MembersTeamsArgs = {
-  distinct_on?: InputMaybe<Array<User_Team_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<User_Team_Order_By>>;
-  where?: InputMaybe<User_Team_Bool_Exp>;
-};
-
-
-/** columns and relationships of "team_members" */
-export type Team_MembersTeams_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<User_Team_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<User_Team_Order_By>>;
-  where?: InputMaybe<User_Team_Bool_Exp>;
-};
-
-/** aggregated selection of "team_members" */
-export type Team_Members_Aggregate = {
-  __typename?: 'team_members_aggregate';
-  aggregate?: Maybe<Team_Members_Aggregate_Fields>;
-  nodes: Array<Team_Members>;
-};
-
-export type Team_Members_Aggregate_Bool_Exp = {
-  count?: InputMaybe<Team_Members_Aggregate_Bool_Exp_Count>;
-};
-
-export type Team_Members_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Team_Members_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-  filter?: InputMaybe<Team_Members_Bool_Exp>;
-  predicate: Int_Comparison_Exp;
-};
-
-/** aggregate fields of "team_members" */
-export type Team_Members_Aggregate_Fields = {
-  __typename?: 'team_members_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<Team_Members_Max_Fields>;
-  min?: Maybe<Team_Members_Min_Fields>;
-};
-
-
-/** aggregate fields of "team_members" */
-export type Team_Members_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Team_Members_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "team_members" */
-export type Team_Members_Aggregate_Order_By = {
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Team_Members_Max_Order_By>;
-  min?: InputMaybe<Team_Members_Min_Order_By>;
-};
-
-/** append existing jsonb value of filtered columns with new jsonb value */
-export type Team_Members_Append_Input = {
-  metadata?: InputMaybe<Scalars['jsonb']>;
-};
-
-/** input type for inserting array relation for remote table "team_members" */
-export type Team_Members_Arr_Rel_Insert_Input = {
-  data: Array<Team_Members_Insert_Input>;
-};
-
-/** Boolean expression to filter rows from the table "team_members". All fields are combined with a logical 'AND'. */
-export type Team_Members_Bool_Exp = {
-  _and?: InputMaybe<Array<Team_Members_Bool_Exp>>;
-  _not?: InputMaybe<Team_Members_Bool_Exp>;
-  _or?: InputMaybe<Array<Team_Members_Bool_Exp>>;
-  avatar_url?: InputMaybe<String_Comparison_Exp>;
-  display_name?: InputMaybe<String_Comparison_Exp>;
-  email?: InputMaybe<Citext_Comparison_Exp>;
-  id?: InputMaybe<Uuid_Comparison_Exp>;
-  metadata?: InputMaybe<Jsonb_Comparison_Exp>;
-  phone_number?: InputMaybe<String_Comparison_Exp>;
-  teams?: InputMaybe<User_Team_Bool_Exp>;
-  teams_aggregate?: InputMaybe<User_Team_Aggregate_Bool_Exp>;
-};
-
-/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-export type Team_Members_Delete_At_Path_Input = {
-  metadata?: InputMaybe<Array<Scalars['String']>>;
-};
-
-/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-export type Team_Members_Delete_Elem_Input = {
-  metadata?: InputMaybe<Scalars['Int']>;
-};
-
-/** delete key/value pair or string element. key/value pairs are matched based on their key value */
-export type Team_Members_Delete_Key_Input = {
-  metadata?: InputMaybe<Scalars['String']>;
-};
-
-/** input type for inserting data into table "team_members" */
-export type Team_Members_Insert_Input = {
-  avatar_url?: InputMaybe<Scalars['String']>;
-  display_name?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['citext']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  metadata?: InputMaybe<Scalars['jsonb']>;
-  phone_number?: InputMaybe<Scalars['String']>;
-  teams?: InputMaybe<User_Team_Arr_Rel_Insert_Input>;
-};
-
-/** aggregate max on columns */
-export type Team_Members_Max_Fields = {
-  __typename?: 'team_members_max_fields';
-  avatar_url?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
-  id?: Maybe<Scalars['uuid']>;
-  phone_number?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "team_members" */
-export type Team_Members_Max_Order_By = {
-  avatar_url?: InputMaybe<Order_By>;
-  display_name?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Team_Members_Min_Fields = {
-  __typename?: 'team_members_min_fields';
-  avatar_url?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
-  id?: Maybe<Scalars['uuid']>;
-  phone_number?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "team_members" */
-export type Team_Members_Min_Order_By = {
-  avatar_url?: InputMaybe<Order_By>;
-  display_name?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "team_members" */
-export type Team_Members_Mutation_Response = {
-  __typename?: 'team_members_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Team_Members>;
-};
-
-/** Ordering options when selecting data from "team_members". */
-export type Team_Members_Order_By = {
-  avatar_url?: InputMaybe<Order_By>;
-  display_name?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  metadata?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-  teams_aggregate?: InputMaybe<User_Team_Aggregate_Order_By>;
-};
-
-/** prepend existing jsonb value of filtered columns with new jsonb value */
-export type Team_Members_Prepend_Input = {
-  metadata?: InputMaybe<Scalars['jsonb']>;
-};
-
-/** select columns of table "team_members" */
-export enum Team_Members_Select_Column {
-  /** column name */
-  AvatarUrl = 'avatar_url',
-  /** column name */
-  DisplayName = 'display_name',
-  /** column name */
-  Email = 'email',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Metadata = 'metadata',
-  /** column name */
-  PhoneNumber = 'phone_number'
-}
-
-/** input type for updating data in table "team_members" */
-export type Team_Members_Set_Input = {
-  avatar_url?: InputMaybe<Scalars['String']>;
-  display_name?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['citext']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  metadata?: InputMaybe<Scalars['jsonb']>;
-  phone_number?: InputMaybe<Scalars['String']>;
-};
-
-/** Streaming cursor of the table "team_members" */
-export type Team_Members_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Team_Members_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Team_Members_Stream_Cursor_Value_Input = {
-  avatar_url?: InputMaybe<Scalars['String']>;
-  display_name?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['citext']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  metadata?: InputMaybe<Scalars['jsonb']>;
-  phone_number?: InputMaybe<Scalars['String']>;
-};
-
-export type Team_Members_Updates = {
-  /** append existing jsonb value of filtered columns with new jsonb value */
-  _append?: InputMaybe<Team_Members_Append_Input>;
-  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-  _delete_at_path?: InputMaybe<Team_Members_Delete_At_Path_Input>;
-  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-  _delete_elem?: InputMaybe<Team_Members_Delete_Elem_Input>;
-  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
-  _delete_key?: InputMaybe<Team_Members_Delete_Key_Input>;
-  /** prepend existing jsonb value of filtered columns with new jsonb value */
-  _prepend?: InputMaybe<Team_Members_Prepend_Input>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Team_Members_Set_Input>;
-  /** filter the rows which have to be updated */
-  where: Team_Members_Bool_Exp;
 };
 
 /** columns and relationships of "teams" */
@@ -5570,9 +4901,9 @@ export type User_Team = {
   created_at: Scalars['timestamptz'];
   id: Scalars['uuid'];
   /** An array relationship */
-  members: Array<Team_Members>;
+  members: Array<Users>;
   /** An aggregate relationship */
-  members_aggregate: Team_Members_Aggregate;
+  members_aggregate: Users_Aggregate;
   /** An object relationship */
   team: Teams;
   teamId: Scalars['uuid'];
@@ -5583,21 +4914,21 @@ export type User_Team = {
 
 /** columns and relationships of "user_team" */
 export type User_TeamMembersArgs = {
-  distinct_on?: InputMaybe<Array<Team_Members_Select_Column>>;
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Members_Order_By>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
+  order_by?: InputMaybe<Array<Users_Order_By>>;
+  where?: InputMaybe<Users_Bool_Exp>;
 };
 
 
 /** columns and relationships of "user_team" */
 export type User_TeamMembers_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Team_Members_Select_Column>>;
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Team_Members_Order_By>>;
-  where?: InputMaybe<Team_Members_Bool_Exp>;
+  order_by?: InputMaybe<Array<Users_Order_By>>;
+  where?: InputMaybe<Users_Bool_Exp>;
 };
 
 /** aggregated selection of "user_team" */
@@ -5654,8 +4985,8 @@ export type User_Team_Bool_Exp = {
   _or?: InputMaybe<Array<User_Team_Bool_Exp>>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  members?: InputMaybe<Team_Members_Bool_Exp>;
-  members_aggregate?: InputMaybe<Team_Members_Aggregate_Bool_Exp>;
+  members?: InputMaybe<Users_Bool_Exp>;
+  members_aggregate?: InputMaybe<Users_Aggregate_Bool_Exp>;
   team?: InputMaybe<Teams_Bool_Exp>;
   teamId?: InputMaybe<Uuid_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -5672,7 +5003,7 @@ export enum User_Team_Constraint {
 export type User_Team_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
-  members?: InputMaybe<Team_Members_Arr_Rel_Insert_Input>;
+  members?: InputMaybe<Users_Arr_Rel_Insert_Input>;
   team?: InputMaybe<Teams_Obj_Rel_Insert_Input>;
   teamId?: InputMaybe<Scalars['uuid']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -5737,7 +5068,7 @@ export type User_Team_On_Conflict = {
 export type User_Team_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  members_aggregate?: InputMaybe<Team_Members_Aggregate_Order_By>;
+  members_aggregate?: InputMaybe<Users_Aggregate_Order_By>;
   team?: InputMaybe<Teams_Order_By>;
   teamId?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
