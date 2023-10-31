@@ -1,28 +1,3 @@
 table:
   name: team_members
   schema: public
-array_relationships:
-  - name: teams
-    using:
-      manual_configuration:
-        column_mapping:
-          id: userId
-        insertion_order: null
-        remote_table:
-          name: user_team
-          schema: public
-select_permissions:
-  - role: user
-    permission:
-      columns:
-        - avatar_url
-        - display_name
-        - email
-        - metadata
-        - phone_number
-      filter:
-        teams:
-          members:
-            id:
-              _eq: X-Hasura-User-Id
-    comment: ""

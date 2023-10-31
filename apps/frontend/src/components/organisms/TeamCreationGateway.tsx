@@ -17,7 +17,8 @@ export const TeamCreationGateway = (props: TeamCreationGatewayProps) => {
 
   const onTeamCreation = async (team: TeamFormFieldsValue) => {
     try {
-      await insertTeam({ variables: { team } });
+      const { data } = await insertTeam({ variables: { team } });
+      console.log({ data });
       toast.success("Équipe créée !");
       disclosure.onClose();
     } catch (error) {

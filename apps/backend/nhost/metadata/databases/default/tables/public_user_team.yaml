@@ -13,5 +13,5 @@ array_relationships:
           userId: id
         insertion_order: null
         remote_table:
-          name: team_members
-          schema: public
+          name: users
+          schema: auth

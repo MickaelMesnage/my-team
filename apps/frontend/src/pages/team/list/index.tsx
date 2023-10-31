@@ -1,6 +1,5 @@
 import { Button, useDisclosure } from "@nextui-org/react";
 import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
-import { TeamList } from "@/components/organisms/TeamList";
 import { ReactElement } from "react";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { toast } from "react-toastify";
