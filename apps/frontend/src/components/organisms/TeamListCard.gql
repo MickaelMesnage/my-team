@@ -6,7 +6,7 @@ fragment TeamListCard on teams {
     email
   }
   user_teams {
-    members {
+    user {
       email
     }
   }

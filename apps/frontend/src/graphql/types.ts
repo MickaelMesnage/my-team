@@ -4908,6 +4908,8 @@ export type User_Team = {
   team: Teams;
   teamId: Scalars['uuid'];
   updated_at: Scalars['timestamptz'];
+  /** An object relationship */
+  user?: Maybe<Users>;
   userId: Scalars['uuid'];
 };
 
@@ -4990,6 +4992,7 @@ export type User_Team_Bool_Exp = {
   team?: InputMaybe<Teams_Bool_Exp>;
   teamId?: InputMaybe<Uuid_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
 };
 
@@ -5007,6 +5010,7 @@ export type User_Team_Insert_Input = {
   team?: InputMaybe<Teams_Obj_Rel_Insert_Input>;
   teamId?: InputMaybe<Scalars['uuid']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -5072,6 +5076,7 @@ export type User_Team_Order_By = {
   team?: InputMaybe<Teams_Order_By>;
   teamId?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
   userId?: InputMaybe<Order_By>;
 };
 

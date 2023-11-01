@@ -11,6 +11,8 @@ export const signupFormZodSchema = z.object({
 
 export type SignupFormFieldsValue = z.infer<typeof signupFormZodSchema>;
 
+const DEFAULT_VALUES: SignupFormFieldsValue = { email: "", password: "" };
+
 export type SignupFormProps = {
   isLoading: boolean;
   onSubmit: (data: SignupFormFieldsValue) => Promise<void>;
@@ -22,6 +24,7 @@ export const SignupForm = ({
 }: SignupFormProps) => {
   const methods = useForm<SignupFormFieldsValue>({
     resolver: zodResolver(signupFormZodSchema),
+    defaultValues: DEFAULT_VALUES,
   });
 
   const { handleSubmit, control } = methods;

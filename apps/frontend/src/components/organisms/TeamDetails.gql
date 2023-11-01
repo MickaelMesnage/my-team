@@ -6,4 +6,9 @@ fragment TeamDetails on teams {
     email
     id
   }
+  user_teams {
+    user {
+      email
+    }
+  }
 }

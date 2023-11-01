@@ -9,7 +9,7 @@ export type TeamByIdQueryVariables = Types.Exact<{
 }>;
 
 
-export type TeamByIdQuery = { __typename?: 'query_root', teams_by_pk?: { __typename?: 'teams', id: any, name: string, description?: string | null, creator?: { __typename?: 'users', email?: any | null, id: any } | null } | null };
+export type TeamByIdQuery = { __typename?: 'query_root', teams_by_pk?: { __typename?: 'teams', id: any, name: string, description?: string | null, creator?: { __typename?: 'users', email?: any | null, id: any } | null, user_teams: Array<{ __typename?: 'user_team', user?: { __typename?: 'users', email?: any | null } | null }> } | null };
 
 
 export const TeamByIdDocument = gql`

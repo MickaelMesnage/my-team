@@ -1,0 +1,5 @@
+mutation TeamJoin($teamId: uuid!) {
+  insert_user_team_one(object: { teamId: $teamId }) {
+    id
+  }
+}

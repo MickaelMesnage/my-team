@@ -3,44 +3,44 @@ import * as Types from '../../graphql/types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type TeamJoinMutationVariables = Types.Exact<{
+export type TeamJoindMutationVariables = Types.Exact<{
   object: Types.User_Team_Insert_Input;
 }>;
 
 
-export type TeamJoinMutation = { __typename?: 'mutation_root', insert_user_team_one?: { __typename?: 'user_team', id: any } | null };
+export type TeamJoindMutation = { __typename?: 'mutation_root', insert_user_team_one?: { __typename?: 'user_team', id: any } | null };
 
 
-export const TeamJoinDocument = gql`
-    mutation TeamJoin($object: user_team_insert_input!) {
+export const TeamJoindDocument = gql`
+    mutation TeamJoind($object: user_team_insert_input!) {
   insert_user_team_one(object: $object) {
     id
   }
 }
     `;
-export type TeamJoinMutationFn = Apollo.MutationFunction<TeamJoinMutation, TeamJoinMutationVariables>;
+export type TeamJoindMutationFn = Apollo.MutationFunction<TeamJoindMutation, TeamJoindMutationVariables>;
 
 /**
- * __useTeamJoinMutation__
+ * __useTeamJoindMutation__
  *
- * To run a mutation, you first call `useTeamJoinMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useTeamJoinMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useTeamJoindMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTeamJoindMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [teamJoinMutation, { data, loading, error }] = useTeamJoinMutation({
+ * const [teamJoindMutation, { data, loading, error }] = useTeamJoindMutation({
  *   variables: {
  *      object: // value for 'object'
  *   },
  * });
  */
-export function useTeamJoinMutation(baseOptions?: Apollo.MutationHookOptions<TeamJoinMutation, TeamJoinMutationVariables>) {
+export function useTeamJoindMutation(baseOptions?: Apollo.MutationHookOptions<TeamJoindMutation, TeamJoindMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<TeamJoinMutation, TeamJoinMutationVariables>(TeamJoinDocument, options);
+        return Apollo.useMutation<TeamJoindMutation, TeamJoindMutationVariables>(TeamJoindDocument, options);
       }
-export type TeamJoinMutationHookResult = ReturnType<typeof useTeamJoinMutation>;
-export type TeamJoinMutationResult = Apollo.MutationResult<TeamJoinMutation>;
-export type TeamJoinMutationOptions = Apollo.BaseMutationOptions<TeamJoinMutation, TeamJoinMutationVariables>;
+export type TeamJoindMutationHookResult = ReturnType<typeof useTeamJoindMutation>;
+export type TeamJoindMutationResult = Apollo.MutationResult<TeamJoindMutation>;
+export type TeamJoindMutationOptions = Apollo.BaseMutationOptions<TeamJoindMutation, TeamJoindMutationVariables>;

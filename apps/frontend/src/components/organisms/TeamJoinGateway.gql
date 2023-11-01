@@ -1,4 +1,4 @@
-mutation TeamJoin($object: user_team_insert_input!) {
+mutation TeamJoind($object: user_team_insert_input!) {
   insert_user_team_one(object: $object) {
     id
   }

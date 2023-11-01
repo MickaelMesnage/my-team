@@ -5,6 +5,15 @@ object_relationships:
   - name: team
     using:
       foreign_key_constraint_on: teamId
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 array_relationships:
   - name: members
     using:
@@ -27,11 +36,14 @@ insert_permissions:
 select_permissions:
   - role: user
     permission:
-      columns: []
+      columns:
+        - created_at
+        - id
       filter:
-        members:
-          id:
-            _eq: X-Hasura-User-Id
+        team:
+          user_teams:
+            userId:
+              _eq: X-Hasura-User-Id
     comment: ""
 delete_permissions:
   - role: user
