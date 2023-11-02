@@ -1,5 +1,6 @@
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { useTeamJoinMutation } from "@/components/pageGraphqlRequests/TeamJoin.generated";
+import { ApolloError } from "@apollo/client";
 import { Button } from "@nextui-org/react";
 import { useAuthenticationStatus } from "@nhost/nextjs";
 import NextLink from "next/link";
@@ -10,20 +11,25 @@ export default function TeamJoinPage() {
   const router = useRouter();
   const [joinTeam, { loading }] = useTeamJoinMutation();
   const { team_id } = router.query;
-  // const team_id = "1";
   const { isAuthenticated, isLoading } = useAuthenticationStatus();
 
   const onClick = async () => {
     try {
-      const { errors } = await joinTeam({ variables: { teamId: team_id } });
-
-      if (errors) throw new Error(errors[0].message);
-
+      await joinTeam({ variables: { teamId: team_id } });
       toast.success("Vous avez rejoint l'équipe");
       router.push("/team/list");
-    } catch (error) {
+    } catch (error: any) {
+      if (error instanceof ApolloError) {
+        if (
+          error &&
+          error.graphQLErrors[0].extensions.code === "constraint-violation"
+        ) {
+          toast.success("Vous aviez déjà rejoint cette équipe petit coquin");
+          return;
+        }
+      }
+
       toast.error("Une erreur est survenue");
-      console.log(error);
     }
   };
 

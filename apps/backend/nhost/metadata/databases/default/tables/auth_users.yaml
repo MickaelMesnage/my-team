@@ -153,12 +153,12 @@ select_permissions:
           - id:
               _eq: X-Hasura-User-Id
           - user_teams:
-              members:
+              user:
                 id:
                   _eq: X-Hasura-User-Id
           - asAdminTeams:
               user_teams:
-                members:
+                user:
                   id:
                     _eq: X-Hasura-User-Id
     comment: ""
