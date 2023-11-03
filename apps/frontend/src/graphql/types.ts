@@ -2752,6 +2752,233 @@ export type Files_Variance_Order_By = {
   size?: InputMaybe<Order_By>;
 };
 
+/** columns and relationships of "games" */
+export type Games = {
+  __typename?: 'games';
+  created_at: Scalars['timestamptz'];
+  /** An object relationship */
+  creator: Users;
+  id: Scalars['uuid'];
+  /** An object relationship */
+  team: Teams;
+  teamId: Scalars['uuid'];
+  timestamp: Scalars['timestamptz'];
+  updated_at: Scalars['timestamptz'];
+  userId: Scalars['uuid'];
+  /** An array relationship */
+  user_games: Array<User_Game>;
+  /** An aggregate relationship */
+  user_games_aggregate: User_Game_Aggregate;
+};
+
+
+/** columns and relationships of "games" */
+export type GamesUser_GamesArgs = {
+  distinct_on?: InputMaybe<Array<User_Game_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Game_Order_By>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+
+/** columns and relationships of "games" */
+export type GamesUser_Games_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Game_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Game_Order_By>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+/** aggregated selection of "games" */
+export type Games_Aggregate = {
+  __typename?: 'games_aggregate';
+  aggregate?: Maybe<Games_Aggregate_Fields>;
+  nodes: Array<Games>;
+};
+
+/** aggregate fields of "games" */
+export type Games_Aggregate_Fields = {
+  __typename?: 'games_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Games_Max_Fields>;
+  min?: Maybe<Games_Min_Fields>;
+};
+
+
+/** aggregate fields of "games" */
+export type Games_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Games_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "games". All fields are combined with a logical 'AND'. */
+export type Games_Bool_Exp = {
+  _and?: InputMaybe<Array<Games_Bool_Exp>>;
+  _not?: InputMaybe<Games_Bool_Exp>;
+  _or?: InputMaybe<Array<Games_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  creator?: InputMaybe<Users_Bool_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  team?: InputMaybe<Teams_Bool_Exp>;
+  teamId?: InputMaybe<Uuid_Comparison_Exp>;
+  timestamp?: InputMaybe<Timestamptz_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+  user_games?: InputMaybe<User_Game_Bool_Exp>;
+  user_games_aggregate?: InputMaybe<User_Game_Aggregate_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "games" */
+export enum Games_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  GamesPkey = 'games_pkey'
+}
+
+/** input type for inserting data into table "games" */
+export type Games_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  creator?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  id?: InputMaybe<Scalars['uuid']>;
+  team?: InputMaybe<Teams_Obj_Rel_Insert_Input>;
+  teamId?: InputMaybe<Scalars['uuid']>;
+  timestamp?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+  user_games?: InputMaybe<User_Game_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Games_Max_Fields = {
+  __typename?: 'games_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  teamId?: Maybe<Scalars['uuid']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Games_Min_Fields = {
+  __typename?: 'games_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  teamId?: Maybe<Scalars['uuid']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "games" */
+export type Games_Mutation_Response = {
+  __typename?: 'games_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Games>;
+};
+
+/** input type for inserting object relation for remote table "games" */
+export type Games_Obj_Rel_Insert_Input = {
+  data: Games_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Games_On_Conflict>;
+};
+
+/** on_conflict condition type for table "games" */
+export type Games_On_Conflict = {
+  constraint: Games_Constraint;
+  update_columns?: Array<Games_Update_Column>;
+  where?: InputMaybe<Games_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "games". */
+export type Games_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  creator?: InputMaybe<Users_Order_By>;
+  id?: InputMaybe<Order_By>;
+  team?: InputMaybe<Teams_Order_By>;
+  teamId?: InputMaybe<Order_By>;
+  timestamp?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+  user_games_aggregate?: InputMaybe<User_Game_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: games */
+export type Games_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "games" */
+export enum Games_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  TeamId = 'teamId',
+  /** column name */
+  Timestamp = 'timestamp',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "games" */
+export type Games_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  teamId?: InputMaybe<Scalars['uuid']>;
+  timestamp?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "games" */
+export type Games_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Games_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Games_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  teamId?: InputMaybe<Scalars['uuid']>;
+  timestamp?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "games" */
+export enum Games_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  TeamId = 'teamId',
+  /** column name */
+  Timestamp = 'timestamp',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Games_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Games_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Games_Bool_Exp;
+};
+
 export type Jsonb_Cast_Exp = {
   String?: InputMaybe<String_Comparison_Exp>;
 };
@@ -2831,10 +3058,18 @@ export type Mutation_Root = {
   deleteVirus?: Maybe<Virus>;
   /** delete data from the table: "storage.virus" */
   deleteViruses?: Maybe<Virus_Mutation_Response>;
+  /** delete data from the table: "games" */
+  delete_games?: Maybe<Games_Mutation_Response>;
+  /** delete single row from the table: "games" */
+  delete_games_by_pk?: Maybe<Games>;
   /** delete data from the table: "teams" */
   delete_teams?: Maybe<Teams_Mutation_Response>;
   /** delete single row from the table: "teams" */
   delete_teams_by_pk?: Maybe<Teams>;
+  /** delete data from the table: "user_game" */
+  delete_user_game?: Maybe<User_Game_Mutation_Response>;
+  /** delete single row from the table: "user_game" */
+  delete_user_game_by_pk?: Maybe<User_Game>;
   /** delete data from the table: "user_team" */
   delete_user_team?: Maybe<User_Team_Mutation_Response>;
   /** delete single row from the table: "user_team" */
@@ -2887,10 +3122,18 @@ export type Mutation_Root = {
   insertVirus?: Maybe<Virus>;
   /** insert data into the table: "storage.virus" */
   insertViruses?: Maybe<Virus_Mutation_Response>;
+  /** insert data into the table: "games" */
+  insert_games?: Maybe<Games_Mutation_Response>;
+  /** insert a single row into the table: "games" */
+  insert_games_one?: Maybe<Games>;
   /** insert data into the table: "teams" */
   insert_teams?: Maybe<Teams_Mutation_Response>;
   /** insert a single row into the table: "teams" */
   insert_teams_one?: Maybe<Teams>;
+  /** insert data into the table: "user_game" */
+  insert_user_game?: Maybe<User_Game_Mutation_Response>;
+  /** insert a single row into the table: "user_game" */
+  insert_user_game_one?: Maybe<User_Game>;
   /** insert data into the table: "user_team" */
   insert_user_team?: Maybe<User_Team_Mutation_Response>;
   /** insert a single row into the table: "user_team" */
@@ -2963,12 +3206,24 @@ export type Mutation_Root = {
   update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
   /** update multiples rows of table: "storage.files" */
   update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
+  /** update data of the table: "games" */
+  update_games?: Maybe<Games_Mutation_Response>;
+  /** update single row of the table: "games" */
+  update_games_by_pk?: Maybe<Games>;
+  /** update multiples rows of table: "games" */
+  update_games_many?: Maybe<Array<Maybe<Games_Mutation_Response>>>;
   /** update data of the table: "teams" */
   update_teams?: Maybe<Teams_Mutation_Response>;
   /** update single row of the table: "teams" */
   update_teams_by_pk?: Maybe<Teams>;
   /** update multiples rows of table: "teams" */
   update_teams_many?: Maybe<Array<Maybe<Teams_Mutation_Response>>>;
+  /** update data of the table: "user_game" */
+  update_user_game?: Maybe<User_Game_Mutation_Response>;
+  /** update single row of the table: "user_game" */
+  update_user_game_by_pk?: Maybe<User_Game>;
+  /** update multiples rows of table: "user_game" */
+  update_user_game_many?: Maybe<Array<Maybe<User_Game_Mutation_Response>>>;
   /** update data of the table: "user_team" */
   update_user_team?: Maybe<User_Team_Mutation_Response>;
   /** update single row of the table: "user_team" */
@@ -3127,6 +3382,18 @@ export type Mutation_RootDeleteVirusesArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_GamesArgs = {
+  where: Games_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Games_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_TeamsArgs = {
   where: Teams_Bool_Exp;
 };
@@ -3134,6 +3401,18 @@ export type Mutation_RootDelete_TeamsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Teams_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_GameArgs = {
+  where: User_Game_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_Game_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -3319,6 +3598,20 @@ export type Mutation_RootInsertVirusesArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_GamesArgs = {
+  objects: Array<Games_Insert_Input>;
+  on_conflict?: InputMaybe<Games_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Games_OneArgs = {
+  object: Games_Insert_Input;
+  on_conflict?: InputMaybe<Games_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_TeamsArgs = {
   objects: Array<Teams_Insert_Input>;
   on_conflict?: InputMaybe<Teams_On_Conflict>;
@@ -3329,6 +3622,20 @@ export type Mutation_RootInsert_TeamsArgs = {
 export type Mutation_RootInsert_Teams_OneArgs = {
   object: Teams_Insert_Input;
   on_conflict?: InputMaybe<Teams_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_GameArgs = {
+  objects: Array<User_Game_Insert_Input>;
+  on_conflict?: InputMaybe<User_Game_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_Game_OneArgs = {
+  object: User_Game_Insert_Input;
+  on_conflict?: InputMaybe<User_Game_On_Conflict>;
 };
 
 
@@ -3631,6 +3938,26 @@ export type Mutation_RootUpdate_Files_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_GamesArgs = {
+  _set?: InputMaybe<Games_Set_Input>;
+  where: Games_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Games_By_PkArgs = {
+  _set?: InputMaybe<Games_Set_Input>;
+  pk_columns: Games_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Games_ManyArgs = {
+  updates: Array<Games_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_TeamsArgs = {
   _set?: InputMaybe<Teams_Set_Input>;
   where: Teams_Bool_Exp;
@@ -3647,6 +3974,26 @@ export type Mutation_RootUpdate_Teams_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Teams_ManyArgs = {
   updates: Array<Teams_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_GameArgs = {
+  _set?: InputMaybe<User_Game_Set_Input>;
+  where: User_Game_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Game_By_PkArgs = {
+  _set?: InputMaybe<User_Game_Set_Input>;
+  pk_columns: User_Game_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Game_ManyArgs = {
+  updates: Array<User_Game_Updates>;
 };
 
 
@@ -3759,6 +4106,12 @@ export type Query_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "games" */
+  games: Array<Games>;
+  /** fetch aggregated fields from the table: "games" */
+  games_aggregate: Games_Aggregate;
+  /** fetch data from the table: "games" using primary key columns */
+  games_by_pk?: Maybe<Games>;
   /** fetch data from the table: "teams" */
   teams: Array<Teams>;
   /** fetch aggregated fields from the table: "teams" */
@@ -3767,6 +4120,12 @@ export type Query_Root = {
   teams_by_pk?: Maybe<Teams>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
+  /** fetch data from the table: "user_game" */
+  user_game: Array<User_Game>;
+  /** fetch aggregated fields from the table: "user_game" */
+  user_game_aggregate: User_Game_Aggregate;
+  /** fetch data from the table: "user_game" using primary key columns */
+  user_game_by_pk?: Maybe<User_Game>;
   /** fetch data from the table: "user_team" */
   user_team: Array<User_Team>;
   /** fetch aggregated fields from the table: "user_team" */
@@ -4016,6 +4375,29 @@ export type Query_RootFilesAggregateArgs = {
 };
 
 
+export type Query_RootGamesArgs = {
+  distinct_on?: InputMaybe<Array<Games_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Games_Order_By>>;
+  where?: InputMaybe<Games_Bool_Exp>;
+};
+
+
+export type Query_RootGames_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Games_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Games_Order_By>>;
+  where?: InputMaybe<Games_Bool_Exp>;
+};
+
+
+export type Query_RootGames_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type Query_RootTeamsArgs = {
   distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4040,6 +4422,29 @@ export type Query_RootTeams_By_PkArgs = {
 
 
 export type Query_RootUserArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootUser_GameArgs = {
+  distinct_on?: InputMaybe<Array<User_Game_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Game_Order_By>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Game_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Game_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Game_Order_By>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Game_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -4189,6 +4594,14 @@ export type Subscription_Root = {
   filesAggregate: Files_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.files" */
   files_stream: Array<Files>;
+  /** fetch data from the table: "games" */
+  games: Array<Games>;
+  /** fetch aggregated fields from the table: "games" */
+  games_aggregate: Games_Aggregate;
+  /** fetch data from the table: "games" using primary key columns */
+  games_by_pk?: Maybe<Games>;
+  /** fetch data from the table in a streaming manner: "games" */
+  games_stream: Array<Games>;
   /** fetch data from the table: "teams" */
   teams: Array<Teams>;
   /** fetch aggregated fields from the table: "teams" */
@@ -4199,6 +4612,14 @@ export type Subscription_Root = {
   teams_stream: Array<Teams>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
+  /** fetch data from the table: "user_game" */
+  user_game: Array<User_Game>;
+  /** fetch aggregated fields from the table: "user_game" */
+  user_game_aggregate: User_Game_Aggregate;
+  /** fetch data from the table: "user_game" using primary key columns */
+  user_game_by_pk?: Maybe<User_Game>;
+  /** fetch data from the table in a streaming manner: "user_game" */
+  user_game_stream: Array<User_Game>;
   /** fetch data from the table: "user_team" */
   user_team: Array<User_Team>;
   /** fetch aggregated fields from the table: "user_team" */
@@ -4524,6 +4945,36 @@ export type Subscription_RootFiles_StreamArgs = {
 };
 
 
+export type Subscription_RootGamesArgs = {
+  distinct_on?: InputMaybe<Array<Games_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Games_Order_By>>;
+  where?: InputMaybe<Games_Bool_Exp>;
+};
+
+
+export type Subscription_RootGames_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Games_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Games_Order_By>>;
+  where?: InputMaybe<Games_Bool_Exp>;
+};
+
+
+export type Subscription_RootGames_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootGames_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Games_Stream_Cursor_Input>>;
+  where?: InputMaybe<Games_Bool_Exp>;
+};
+
+
 export type Subscription_RootTeamsArgs = {
   distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4556,6 +5007,36 @@ export type Subscription_RootTeams_StreamArgs = {
 
 export type Subscription_RootUserArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootUser_GameArgs = {
+  distinct_on?: InputMaybe<Array<User_Game_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Game_Order_By>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Game_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Game_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Game_Order_By>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Game_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootUser_Game_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<User_Game_Stream_Cursor_Input>>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
 };
 
 
@@ -4895,15 +5376,236 @@ export type Timestamptz_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
 };
 
+/** columns and relationships of "user_game" */
+export type User_Game = {
+  __typename?: 'user_game';
+  created_at: Scalars['timestamptz'];
+  /** An object relationship */
+  game: Games;
+  gameId: Scalars['uuid'];
+  id: Scalars['uuid'];
+  updated_at: Scalars['timestamptz'];
+  /** An object relationship */
+  user: Users;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "user_game" */
+export type User_Game_Aggregate = {
+  __typename?: 'user_game_aggregate';
+  aggregate?: Maybe<User_Game_Aggregate_Fields>;
+  nodes: Array<User_Game>;
+};
+
+export type User_Game_Aggregate_Bool_Exp = {
+  count?: InputMaybe<User_Game_Aggregate_Bool_Exp_Count>;
+};
+
+export type User_Game_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<User_Game_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<User_Game_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "user_game" */
+export type User_Game_Aggregate_Fields = {
+  __typename?: 'user_game_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<User_Game_Max_Fields>;
+  min?: Maybe<User_Game_Min_Fields>;
+};
+
+
+/** aggregate fields of "user_game" */
+export type User_Game_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<User_Game_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "user_game" */
+export type User_Game_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<User_Game_Max_Order_By>;
+  min?: InputMaybe<User_Game_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "user_game" */
+export type User_Game_Arr_Rel_Insert_Input = {
+  data: Array<User_Game_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<User_Game_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "user_game". All fields are combined with a logical 'AND'. */
+export type User_Game_Bool_Exp = {
+  _and?: InputMaybe<Array<User_Game_Bool_Exp>>;
+  _not?: InputMaybe<User_Game_Bool_Exp>;
+  _or?: InputMaybe<Array<User_Game_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  game?: InputMaybe<Games_Bool_Exp>;
+  gameId?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "user_game" */
+export enum User_Game_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  UserGamePkey = 'user_game_pkey',
+  /** unique or primary key constraint on columns "userId", "gameId" */
+  UserGameUserIdGameIdKey = 'user_game_userId_gameId_key'
+}
+
+/** input type for inserting data into table "user_game" */
+export type User_Game_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  game?: InputMaybe<Games_Obj_Rel_Insert_Input>;
+  gameId?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type User_Game_Max_Fields = {
+  __typename?: 'user_game_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  gameId?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "user_game" */
+export type User_Game_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  gameId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type User_Game_Min_Fields = {
+  __typename?: 'user_game_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  gameId?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "user_game" */
+export type User_Game_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  gameId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "user_game" */
+export type User_Game_Mutation_Response = {
+  __typename?: 'user_game_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<User_Game>;
+};
+
+/** on_conflict condition type for table "user_game" */
+export type User_Game_On_Conflict = {
+  constraint: User_Game_Constraint;
+  update_columns?: Array<User_Game_Update_Column>;
+  where?: InputMaybe<User_Game_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "user_game". */
+export type User_Game_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  game?: InputMaybe<Games_Order_By>;
+  gameId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: user_game */
+export type User_Game_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "user_game" */
+export enum User_Game_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  GameId = 'gameId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "user_game" */
+export type User_Game_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  gameId?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "user_game" */
+export type User_Game_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: User_Game_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type User_Game_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  gameId?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "user_game" */
+export enum User_Game_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  GameId = 'gameId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type User_Game_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<User_Game_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: User_Game_Bool_Exp;
+};
+
 /** columns and relationships of "user_team" */
 export type User_Team = {
   __typename?: 'user_team';
   created_at: Scalars['timestamptz'];
   id: Scalars['uuid'];
-  /** An array relationship */
-  members: Array<Users>;
-  /** An aggregate relationship */
-  members_aggregate: Users_Aggregate;
   /** An object relationship */
   team: Teams;
   teamId: Scalars['uuid'];
@@ -4911,26 +5613,6 @@ export type User_Team = {
   /** An object relationship */
   user?: Maybe<Users>;
   userId: Scalars['uuid'];
-};
-
-
-/** columns and relationships of "user_team" */
-export type User_TeamMembersArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
-
-/** columns and relationships of "user_team" */
-export type User_TeamMembers_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
 };
 
 /** aggregated selection of "user_team" */
@@ -4987,8 +5669,6 @@ export type User_Team_Bool_Exp = {
   _or?: InputMaybe<Array<User_Team_Bool_Exp>>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  members?: InputMaybe<Users_Bool_Exp>;
-  members_aggregate?: InputMaybe<Users_Aggregate_Bool_Exp>;
   team?: InputMaybe<Teams_Bool_Exp>;
   teamId?: InputMaybe<Uuid_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -4999,14 +5679,15 @@ export type User_Team_Bool_Exp = {
 /** unique or primary key constraints on table "user_team" */
 export enum User_Team_Constraint {
   /** unique or primary key constraint on columns "id" */
-  UserTeamPkey = 'user_team_pkey'
+  UserTeamPkey = 'user_team_pkey',
+  /** unique or primary key constraint on columns "teamId", "userId" */
+  UserTeamUserIdTeamIdKey = 'user_team_userId_teamId_key'
 }
 
 /** input type for inserting data into table "user_team" */
 export type User_Team_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
-  members?: InputMaybe<Users_Arr_Rel_Insert_Input>;
   team?: InputMaybe<Teams_Obj_Rel_Insert_Input>;
   teamId?: InputMaybe<Scalars['uuid']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -5072,7 +5753,6 @@ export type User_Team_On_Conflict = {
 export type User_Team_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  members_aggregate?: InputMaybe<Users_Aggregate_Order_By>;
   team?: InputMaybe<Teams_Order_By>;
   teamId?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;

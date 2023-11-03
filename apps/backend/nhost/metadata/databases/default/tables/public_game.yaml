@@ -1,0 +1,54 @@
+table:
+  name: game
+  schema: public
+object_relationships:
+  - name: creator
+    using:
+      foreign_key_constraint_on: userId
+  - name: team
+    using:
+      foreign_key_constraint_on: teamId
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        team:
+          user_teams:
+            userId:
+              _eq: X-Hasura-User-Id
+      set:
+        userId: x-hasura-User-Id
+      columns:
+        - teamId
+        - time
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - teamId
+        - time
+        - updated_at
+      filter:
+        _or:
+          - creator:
+              id:
+                _eq: X-Hasura-User-Id
+          - team:
+              user_teams:
+                userId:
+                  _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - time
+      filter:
+        creator:
+          id:
+            _eq: X-Hasura-User-Id
+      check: null
+    comment: ""

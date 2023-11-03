@@ -1,0 +1,13 @@
+fragment GameListCard on games {
+  id
+  timestamp
+  creator {
+    email
+  }
+  user_games {
+    id
+    user {
+      email
+    }
+  }
+}

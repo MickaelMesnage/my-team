@@ -22,6 +22,9 @@ export const Header = ({ className, ...props }: ComponentProps<"header">) => {
             <Link href="/team/list" as={NextLink}>
               Mes équipes
             </Link>
+            <Link href="/game/list" as={NextLink}>
+              Mes matchs
+            </Link>
           </div>
           {isAuthenticated ? (
             <SignoutGateway />

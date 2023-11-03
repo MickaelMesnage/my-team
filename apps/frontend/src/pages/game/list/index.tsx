@@ -2,16 +2,17 @@ import { Button, useDisclosure } from "@nextui-org/react";
 import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { ReactElement } from "react";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { useTeamListSubscription } from "@/components/pageGraphqlRequests/TeamList.generated";
+import { useGameListSubscription } from "@/components/pageGraphqlRequests/GameList.generated";
 import { useRouter } from "next/router";
-import { TeamListCard } from "@/components/organisms/TeamListCard";
+import { GameListCard } from "@/components/organisms/GameListCard";
 import { TeamCreationGateway } from "@/components/organisms/TeamCreationGateway";
 import { Error } from "@/components/molecules/Error";
+import { GameCreateModal } from "@/components/organisms/GameCreateModal";
 
-export default function TeamListPage() {
+export default function GameListPage() {
   const router = useRouter();
   const disclosure = useDisclosure();
-  const { data, error, loading } = useTeamListSubscription();
+  const { data, error, loading } = useGameListSubscription();
 
   if (loading) {
     return <CenteredSpinner />;
@@ -25,28 +26,28 @@ export default function TeamListPage() {
     <main>
       <section>
         <div className="w-full flex items-center justify-between mb-4">
-          <h1>Liste de mes équipes</h1>
-          <Button onClick={disclosure.onOpen}>Créer une nouvelle équipe</Button>
+          <h1>Liste de mes matchs</h1>
+          <Button onClick={disclosure.onOpen}>Créer un nouveau match</Button>
         </div>
         <div>
           <div className="flex gap-4 flex-wrap">
-            {data && data.teams.length ? (
+            {data && data.games.length ? (
               <>
-                {data.teams.map((team) => (
-                  <TeamListCard key={team.id} fragment={team} />
+                {data.games.map((game) => (
+                  <GameListCard key={game.id} fragment={game} />
                 ))}
               </>
             ) : (
-              <span>Tu n&apos;as pas rejoins d&apos;équipe pour le moment</span>
+              <span>Tu n&apos;as pas de match pour le moment</span>
             )}
           </div>
-          <TeamCreationGateway disclosure={disclosure} />
+          <GameCreateModal disclosure={disclosure} />
         </div>
       </section>
     </main>
   );
 }
 
-TeamListPage.getLayout = function getLayout(page: ReactElement) {
+GameListPage.getLayout = function getLayout(page: ReactElement) {
   return <AuthenticatedRoute>{page}</AuthenticatedRoute>;
 };

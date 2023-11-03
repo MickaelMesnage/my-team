@@ -1,19 +1,13 @@
 table:
-  name: user_team
+  name: user_game
   schema: public
 object_relationships:
-  - name: team
+  - name: game
     using:
-      foreign_key_constraint_on: teamId
+      foreign_key_constraint_on: gameId
   - name: user
     using:
-      manual_configuration:
-        column_mapping:
-          userId: id
-        insertion_order: null
-        remote_table:
-          name: users
-          schema: auth
+      foreign_key_constraint_on: userId
 insert_permissions:
   - role: user
     permission:
@@ -21,7 +15,7 @@ insert_permissions:
       set:
         userId: x-hasura-User-Id
       columns:
-        - teamId
+        - gameId
     comment: ""
 select_permissions:
   - role: user
@@ -30,10 +24,11 @@ select_permissions:
         - created_at
         - id
       filter:
-        team:
-          user_teams:
-            userId:
-              _eq: X-Hasura-User-Id
+        game:
+          team:
+            user_teams:
+              userId:
+                _eq: X-Hasura-User-Id
     comment: ""
 delete_permissions:
   - role: user

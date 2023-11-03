@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-		"codegen": "graphql-codegen --config codegen.yml",
-		"codegen:watch": "graphql-codegen --config codegen.yml --watch=true --errors-only"
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:watch": "graphql-codegen --config codegen.yml --watch=true --errors-only"
   },
   "dependencies": {
     "@apollo/client": "^3.8.6",
@@ -16,6 +16,7 @@
     "@nextui-org/react": "^2.1.13",
     "@nhost/nextjs": "^1.13.39",
     "@nhost/react-apollo": "^6.0.0",
+    "date-fns": "^2.30.0",
     "encoding": "^0.1.13",
     "framer-motion": "^10.16.4",
     "graphql": "^16.8.1",
@@ -27,12 +28,12 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-		"@graphql-codegen/cli": "^2.13.4",
-		"@graphql-codegen/fragment-matcher": "^3.3.1",
-		"@graphql-codegen/introspection": "^2.2.1",
-		"@graphql-codegen/near-operation-file-preset": "^2.4.1",
-		"@graphql-codegen/typescript-operations": "^2.5.3",
-		"@graphql-codegen/typescript-react-apollo": "^3.3.3",
+    "@graphql-codegen/cli": "^2.13.4",
+    "@graphql-codegen/fragment-matcher": "^3.3.1",
+    "@graphql-codegen/introspection": "^2.2.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.4.1",
+    "@graphql-codegen/typescript-operations": "^2.5.3",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

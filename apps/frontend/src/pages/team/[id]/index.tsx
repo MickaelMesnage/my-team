@@ -2,10 +2,9 @@ import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import { useTeamByIdQuery } from "@/components/pageGraphqlRequests/TeamById.generated";
-import { toast } from "react-toastify";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { TeamDetails } from "@/components/organisms/TeamDetails";
-import { handleApolloError } from "@/utils/handleApolloError";
+import { Error } from "@/components/molecules/Error";
 
 export default function TeamByIdPage() {
   const router = useRouter();
@@ -17,7 +16,9 @@ export default function TeamByIdPage() {
     return <CenteredSpinner />;
   }
 
-  handleApolloError(error, router.push);
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <main>

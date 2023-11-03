@@ -1,0 +1,6 @@
+query TeamSelect {
+  teams {
+    id
+    name
+  }
+}
