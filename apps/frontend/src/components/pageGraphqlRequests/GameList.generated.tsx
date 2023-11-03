@@ -7,7 +7,7 @@ const defaultOptions = {} as const;
 export type GameListSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GameListSubscription = { __typename?: 'subscription_root', games: Array<{ __typename?: 'games', id: any, timestamp: any, creator: { __typename?: 'users', email?: any | null }, user_games: Array<{ __typename?: 'user_game', id: any, user: { __typename?: 'users', email?: any | null } }> }> };
+export type GameListSubscription = { __typename?: 'subscription_root', games: Array<{ __typename?: 'games', id: any, timestamp: any, joinedByUser?: boolean | null, creator: { __typename?: 'users', email?: any | null }, user_games: Array<{ __typename?: 'user_game', id: any, user: { __typename?: 'users', email?: any | null } }> }> };
 
 
 export const GameListDocument = gql`

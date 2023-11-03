@@ -2759,6 +2759,8 @@ export type Games = {
   /** An object relationship */
   creator: Users;
   id: Scalars['uuid'];
+  /** A computed field, executes function "game_joined_by_user" */
+  joinedByUser?: Maybe<Scalars['Boolean']>;
   /** An object relationship */
   team: Teams;
   teamId: Scalars['uuid'];
@@ -2821,6 +2823,7 @@ export type Games_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   creator?: InputMaybe<Users_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  joinedByUser?: InputMaybe<Boolean_Comparison_Exp>;
   team?: InputMaybe<Teams_Bool_Exp>;
   teamId?: InputMaybe<Uuid_Comparison_Exp>;
   timestamp?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -2899,6 +2902,7 @@ export type Games_Order_By = {
   created_at?: InputMaybe<Order_By>;
   creator?: InputMaybe<Users_Order_By>;
   id?: InputMaybe<Order_By>;
+  joinedByUser?: InputMaybe<Order_By>;
   team?: InputMaybe<Teams_Order_By>;
   teamId?: InputMaybe<Order_By>;
   timestamp?: InputMaybe<Order_By>;
@@ -5455,7 +5459,7 @@ export type User_Game_Bool_Exp = {
 export enum User_Game_Constraint {
   /** unique or primary key constraint on columns "id" */
   UserGamePkey = 'user_game_pkey',
-  /** unique or primary key constraint on columns "userId", "gameId" */
+  /** unique or primary key constraint on columns "game_id", "user_id" */
   UserGameUserIdGameIdKey = 'user_game_userId_gameId_key'
 }
 

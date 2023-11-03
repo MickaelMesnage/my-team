@@ -1,21 +1,31 @@
 table:
   name: user_game
   schema: public
+configuration:
+  column_config:
+    game_id:
+      custom_name: gameId
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    game_id: gameId
+    user_id: userId
+  custom_root_fields: {}
 object_relationships:
   - name: game
     using:
-      foreign_key_constraint_on: gameId
+      foreign_key_constraint_on: game_id
   - name: user
     using:
-      foreign_key_constraint_on: userId
+      foreign_key_constraint_on: user_id
 insert_permissions:
   - role: user
     permission:
       check: {}
       set:
-        userId: x-hasura-User-Id
+        user_id: x-hasura-User-Id
       columns:
-        - gameId
+        - game_id
     comment: ""
 select_permissions:
   - role: user
@@ -34,6 +44,6 @@ delete_permissions:
   - role: user
     permission:
       filter:
-        userId:
+        user_id:
           _eq: X-Hasura-User-Id
     comment: ""

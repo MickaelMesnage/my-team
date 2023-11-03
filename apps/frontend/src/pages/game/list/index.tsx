@@ -22,6 +22,8 @@ export default function GameListPage() {
     return <Error error={error} />;
   }
 
+  console.log({ data });
+
   return (
     <main>
       <section>

@@ -12,10 +12,17 @@ array_relationships:
   - name: user_games
     using:
       foreign_key_constraint_on:
-        column: gameId
+        column: game_id
         table:
           name: user_game
           schema: public
+computed_fields:
+  - name: joinedByUser
+    definition:
+      function:
+        name: game_joined_by_user
+        schema: public
+      session_argument: hasura_session
 insert_permissions:
   - role: user
     permission:
@@ -40,6 +47,8 @@ select_permissions:
         - timestamp
         - updated_at
         - userId
+      computed_fields:
+        - joinedByUser
       filter:
         team:
           user_teams:
