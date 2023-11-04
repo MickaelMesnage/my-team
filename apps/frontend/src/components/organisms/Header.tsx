@@ -1,8 +1,15 @@
 import React, { ComponentProps } from "react";
-import { Link, Button } from "@nextui-org/react";
+import {
+  Link,
+  Button,
+  Dropdown,
+  DropdownTrigger,
+  Avatar,
+  DropdownMenu,
+} from "@nextui-org/react";
 import NextLink from "next/link";
 import { useAuthenticationStatus } from "@nhost/nextjs";
-import { SignoutGateway } from "@/components/organisms/SignoutGateway";
+import { HeaderConnectedDropdown } from "@/components/organisms/HeaderConnectedDropdown";
 
 export const Header = ({ className, ...props }: ComponentProps<"header">) => {
   const { isAuthenticated, isLoading } = useAuthenticationStatus();
@@ -27,7 +34,7 @@ export const Header = ({ className, ...props }: ComponentProps<"header">) => {
             </Link>
           </div>
           {isAuthenticated ? (
-            <SignoutGateway />
+            <HeaderConnectedDropdown />
           ) : (
             <Button
               as={NextLink}

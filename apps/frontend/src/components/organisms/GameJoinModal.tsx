@@ -7,7 +7,6 @@ import {
   useDisclosure,
   Button,
 } from "@nextui-org/react";
-import { join } from "path";
 import { toast } from "react-toastify";
 
 export type GameJoinModalProps = {
@@ -21,7 +20,7 @@ export const GameJoinModal = ({
   gameId,
   timestamp,
 }: GameJoinModalProps) => {
-  const { isOpen, onOpenChange } = disclosure;
+  const { isOpen, onOpenChange, onClose } = disclosure;
   const formattedDate = new Date(timestamp).toLocaleDateString();
   const formattedTime = new Date(timestamp).toLocaleTimeString();
 
@@ -35,6 +34,7 @@ export const GameJoinModal = ({
         },
       });
       toast.success("Vous participez au match !");
+      onClose();
     } catch (error) {
       toast.error("Une erreur est survenue");
     }
