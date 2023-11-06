@@ -1,5 +1,0 @@
-subscription Profile($userId: uuid!) {
-  profiles_by_pk(userId: $userId) {
-    avatar
-  }
-}

@@ -5,12 +5,10 @@ import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { useGameListSubscription } from "@/components/pageGraphqlRequests/GameList.generated";
 import { useRouter } from "next/router";
 import { GameListCard } from "@/components/organisms/GameListCard";
-import { TeamCreationGateway } from "@/components/organisms/TeamCreationGateway";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 import { GameCreateModal } from "@/components/organisms/GameCreateModal";
 
 export default function GameListPage() {
-  const router = useRouter();
   const disclosure = useDisclosure();
   const { data, error, loading } = useGameListSubscription();
 
@@ -21,8 +19,6 @@ export default function GameListPage() {
   if (error) {
     return <ErrorHandler error={error} />;
   }
-
-  console.log({ data });
 
   return (
     <main>

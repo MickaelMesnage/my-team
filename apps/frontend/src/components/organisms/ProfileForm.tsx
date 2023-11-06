@@ -39,7 +39,6 @@ export const ProfileForm = forwardRef(
     } = methods;
 
     useEffect(() => {
-      console.log("eeee", defaultValues?.avatar);
       if (defaultValues?.avatar) {
         setValue("avatar", defaultValues?.avatar);
       }

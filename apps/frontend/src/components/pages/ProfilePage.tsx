@@ -21,8 +21,6 @@ export const ProfilePage = () => {
     return <ErrorHandler error={error} />;
   }
 
-  console.log({ data });
-
   const defaultValues = {
     nickname: data?.user?.displayName || "",
     avatar: data?.user?.profile?.avatar || "",

@@ -11,7 +11,7 @@ export const ErrorHandler = ({ error }: ErrorProps) => {
   const router = useRouter();
 
   if (error) {
-    console.log({ error });
+    console.error({ error });
     toast.error("Une erreur est survenue");
 
     if (!isDev) router.push("/");
