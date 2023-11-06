@@ -10,7 +10,3 @@ module.exports = withPWA({
   reactStrictMode: true,
   // autres configurations de next.js
 });
-
-module.exports = nextConfig
-
-
