@@ -46,7 +46,6 @@ export const MobileConnectedLayout = ({
     <div className={`w-full h-full flex flex-col ${className || ""}`}>
       <div className="w-full h-[calc(100%-6rem)] p-4 overflow-y-auto">
         {children}
-        {/* <div className="p-4 h-full">{children}</div> */}
       </div>
       <header className="w-full h-[6rem] p-4 flex shrink grow basis-0 justify-between items-center border-t-2">
         {NAVBAR_ITEMS.map(({ label, href, icon }, index) => (
@@ -55,7 +54,7 @@ export const MobileConnectedLayout = ({
             href={href}
             className="flex flex-col gap-2 items-center"
           >
-            {icon} {label}
+            {icon} <span className="text-small">{label}</span>
           </Link>
         ))}
         <Link
@@ -64,7 +63,7 @@ export const MobileConnectedLayout = ({
           className="flex flex-col gap-2 items-center"
         >
           <LogoutIcon className="w-8 h-8" />
-          Se déconnecter
+          <span className="text-small">Se déconnecter</span>
         </Link>
       </header>
     </div>

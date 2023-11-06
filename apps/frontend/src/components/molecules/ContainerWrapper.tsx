@@ -10,8 +10,11 @@ export const ContainerWrapper = ({
   ...props
 }: ComponentProps<"div">) => {
   return (
-    <div className={`w-full flex justify-center ${className || ""}`} {...props}>
-      <div className="w-full max-w-screen-xl">{children}</div>
+    <div
+      className={`w-full h-full flex justify-center ${className || ""}`}
+      {...props}
+    >
+      <div className="w-full h-full max-w-screen-xl p-4">{children}</div>
     </div>
   );
 };

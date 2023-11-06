@@ -1,11 +1,8 @@
 import { CopyIcon } from "@/components/icons/CopyIcon";
-import { MessengerIcon } from "@/components/icons/MessengerIcon";
 import { TeamDetailsFragment } from "@/components/organisms/TeamDetails.generated";
 import { TeamUpdateGateway } from "@/components/organisms/TeamUpdateGateway";
-import { computeShareTextToMessengerUrl } from "@/utils/computeShareTextToMessengerUrl";
 import { Button, useDisclosure } from "@nextui-org/react";
 import { useUserData } from "@nhost/nextjs";
-import NextLink from "next/link";
 
 export type TeamDetailsProps = {
   fragment: TeamDetailsFragment;

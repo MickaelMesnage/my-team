@@ -10,12 +10,8 @@ export const DesktopConnectedLayout = ({
 }: DesktopConnectedLayoutProps) => {
   return (
     <div className={`w-full h-full flex flex-col ${className || ""}`}>
-      <ContainerWrapper className="border-b-2 ">
-        <Header className="w-full h-[6rem]" />
-      </ContainerWrapper>
-      <div className="h-[calc(100%-6rem)]">
-        <ContainerWrapper className="p-4 h-full">{children}</ContainerWrapper>
-      </div>
+      <Header className="w-full h-[5rem]" />
+      <div className="h-[calc(100%-5rem)]">{children}</div>
     </div>
   );
 };

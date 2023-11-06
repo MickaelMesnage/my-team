@@ -4,7 +4,6 @@ import { NextUIProvider } from "@nextui-org/react";
 import { NhostClient, NhostProvider } from "@nhost/nextjs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MainLayout } from "@/components/layouts/MainLayout";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { NhostApolloProvider } from "@nhost/react-apollo";
 import { ReactElement, ReactNode } from "react";
