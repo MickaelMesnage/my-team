@@ -21,7 +21,9 @@ export const SignupGateway = () => {
 
   const onSubmit = async (data: SignupFormFieldsValue) => {
     try {
-      const { isError } = await signUpEmailPassword(data.email, data.password);
+      const { isError } = await signUpEmailPassword(data.email, data.password, {
+        displayName: data.nickname,
+      });
       if (isError) throw new Error();
 
       toast.success("Vous êtes inscris ! Vérifiez vos mails");

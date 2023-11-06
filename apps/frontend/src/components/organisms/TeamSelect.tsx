@@ -1,5 +1,5 @@
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { Error } from "@/components/molecules/Error";
+import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 import { useTeamSelectQuery } from "@/components/organisms/TeamSelect.generated";
 import { Select, SelectItem, SelectProps } from "@nextui-org/react";
 
@@ -16,7 +16,7 @@ export const TeamSelect = (props: TeamSelectProps) => {
   }
 
   if (error) {
-    return <Error error={error} />;
+    return <ErrorHandler error={error} />;
   }
 
   if (!data || !data.teams.length) {

@@ -6,7 +6,7 @@ import { useTeamListSubscription } from "@/components/pageGraphqlRequests/TeamLi
 import { useRouter } from "next/router";
 import { TeamListCard } from "@/components/organisms/TeamListCard";
 import { TeamCreationGateway } from "@/components/organisms/TeamCreationGateway";
-import { Error } from "@/components/molecules/Error";
+import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 
 export default function TeamListPage() {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function TeamListPage() {
   }
 
   if (error) {
-    return <Error error={error} />;
+    return <ErrorHandler error={error} />;
   }
 
   return (

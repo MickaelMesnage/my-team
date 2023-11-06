@@ -1,0 +1,5 @@
+subscription ProfilePage($userId: uuid!) {
+  user(id: $userId) {
+    ...ProfileFormConnected
+  }
+}

@@ -1,12 +1,5 @@
 import React, { ComponentProps } from "react";
-import {
-  Link,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  Avatar,
-  DropdownMenu,
-} from "@nextui-org/react";
+import { Link, Button } from "@nextui-org/react";
 import NextLink from "next/link";
 import { useAuthenticationStatus } from "@nhost/nextjs";
 import { HeaderConnectedDropdown } from "@/components/organisms/HeaderConnectedDropdown";

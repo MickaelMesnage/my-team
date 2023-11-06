@@ -1,0 +1,21 @@
+mutation UpdateUser($userId: uuid!, $user: users_set_input!) {
+  updateUser(pk_columns: { id: $userId }, _set: $user) {
+    id
+  }
+}
+
+mutation UpdateProfile($profile: profiles_insert_input!) {
+  insert_profiles_one(
+    object: $profile
+    on_conflict: { constraint: profiles_pkey, update_columns: avatar }
+  ) {
+    userId
+  }
+}
+
+fragment ProfileFormConnected on users {
+  displayName
+  profile {
+    avatar
+  }
+}

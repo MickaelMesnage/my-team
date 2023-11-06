@@ -1,3 +1,5 @@
+import { ErrorHandler } from "@/components/molecules/ErrorHandler";
+import { useUserInfoQuery } from "@/components/organisms/HeaderConnectedDropdown.generated";
 import {
   Avatar,
   Dropdown,
@@ -5,10 +7,23 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
-import { useSignOut } from "@nhost/nextjs";
+import { useSignOut, useUserId } from "@nhost/nextjs";
+import Link from "next/link";
 
 export const HeaderConnectedDropdown = () => {
   const { signOut } = useSignOut();
+  const userId = useUserId();
+
+  if (!userId)
+    throw new Error("HeaderConnectedDropdown: User id is not defined");
+
+  const { data, loading, error } = useUserInfoQuery({ variables: { userId } });
+
+  if (loading) return null;
+
+  if (error) return <ErrorHandler error={error} />;
+
+  if (!data?.user) return null;
 
   return (
     <Dropdown placement="bottom-end">
@@ -17,12 +32,14 @@ export const HeaderConnectedDropdown = () => {
           isBordered
           as="button"
           className="transition-transform"
-          name="JD"
-          // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+          name={data.user.displayName}
+          src={data.user.profile?.avatar || undefined}
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
-        <DropdownItem key="settings">My Settings</DropdownItem>
+        <DropdownItem as={Link} href="/profile" key="settings">
+          Mon profil
+        </DropdownItem>
         <DropdownItem key="logout" onClick={signOut}>
           Se déconnecter
         </DropdownItem>

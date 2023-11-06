@@ -3066,6 +3066,10 @@ export type Mutation_Root = {
   delete_games?: Maybe<Games_Mutation_Response>;
   /** delete single row from the table: "games" */
   delete_games_by_pk?: Maybe<Games>;
+  /** delete data from the table: "profiles" */
+  delete_profiles?: Maybe<Profiles_Mutation_Response>;
+  /** delete single row from the table: "profiles" */
+  delete_profiles_by_pk?: Maybe<Profiles>;
   /** delete data from the table: "teams" */
   delete_teams?: Maybe<Teams_Mutation_Response>;
   /** delete single row from the table: "teams" */
@@ -3130,6 +3134,10 @@ export type Mutation_Root = {
   insert_games?: Maybe<Games_Mutation_Response>;
   /** insert a single row into the table: "games" */
   insert_games_one?: Maybe<Games>;
+  /** insert data into the table: "profiles" */
+  insert_profiles?: Maybe<Profiles_Mutation_Response>;
+  /** insert a single row into the table: "profiles" */
+  insert_profiles_one?: Maybe<Profiles>;
   /** insert data into the table: "teams" */
   insert_teams?: Maybe<Teams_Mutation_Response>;
   /** insert a single row into the table: "teams" */
@@ -3216,6 +3224,12 @@ export type Mutation_Root = {
   update_games_by_pk?: Maybe<Games>;
   /** update multiples rows of table: "games" */
   update_games_many?: Maybe<Array<Maybe<Games_Mutation_Response>>>;
+  /** update data of the table: "profiles" */
+  update_profiles?: Maybe<Profiles_Mutation_Response>;
+  /** update single row of the table: "profiles" */
+  update_profiles_by_pk?: Maybe<Profiles>;
+  /** update multiples rows of table: "profiles" */
+  update_profiles_many?: Maybe<Array<Maybe<Profiles_Mutation_Response>>>;
   /** update data of the table: "teams" */
   update_teams?: Maybe<Teams_Mutation_Response>;
   /** update single row of the table: "teams" */
@@ -3394,6 +3408,18 @@ export type Mutation_RootDelete_GamesArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Games_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ProfilesArgs = {
+  where: Profiles_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Profiles_By_PkArgs = {
+  userId: Scalars['uuid'];
 };
 
 
@@ -3612,6 +3638,20 @@ export type Mutation_RootInsert_GamesArgs = {
 export type Mutation_RootInsert_Games_OneArgs = {
   object: Games_Insert_Input;
   on_conflict?: InputMaybe<Games_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ProfilesArgs = {
+  objects: Array<Profiles_Insert_Input>;
+  on_conflict?: InputMaybe<Profiles_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Profiles_OneArgs = {
+  object: Profiles_Insert_Input;
+  on_conflict?: InputMaybe<Profiles_On_Conflict>;
 };
 
 
@@ -3962,6 +4002,26 @@ export type Mutation_RootUpdate_Games_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_ProfilesArgs = {
+  _set?: InputMaybe<Profiles_Set_Input>;
+  where: Profiles_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Profiles_By_PkArgs = {
+  _set?: InputMaybe<Profiles_Set_Input>;
+  pk_columns: Profiles_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Profiles_ManyArgs = {
+  updates: Array<Profiles_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_TeamsArgs = {
   _set?: InputMaybe<Teams_Set_Input>;
   where: Teams_Bool_Exp;
@@ -4048,6 +4108,154 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
+/** columns and relationships of "profiles" */
+export type Profiles = {
+  __typename?: 'profiles';
+  avatar?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  user: Users;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "profiles" */
+export type Profiles_Aggregate = {
+  __typename?: 'profiles_aggregate';
+  aggregate?: Maybe<Profiles_Aggregate_Fields>;
+  nodes: Array<Profiles>;
+};
+
+/** aggregate fields of "profiles" */
+export type Profiles_Aggregate_Fields = {
+  __typename?: 'profiles_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Profiles_Max_Fields>;
+  min?: Maybe<Profiles_Min_Fields>;
+};
+
+
+/** aggregate fields of "profiles" */
+export type Profiles_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Profiles_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "profiles". All fields are combined with a logical 'AND'. */
+export type Profiles_Bool_Exp = {
+  _and?: InputMaybe<Array<Profiles_Bool_Exp>>;
+  _not?: InputMaybe<Profiles_Bool_Exp>;
+  _or?: InputMaybe<Array<Profiles_Bool_Exp>>;
+  avatar?: InputMaybe<String_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "profiles" */
+export enum Profiles_Constraint {
+  /** unique or primary key constraint on columns "user_id" */
+  ProfilesPkey = 'profiles_pkey',
+  /** unique or primary key constraint on columns "user_id" */
+  ProfilesUserIdKey = 'profiles_user_id_key'
+}
+
+/** input type for inserting data into table "profiles" */
+export type Profiles_Insert_Input = {
+  avatar?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Profiles_Max_Fields = {
+  __typename?: 'profiles_max_fields';
+  avatar?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Profiles_Min_Fields = {
+  __typename?: 'profiles_min_fields';
+  avatar?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "profiles" */
+export type Profiles_Mutation_Response = {
+  __typename?: 'profiles_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Profiles>;
+};
+
+/** input type for inserting object relation for remote table "profiles" */
+export type Profiles_Obj_Rel_Insert_Input = {
+  data: Profiles_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Profiles_On_Conflict>;
+};
+
+/** on_conflict condition type for table "profiles" */
+export type Profiles_On_Conflict = {
+  constraint: Profiles_Constraint;
+  update_columns?: Array<Profiles_Update_Column>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "profiles". */
+export type Profiles_Order_By = {
+  avatar?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: profiles */
+export type Profiles_Pk_Columns_Input = {
+  userId: Scalars['uuid'];
+};
+
+/** select columns of table "profiles" */
+export enum Profiles_Select_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "profiles" */
+export type Profiles_Set_Input = {
+  avatar?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "profiles" */
+export type Profiles_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Profiles_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Profiles_Stream_Cursor_Value_Input = {
+  avatar?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "profiles" */
+export enum Profiles_Update_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Profiles_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Profiles_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Profiles_Bool_Exp;
+};
+
 export type Query_Root = {
   __typename?: 'query_root';
   /** fetch data from the table: "auth.providers" using primary key columns */
@@ -4116,6 +4324,12 @@ export type Query_Root = {
   games_aggregate: Games_Aggregate;
   /** fetch data from the table: "games" using primary key columns */
   games_by_pk?: Maybe<Games>;
+  /** fetch data from the table: "profiles" */
+  profiles: Array<Profiles>;
+  /** fetch aggregated fields from the table: "profiles" */
+  profiles_aggregate: Profiles_Aggregate;
+  /** fetch data from the table: "profiles" using primary key columns */
+  profiles_by_pk?: Maybe<Profiles>;
   /** fetch data from the table: "teams" */
   teams: Array<Teams>;
   /** fetch aggregated fields from the table: "teams" */
@@ -4402,6 +4616,29 @@ export type Query_RootGames_By_PkArgs = {
 };
 
 
+export type Query_RootProfilesArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
+export type Query_RootProfiles_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
+export type Query_RootProfiles_By_PkArgs = {
+  userId: Scalars['uuid'];
+};
+
+
 export type Query_RootTeamsArgs = {
   distinct_on?: InputMaybe<Array<Teams_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4606,6 +4843,14 @@ export type Subscription_Root = {
   games_by_pk?: Maybe<Games>;
   /** fetch data from the table in a streaming manner: "games" */
   games_stream: Array<Games>;
+  /** fetch data from the table: "profiles" */
+  profiles: Array<Profiles>;
+  /** fetch aggregated fields from the table: "profiles" */
+  profiles_aggregate: Profiles_Aggregate;
+  /** fetch data from the table: "profiles" using primary key columns */
+  profiles_by_pk?: Maybe<Profiles>;
+  /** fetch data from the table in a streaming manner: "profiles" */
+  profiles_stream: Array<Profiles>;
   /** fetch data from the table: "teams" */
   teams: Array<Teams>;
   /** fetch aggregated fields from the table: "teams" */
@@ -4976,6 +5221,36 @@ export type Subscription_RootGames_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Games_Stream_Cursor_Input>>;
   where?: InputMaybe<Games_Bool_Exp>;
+};
+
+
+export type Subscription_RootProfilesArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
+export type Subscription_RootProfiles_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
+export type Subscription_RootProfiles_By_PkArgs = {
+  userId: Scalars['uuid'];
+};
+
+
+export type Subscription_RootProfiles_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Profiles_Stream_Cursor_Input>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
 };
 
 
@@ -5860,6 +6135,8 @@ export type Users = {
   passwordHash?: Maybe<Scalars['String']>;
   phoneNumber?: Maybe<Scalars['String']>;
   phoneNumberVerified: Scalars['Boolean'];
+  /** An object relationship */
+  profile?: Maybe<Profiles>;
   /** An array relationship */
   refreshTokens: Array<AuthRefreshTokens>;
   /** An aggregate relationship */
@@ -6109,6 +6386,7 @@ export type Users_Bool_Exp = {
   passwordHash?: InputMaybe<String_Comparison_Exp>;
   phoneNumber?: InputMaybe<String_Comparison_Exp>;
   phoneNumberVerified?: InputMaybe<Boolean_Comparison_Exp>;
+  profile?: InputMaybe<Profiles_Bool_Exp>;
   refreshTokens?: InputMaybe<AuthRefreshTokens_Bool_Exp>;
   refreshTokens_aggregate?: InputMaybe<AuthRefreshTokens_Aggregate_Bool_Exp>;
   roles?: InputMaybe<AuthUserRoles_Bool_Exp>;
@@ -6175,6 +6453,7 @@ export type Users_Insert_Input = {
   passwordHash?: InputMaybe<Scalars['String']>;
   phoneNumber?: InputMaybe<Scalars['String']>;
   phoneNumberVerified?: InputMaybe<Scalars['Boolean']>;
+  profile?: InputMaybe<Profiles_Obj_Rel_Insert_Input>;
   refreshTokens?: InputMaybe<AuthRefreshTokens_Arr_Rel_Insert_Input>;
   roles?: InputMaybe<AuthUserRoles_Arr_Rel_Insert_Input>;
   securityKeys?: InputMaybe<AuthUserSecurityKeys_Arr_Rel_Insert_Input>;
@@ -6332,6 +6611,7 @@ export type Users_Order_By = {
   passwordHash?: InputMaybe<Order_By>;
   phoneNumber?: InputMaybe<Order_By>;
   phoneNumberVerified?: InputMaybe<Order_By>;
+  profile?: InputMaybe<Profiles_Order_By>;
   refreshTokens_aggregate?: InputMaybe<AuthRefreshTokens_Aggregate_Order_By>;
   roles_aggregate?: InputMaybe<AuthUserRoles_Aggregate_Order_By>;
   securityKeys_aggregate?: InputMaybe<AuthUserSecurityKeys_Aggregate_Order_By>;

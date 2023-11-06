@@ -91,6 +91,13 @@ object_relationships:
   - name: defaultRoleByRole
     using:
       foreign_key_constraint_on: default_role
+  - name: profile
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: profiles
+          schema: public
 array_relationships:
   - name: asAdminTeams
     using:
@@ -142,7 +149,6 @@ select_permissions:
   - role: user
     permission:
       columns:
-        - avatar_url
         - display_name
         - email
         - id
@@ -161,4 +167,14 @@ select_permissions:
                 user:
                   id:
                     _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - display_name
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
     comment: ""

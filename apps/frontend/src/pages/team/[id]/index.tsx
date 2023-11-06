@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 import { useTeamByIdQuery } from "@/components/pageGraphqlRequests/TeamById.generated";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { TeamDetails } from "@/components/organisms/TeamDetails";
-import { Error } from "@/components/molecules/Error";
+import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 
 export default function TeamByIdPage() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function TeamByIdPage() {
   }
 
   if (error) {
-    return <Error error={error} />;
+    return <ErrorHandler error={error} />;
   }
 
   return (

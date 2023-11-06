@@ -8,6 +8,7 @@
 - "!include auth_user_security_keys.yaml"
 - "!include auth_users.yaml"
 - "!include public_games.yaml"
+- "!include public_profiles.yaml"
 - "!include public_teams.yaml"
 - "!include public_user_game.yaml"
 - "!include public_user_team.yaml"

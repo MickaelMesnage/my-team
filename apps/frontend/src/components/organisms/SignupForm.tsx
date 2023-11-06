@@ -5,13 +5,20 @@ import { z } from "zod";
 import { PasswordInput } from "@/components/molecules/PasswordInput";
 
 export const signupFormZodSchema = z.object({
-  email: z.string(),
-  password: z.string().min(9),
+  email: z.string().email("L'email n'est pas valide"),
+  password: z
+    .string()
+    .min(9, "Le mot de passe doit faire au moins 9 caractères"),
+  nickname: z.string().min(1, "Le pseudo est obligatoire"),
 });
 
 export type SignupFormFieldsValue = z.infer<typeof signupFormZodSchema>;
 
-const DEFAULT_VALUES: SignupFormFieldsValue = { email: "", password: "" };
+const DEFAULT_VALUES: SignupFormFieldsValue = {
+  email: "",
+  password: "",
+  nickname: "",
+};
 
 export type SignupFormProps = {
   isLoading: boolean;
@@ -37,9 +44,10 @@ export const SignupForm = ({
           name="email"
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <Input
-              key="email"
               type="email"
               label="Email"
+              placeholder="Ex: zinedine@gmail.com"
+              labelPlacement="outside"
               errorMessage={error?.message}
               value={value}
               onChange={onChange}
@@ -52,12 +60,28 @@ export const SignupForm = ({
           name="password"
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <PasswordInput
-              key="password"
               label="Mot de passe"
+              placeholder="Ex: *********"
+              labelPlacement="outside"
               errorMessage={error?.message}
               value={value}
               onChange={onChange}
               autoComplete="new-password"
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="nickname"
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <Input
+              type="text"
+              label="Pseudo"
+              placeholder="Ex: Zizou"
+              labelPlacement="outside"
+              errorMessage={error?.message}
+              value={value}
+              onChange={onChange}
             />
           )}
         />

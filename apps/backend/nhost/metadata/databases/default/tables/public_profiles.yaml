@@ -1,0 +1,48 @@
+table:
+  name: profiles
+  schema: public
+configuration:
+  column_config:
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    user_id: userId
+  custom_root_fields: {}
+object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - avatar
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - avatar
+        - user_id
+      filter:
+        _or:
+          - user:
+              user_teams:
+                userId:
+                  _eq: X-Hasura-User-Id
+          - user_id:
+              _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - avatar
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+    comment: ""

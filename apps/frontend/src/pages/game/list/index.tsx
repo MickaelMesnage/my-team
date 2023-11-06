@@ -6,7 +6,7 @@ import { useGameListSubscription } from "@/components/pageGraphqlRequests/GameLi
 import { useRouter } from "next/router";
 import { GameListCard } from "@/components/organisms/GameListCard";
 import { TeamCreationGateway } from "@/components/organisms/TeamCreationGateway";
-import { Error } from "@/components/molecules/Error";
+import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 import { GameCreateModal } from "@/components/organisms/GameCreateModal";
 
 export default function GameListPage() {
@@ -19,7 +19,7 @@ export default function GameListPage() {
   }
 
   if (error) {
-    return <Error error={error} />;
+    return <ErrorHandler error={error} />;
   }
 
   console.log({ data });

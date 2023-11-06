@@ -1,13 +1,12 @@
-import { ApolloError } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { toast } from "react-toastify";
 
 export type ErrorProps = {
-  error: ApolloError;
+  error: any;
 };
 
-export const Error = ({ error }: ErrorProps) => {
+export const ErrorHandler = ({ error }: ErrorProps) => {
   const isDev = useMemo(() => process.env.NODE_ENV === "development", []);
   const router = useRouter();
 
