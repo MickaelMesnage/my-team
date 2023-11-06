@@ -1,3 +1,4 @@
+import { NotConnectedLayout } from "@/components/layouts/NotConnectedLayout";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { useAuthenticationStatus } from "@nhost/nextjs";
 import { useRouter } from "next/router";
@@ -16,5 +17,5 @@ export const UnauthenticatedRoute = ({ children }: { children: ReactNode }) => {
     return;
   }
 
-  return children;
+  return <NotConnectedLayout>{children}</NotConnectedLayout>;
 };

@@ -42,8 +42,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
       <NhostApolloProvider nhost={nhost}>
         <NextUIProvider className="w-screen h-screen">
-          <MainLayout>{getLayout(<Component {...pageProps} />)}</MainLayout>
-          <ToastContainer position="bottom-center" />
+          {getLayout(<Component {...pageProps} />)}
+          <ToastContainer position="top-center" />
         </NextUIProvider>
       </NhostApolloProvider>
     </NhostProvider>

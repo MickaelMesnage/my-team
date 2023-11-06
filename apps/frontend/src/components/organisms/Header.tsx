@@ -9,7 +9,7 @@ export const Header = ({ className, ...props }: ComponentProps<"header">) => {
 
   return (
     <header
-      className={`flex justify-between items-center p-4 border-b-1 ${className}`}
+      className={`flex justify-between items-center p-4 ${className}`}
       {...props}
     >
       <NextLink href="/">Ma team web app</NextLink>

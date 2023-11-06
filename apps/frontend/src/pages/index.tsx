@@ -1,13 +1,13 @@
+import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { Inter } from "next/font/google";
+import { ReactElement } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      Bienvenue sur le site
-    </main>
-  );
+export default function Page() {
+  return <main>Dashboard en construction</main>;
 }
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <AuthenticatedRoute>{page}</AuthenticatedRoute>;
+};
