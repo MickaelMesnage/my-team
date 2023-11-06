@@ -16,12 +16,12 @@ const NAVBAR_ITEMS: { label: string; href: string; icon: ReactNode }[] = [
     icon: <DashboardIcon className="w-8 h-8" />,
   },
   {
-    label: "Mes équipes",
+    label: "Équipes",
     href: "/team/list",
     icon: <TeamIcon className="w-8 h-8" />,
   },
   {
-    label: "Mes matchs",
+    label: "Matchs",
     href: "/game/list",
     icon: <GameIcon className="w-8 h-8" />,
   },
@@ -43,18 +43,21 @@ export const MobileConnectedLayout = ({
     return false;
   };
   return (
-    <div className={`w-full h-full flex flex-col ${className || ""}`}>
+    <div
+      className={`flex flex-col ${className || ""}`}
+      style={{ width: "100vw", height: "100dvh" }}
+    >
       <div className="w-full h-[calc(100%-6rem)] p-4 overflow-y-auto">
         {children}
       </div>
-      <header className="w-full h-[6rem] p-4 flex shrink grow basis-0 justify-between items-center border-t-2">
+      <header className="w-full h-[6rem] px-1 py-4 flex shrink grow basis-0 justify-between items-center border-t-2">
         {NAVBAR_ITEMS.map(({ label, href, icon }, index) => (
           <Link
             key={index}
             href={href}
             className="flex flex-col gap-2 items-center"
           >
-            {icon} <span className="text-small">{label}</span>
+            {icon} <span className="text-xs">{label}</span>
           </Link>
         ))}
         <Link
@@ -63,7 +66,7 @@ export const MobileConnectedLayout = ({
           className="flex flex-col gap-2 items-center"
         >
           <LogoutIcon className="w-8 h-8" />
-          <span className="text-small">Se déconnecter</span>
+          <span className="text-xs">Déconnecter</span>
         </Link>
       </header>
     </div>

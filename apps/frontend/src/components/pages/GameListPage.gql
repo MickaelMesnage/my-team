@@ -1,0 +1,6 @@
+subscription GameListPage {
+  games {
+    id
+    ...GameListCard
+  }
+}
