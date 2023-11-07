@@ -38,4 +38,6 @@ export default {
   nhost_subdomain: NHOST_SUBDOMAIN,
   nhost_graphql_url: NHOST_GRAPHQL_URL,
   nhost_metadata_url: `${NHOST_SUBDOMAIN}/v1/metadata`,
+  mj_apikey_private: MJ_APIKEY_PRIVATE,
+  mj_apikey_public: MJ_APIKEY_PUBLIC,
 };

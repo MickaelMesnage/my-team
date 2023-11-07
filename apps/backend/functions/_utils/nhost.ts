@@ -4,6 +4,7 @@ import settings from "./settings";
 const nhost = new NhostClient({
   backendUrl: settings.nhost_subdomain,
   adminSecret: settings.security.nhost_admin_secret,
+  graphqlUrl: settings.nhost_graphql_url,
 });
 
 export { nhost };

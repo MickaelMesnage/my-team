@@ -4,6 +4,7 @@ import { graphQLRequest } from "../_utils/graphQLRequest";
 import { guardAuthAdmin } from "../_utils/guardAuthAdmin";
 import { guardParams } from "../_utils/guardParams";
 import { route } from "../_utils/route";
+import { sendEmail } from "../_utils/sendEmail";
 
 const gameSchema = z.object({
   id: z.string(),
@@ -19,9 +20,6 @@ const gameUpdateParamsSchema = z.object({
 });
 
 export default route(async (context: FunctionContext) => {
-  console.log("Game update handler called");
-  console.log("eeee", process.env);
-
   // Only called by server
   guardAuthAdmin(context);
 
@@ -36,14 +34,47 @@ export default route(async (context: FunctionContext) => {
   if (!newGame) throw new Error("Game update handler: newGame is null");
 
   const body = {
-    query: `query participants ($gameId: uuid!) { user_game (where: {gameId: {_eq: $gameId}}) { id } }`,
+    query: `query gameInformations ($gameId: uuid!) {
+      games_by_pk(id: $gameId) {
+        timestamp
+        creator {
+          email
+        }
+        team {
+          name
+        }
+        user_games {
+          userId
+        }
+      }
+    }`,
     variables: { gameId: newGame.game_id },
   };
 
-  const { user_game: listOfParticipants } = await graphQLRequest<{
-    user_game: any[];
+  const data = await graphQLRequest<{
+    games_by_pk: {
+      timestamp: string;
+      team: { name: string };
+      creator: { email: string };
+      user_games: { userId: string }[];
+    };
   }>(body);
 
-  if (listOfParticipants.length === 10) {
-  }
+  console.log({ data });
+
+  const {
+    creator: { email: emailCreator },
+    user_games: listOfParticipants,
+    team: { name: teamName },
+  } = data.games_by_pk;
+
+  // const emailCreator = games_by_pk.creator.email;
+
+  if (!emailCreator)
+    throw new Error("Game update handler: emailCreator is null");
+
+  // if (listOfParticipants.length === 2) {
+  await sendEmail(emailCreator, 5288063, { gameName: teamName });
+  console.log("ok");
+  // }
 });
