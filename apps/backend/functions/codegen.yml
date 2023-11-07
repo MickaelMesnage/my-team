@@ -1,0 +1,20 @@
+overwrite: true
+watch: true
+schema: https://local.hasura.nhost.run/v1/graphql
+headers:
+  x-hasura-admin-secret: nhost-admin-secret
+documents:
+  - "routes/*.ts"
+  - "_gql_src/*.ts"
+  - "_utils/*.ts"
+  - "!_gql/**/*"
+generates:
+  _gql/:
+    preset: gql-tag-operations-preset
+
+config:
+  # Set scalars to avoid "any" type
+  scalars:
+    uuid: string
+    timestamptz: string
+    citext: string

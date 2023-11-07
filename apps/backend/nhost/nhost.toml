@@ -1,4 +1,11 @@
 [global]
+[[global.environment]]
+name = 'MJ_APIKEY_PUBLIC'
+value = '{{ secrets.MJ_APIKEY_PUBLIC }}'
+
+[[global.environment]]
+name = 'MJ_APIKEY_PRIVATE'
+value = '{{ secrets.MJ_APIKEY_PRIVATE }}'
 
 [hasura]
 version = 'v2.33.4-ce'

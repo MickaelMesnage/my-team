@@ -6,6 +6,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictNullChecks": false
+    "strict": true,
+		"lib": ["ES2016", "dom"],
+		"baseUrl": ".",
+		"paths": {
+			"@utils/*": ["./_utils/*"],
+			"@types/*": ["./_types/*"],
+			"@gql": ["./_gql/index.ts"]
+		}
   }
 }

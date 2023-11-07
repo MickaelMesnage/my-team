@@ -1,2 +1,4 @@
 .secrets
 .nhost
+node_modules
+

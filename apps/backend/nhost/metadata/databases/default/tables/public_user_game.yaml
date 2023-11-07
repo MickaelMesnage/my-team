@@ -47,3 +47,17 @@ delete_permissions:
         user_id:
           _eq: X-Hasura-User-Id
     comment: ""
+event_triggers:
+  - name: insert-user-game-trigger
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_FUNCTIONS_URL}}/routes/insert-user-game-handler'
+    headers:
+      - name: nhost-webhook-secret
+        value_from_env: NHOST_WEBHOOK_SECRET
