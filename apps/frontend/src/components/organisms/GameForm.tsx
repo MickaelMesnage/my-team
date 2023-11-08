@@ -6,15 +6,16 @@ import { forwardRef, useImperativeHandle } from "react";
 import { TeamSelect } from "@/components/organisms/TeamSelect";
 
 export const GameFormZodSchema = z.object({
-  teamId: z.string(),
-  date: z.string(),
-  time: z.string(),
-  participate: z.boolean(),
+  teamId: z.string().min(1, "L'équipe est obligatoire"),
+  date: z.string().min(1, "La date est obligatoire"),
+  time: z.string().min(1, "L'heure est obligatoire"),
+  participate: z.boolean().nullable(),
 });
 
 export type GameFormFieldsValue = z.infer<typeof GameFormZodSchema>;
 
 export type GameFormProps = {
+  isLoading?: boolean;
   onSubmit: (data: GameFormFieldsValue) => Promise<void>;
   defaultValues?: GameFormFieldsValue;
 };
@@ -27,7 +28,14 @@ const DEFAULT_VALUES: GameFormFieldsValue = {
 };
 
 export const GameForm = forwardRef(
-  ({ onSubmit, defaultValues }: GameFormProps, ref) => {
+  (
+    {
+      isLoading = false,
+      onSubmit,
+      defaultValues = DEFAULT_VALUES,
+    }: GameFormProps,
+    ref
+  ) => {
     const methods = useForm<GameFormFieldsValue>({
       resolver: zodResolver(GameFormZodSchema),
       defaultValues,
@@ -66,6 +74,7 @@ export const GameForm = forwardRef(
                 label="Date"
                 placeholder="jj/mm/aaaa"
                 labelPlacement="outside"
+                min={new Date().toISOString().split("T")[0]}
                 errorMessage={error?.message}
                 value={value}
                 onChange={onChange}
@@ -91,12 +100,20 @@ export const GameForm = forwardRef(
             control={control}
             name="participate"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <Checkbox checked={value} onChange={onChange}>
-                Je compte participer
-              </Checkbox>
+              <>
+                <Checkbox checked={value || false} onChange={onChange}>
+                  Je compte participer
+                </Checkbox>
+                {error && <span>{error.message}</span>}
+              </>
             )}
           />
-          <Button type="submit" color="primary">
+          <Button
+            isLoading={isLoading}
+            disabled={isLoading}
+            type="submit"
+            color="primary"
+          >
             Créer
           </Button>
         </form>

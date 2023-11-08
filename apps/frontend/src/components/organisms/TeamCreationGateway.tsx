@@ -15,13 +15,13 @@ export type TeamCreationGatewayProps = Pick<
 export const TeamCreationGateway = (props: TeamCreationGatewayProps) => {
   const { disclosure } = props;
   const user = useUserData();
-  const [insertTeam, { loading, error }] = useInsertTeamMutation();
+  const [insertTeam, { loading }] = useInsertTeamMutation();
 
   if (!user?.id) throw new Error("User not logged in in TeamCreationGateway");
 
   const onTeamCreation = async (team: TeamFormFieldsValue) => {
     try {
-      const { data } = await insertTeam({
+      await insertTeam({
         variables: {
           team: {
             ...team,
@@ -36,5 +36,11 @@ export const TeamCreationGateway = (props: TeamCreationGatewayProps) => {
     }
   };
 
-  return <TeamCreationModal onSubmit={onTeamCreation} {...props} />;
+  return (
+    <TeamCreationModal
+      isLoading={loading}
+      onSubmit={onTeamCreation}
+      {...props}
+    />
+  );
 };

@@ -16,7 +16,7 @@ export const createScheduledEvent = async (
         headers: [
           {
             name: "nhost-webhook-secret",
-            value: settings.security.nhost_webhook_secret,
+            value: settings.nhost_webhook_secret,
           },
         ],
         // include_in_metadata: true,

@@ -103,7 +103,7 @@ array_relationships:
     using:
       manual_configuration:
         column_mapping:
-          id: userId
+          id: user_id
         insertion_order: null
         remote_table:
           name: teams

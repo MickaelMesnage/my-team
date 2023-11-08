@@ -7,7 +7,7 @@ export async function requestHasuraAsAdmin(
   return await fetch(url, {
     headers: {
       "Content-Type": "application/json",
-      "x-hasura-admin-secret": settings.security.nhost_admin_secret,
+      "x-hasura-admin-secret": settings.nhost_admin_secret,
     },
     method: "POST",
     body: JSON.stringify(body),

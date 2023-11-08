@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- alter table "public"."teams" add column "nb_or_registered_players_trigger_mail_treshold" integer
+--  null;

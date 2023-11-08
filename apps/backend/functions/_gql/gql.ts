@@ -13,8 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query getParticipantsOfGame($gameId: uuid!) {\n    user_game(where: {gameId: {_eq: $gameId}}) {\n      userId\n    }\n  }\n": types.GetParticipantsOfGameDocument,
-    "\n  query Participants ($gameId: uuid!) {\n    user_game(where: {gameId: {_eq: $gameId}}) {\n      userId\n    }\n  }\n": types.ParticipantsDocument,
+    "\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            email\n        }\n        team {\n            name\n            nbOrRegisteredPlayersTriggerMailTreshold\n        }\n        user_games {\n            userId\n        }\n    }\n  }\n": types.GameInformationsDocument,
 };
 
 /**
@@ -34,11 +33,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query getParticipantsOfGame($gameId: uuid!) {\n    user_game(where: {gameId: {_eq: $gameId}}) {\n      userId\n    }\n  }\n"): (typeof documents)["\n  query getParticipantsOfGame($gameId: uuid!) {\n    user_game(where: {gameId: {_eq: $gameId}}) {\n      userId\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n  query Participants ($gameId: uuid!) {\n    user_game(where: {gameId: {_eq: $gameId}}) {\n      userId\n    }\n  }\n"): (typeof documents)["\n  query Participants ($gameId: uuid!) {\n    user_game(where: {gameId: {_eq: $gameId}}) {\n      userId\n    }\n  }\n"];
+export function gql(source: "\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            email\n        }\n        team {\n            name\n            nbOrRegisteredPlayersTriggerMailTreshold\n        }\n        user_games {\n            userId\n        }\n    }\n  }\n"): (typeof documents)["\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            email\n        }\n        team {\n            name\n            nbOrRegisteredPlayersTriggerMailTreshold\n        }\n        user_games {\n            userId\n        }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -1,11 +1,12 @@
-import { requestHasuraAsAdmin } from "./requestHasuraAsAdmin";
-import settings from "./settings";
+import { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { nhost } from "@utils/nhost";
 
-export async function graphQLRequest<Type>(body: any): Promise<Type> {
-  const response = await requestHasuraAsAdmin(settings.nhost_graphql_url, body);
-  const result = await response.json();
+export async function graphQLRequest<Type, Params>(
+  document: string | TypedDocumentNode<Type, Params>,
+  variables: Params
+): Promise<Type> {
+  const result = await nhost.graphql.request(document, variables);
 
-  if (result.error) throw new Error(result.error);
-
+  if (result.error) throw result.error;
   return result.data;
 }

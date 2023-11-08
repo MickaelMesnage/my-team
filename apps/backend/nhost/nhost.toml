@@ -7,6 +7,10 @@ value = '{{ secrets.MJ_APIKEY_PUBLIC }}'
 name = 'MJ_APIKEY_PRIVATE'
 value = '{{ secrets.MJ_APIKEY_PRIVATE }}'
 
+[[global.environment]]
+name = 'FRONTEND_URL'
+value = '{{ secrets.FRONTEND_URL }}'
+
 [hasura]
 version = 'v2.33.4-ce'
 adminSecret = '{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}'

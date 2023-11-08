@@ -17,7 +17,7 @@ export type GameCreateModalProps = {
 export const GameCreateModal = ({ disclosure }: GameCreateModalProps) => {
   const { isOpen, onOpenChange } = disclosure;
   const user = useUserData();
-  const [insertTeam, { loading, error }] = useInsertGameMutation();
+  const [insertTeam, { loading }] = useInsertGameMutation();
 
   if (!user?.id) throw new Error("GameCreateModal: User not logged");
 

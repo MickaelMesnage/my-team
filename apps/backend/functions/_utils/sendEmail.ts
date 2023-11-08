@@ -11,9 +11,11 @@ export const sendEmail = async (
   templateId: number,
   variables: any
 ) => {
-  console.log({
-    coucou: settings.mj_apikey_public,
-  });
+  if (settings.isLocal) {
+    console.info("Send email", { email, templateId, variables });
+    return;
+  }
+
   const message: SendEmailV3_1.Message = {
     To: [
       {

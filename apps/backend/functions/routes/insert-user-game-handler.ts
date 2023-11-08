@@ -1,10 +1,20 @@
 import { z } from "zod";
+import { GameInformationsDocument } from "../_gql/graphql";
+import { sendEmailWhenNbRegisteredPlayersReached } from "../_project_utils/sendEmailWhenNbRegisteredPlayersReached";
 import { FunctionContext } from "../_utils/getContext";
 import { graphQLRequest } from "../_utils/graphQLRequest";
 import { guardAuthAdmin } from "../_utils/guardAuthAdmin";
 import { guardParams } from "../_utils/guardParams";
 import { route } from "../_utils/route";
-import { sendEmail } from "../_utils/sendEmail";
+import settings from "../_utils/settings";
+
+const dateModel = new Intl.DateTimeFormat("fr-FR", {
+  dateStyle: "full",
+});
+
+const timeModel = new Intl.DateTimeFormat("fr-FR", {
+  timeStyle: "short",
+});
 
 const gameSchema = z.object({
   id: z.string(),
@@ -29,52 +39,36 @@ export default route(async (context: FunctionContext) => {
   } = guardParams(context.req.body.event, gameUpdateParamsSchema);
 
   if (op !== "INSERT")
-    throw new Error("Game update handler: op not equals to INSERT");
+    throw new Error("Insert user game handler: op not equals to INSERT");
 
-  if (!newGame) throw new Error("Game update handler: newGame is null");
+  if (!newGame) throw new Error("Insert user game handler: newGame is null");
 
-  const body = {
-    query: `query gameInformations ($gameId: uuid!) {
-      games_by_pk(id: $gameId) {
-        timestamp
-        creator {
-          email
-        }
-        team {
-          name
-        }
-        user_games {
-          userId
-        }
-      }
-    }`,
-    variables: { gameId: newGame.game_id },
-  };
+  const { games_by_pk } = await graphQLRequest(GameInformationsDocument, {
+    gameId: newGame.game_id,
+  });
 
-  const data = await graphQLRequest<{
-    games_by_pk: {
-      timestamp: string;
-      team: { name: string };
-      creator: { email: string };
-      user_games: { userId: string }[];
-    };
-  }>(body);
-
-  console.log({ data });
+  if (!games_by_pk)
+    throw new Error("Insert user game handler: games_by_pk is null");
 
   const {
     creator: { email: emailCreator },
     user_games: listOfParticipants,
-    team: { name: teamName },
-  } = data.games_by_pk;
-
-  // const emailCreator = games_by_pk.creator.email;
+    timestamp,
+    team: { name: teamName, nbOrRegisteredPlayersTriggerMailTreshold },
+  } = games_by_pk;
 
   if (!emailCreator)
-    throw new Error("Game update handler: emailCreator is null");
+    throw new Error("Insert user game handler: emailCreator is null");
 
-  // if (listOfParticipants.length === 2) {
-  await sendEmail(emailCreator, 5288063, { gameName: teamName });
-  console.log("ok");
-  // }
+  if (
+    nbOrRegisteredPlayersTriggerMailTreshold &&
+    listOfParticipants.length === nbOrRegisteredPlayersTriggerMailTreshold
+  ) {
+    await sendEmailWhenNbRegisteredPlayersReached(emailCreator, {
+      teamName,
+      gameDate: dateModel.format(new Date(timestamp)),
+      gameTime: timeModel.format(new Date(timestamp)),
+      gameUrl: `${settings.frontend_url}/game/${newGame.game_id}`,
+    });
+  }
 });

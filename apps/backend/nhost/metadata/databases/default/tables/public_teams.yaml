@@ -1,12 +1,25 @@
 table:
   name: teams
   schema: public
+configuration:
+  column_config:
+    max_nb_of_registered_players:
+      custom_name: maxNbOfRegisteredPlayers
+    nb_or_registered_players_trigger_mail_treshold:
+      custom_name: nbOrRegisteredPlayersTriggerMailTreshold
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    max_nb_of_registered_players: maxNbOfRegisteredPlayers
+    nb_or_registered_players_trigger_mail_treshold: nbOrRegisteredPlayersTriggerMailTreshold
+    user_id: userId
+  custom_root_fields: {}
 object_relationships:
   - name: creator
     using:
       manual_configuration:
         column_mapping:
-          userId: id
+          user_id: id
         insertion_order: null
         remote_table:
           name: users
@@ -24,7 +37,7 @@ insert_permissions:
     permission:
       check: {}
       set:
-        userId: x-hasura-User-Id
+        user_id: x-hasura-User-Id
       columns:
         - description
         - name
@@ -38,7 +51,7 @@ select_permissions:
         - name
       filter:
         _or:
-          - userId:
+          - user_id:
               _eq: X-Hasura-User-Id
           - user_teams:
               userId:
@@ -51,7 +64,7 @@ update_permissions:
         - description
         - name
       filter:
-        userId:
+        user_id:
           _eq: X-Hasura-User-Id
       check: null
     comment: ""

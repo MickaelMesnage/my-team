@@ -2,24 +2,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "@nextui-org/react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
-import { forwardRef, useImperativeHandle } from "react";
+import { ChangeEvent, forwardRef, useImperativeHandle } from "react";
 
 export const TeamFormZodSchema = z.object({
-  name: z.string(),
+  name: z.string().min(1, "Le nom est obligatoire"),
   description: z.string().optional().nullable(),
+  nbPlayersMax: z.number().optional().nullable(),
+  nbPlayersTreshold: z.number().optional().nullable(),
 });
 
 export type TeamFormFieldsValue = z.infer<typeof TeamFormZodSchema>;
 
 export type TeamFormProps = {
+  isLoading?: boolean;
   onSubmit: (data: TeamFormFieldsValue) => Promise<void>;
   defaultValues?: TeamFormFieldsValue;
 };
 
-const DEFAULT_VALUES: TeamFormFieldsValue = { name: "", description: "" };
+const DEFAULT_VALUES: TeamFormFieldsValue = {
+  name: "",
+  description: "",
+};
 
 export const TeamForm = forwardRef(
-  ({ onSubmit, defaultValues = DEFAULT_VALUES }: TeamFormProps, ref) => {
+  (
+    {
+      isLoading = false,
+      onSubmit,
+      defaultValues = DEFAULT_VALUES,
+    }: TeamFormProps,
+    ref
+  ) => {
     const methods = useForm<TeamFormFieldsValue>({
       resolver: zodResolver(TeamFormZodSchema),
       defaultValues,
@@ -65,7 +78,58 @@ export const TeamForm = forwardRef(
               />
             )}
           />
-          <Button type="submit" color="primary">
+          <Controller
+            control={control}
+            name="nbPlayersMax"
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <Input
+                isRequired={false}
+                type="number"
+                label="Nombre de joueurs maximum"
+                placeholder="Ex: 10"
+                labelPlacement="outside"
+                errorMessage={error?.message}
+                // value={value || undefined}
+                // Bug of nextui
+                value={
+                  value !== null && value !== undefined ? value.toString() : ""
+                }
+                inputMode="numeric"
+                // value={value as string}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  onChange(event.target.valueAsNumber)
+                }
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="nbPlayersTreshold"
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <Input
+                isRequired={false}
+                type="number"
+                label="Limite de joueurs avant notification mail"
+                placeholder="Ex: 8"
+                labelPlacement="outside"
+                errorMessage={error?.message}
+                // Bug of nextui
+                value={
+                  value !== null && value !== undefined ? value.toString() : ""
+                }
+                inputMode="numeric"
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  onChange(event.target.valueAsNumber)
+                }
+              />
+            )}
+          />
+          <Button
+            isDisabled={isLoading}
+            isLoading={isLoading}
+            type="submit"
+            color="primary"
+          >
             Créer
           </Button>
         </form>
