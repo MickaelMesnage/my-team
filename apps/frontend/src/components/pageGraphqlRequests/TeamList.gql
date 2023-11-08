@@ -1,7 +1,0 @@
-subscription TeamList {
-  teams {
-    id
-    name
-    ...TeamListCard
-  }
-}

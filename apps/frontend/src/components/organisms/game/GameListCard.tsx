@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
-import { GameListCardFragment } from "@/components/organisms/GameListCard.generated";
-import { GameJoinModal } from "@/components/organisms/GameJoinModal";
+import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
+import { GameJoinModal } from "@/components/organisms/game/GameJoinModal";
 
 export type GameListCardProps = {
   fragment: GameListCardFragment;

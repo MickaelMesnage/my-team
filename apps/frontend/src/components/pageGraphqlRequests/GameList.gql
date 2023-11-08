@@ -1,6 +1,0 @@
-subscription GameList {
-  games {
-    id
-    ...GameListCard
-  }
-}

@@ -4,7 +4,7 @@ import { DesktopConnectedLayout } from "@/components/layouts/DesktopConnectedLay
 
 export const ConnectedLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <MobileConnectedLayout className="block md:hidden">
         {children}
       </MobileConnectedLayout>

@@ -1,7 +1,7 @@
 import * as Types from '../../graphql/types';
 
 import { gql } from '@apollo/client';
-import { GameListCardFragmentDoc } from '../organisms/GameListCard.generated';
+import { GameListCardFragmentDoc } from '../organisms/game/GameListCard.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GameListPageSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;

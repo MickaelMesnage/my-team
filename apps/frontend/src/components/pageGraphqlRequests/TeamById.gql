@@ -1,7 +1,0 @@
-query TeamById($id: uuid!) {
-  teams_by_pk(id: $id) {
-    id
-    name
-    ...TeamDetails
-  }
-}

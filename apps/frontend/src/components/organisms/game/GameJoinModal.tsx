@@ -1,4 +1,4 @@
-import { useGameJoinMutation } from "@/components/organisms/GameJoinModal.generated";
+import { useGameJoinMutation } from "@/components/organisms/game/GameJoinModal.generated";
 import {
   Modal,
   ModalContent,

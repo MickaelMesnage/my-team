@@ -1,9 +1,4 @@
-import { useInsertTeamMutation } from "@/components/organisms/team/Team/TeamCreationModal.generated";
-import {
-  TeamForm,
-  TeamFormFieldsValue,
-  TeamFormProps,
-} from "@/components/organisms/team/TeamForm";
+import { useTeamJoinMutation } from "@/components/organisms/team/TeamJoinModal.generated";
 import {
   Modal,
   ModalContent,
@@ -12,26 +7,27 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { toast } from "react-toastify";
+import {
+  TeamJoinForm,
+  TeamJoinFormFieldsValue,
+} from "@/components/organisms/team/TeamJoinForm";
 
-export type TeamCreationModalProps = {
+export type TeamJoinModalProps = {
   disclosure: ReturnType<typeof useDisclosure>;
 };
 
-export const TeamCreationModal = ({ disclosure }: TeamCreationModalProps) => {
+export const TeamJoinModal = ({ disclosure }: TeamJoinModalProps) => {
   const { isOpen, onOpenChange } = disclosure;
-  const [insertTeam, { loading }] = useInsertTeamMutation();
+  const [teamJoin, { loading }] = useTeamJoinMutation();
 
-  const onTeamCreation = async (team: TeamFormFieldsValue) => {
+  const onSubmit = async (team: TeamJoinFormFieldsValue) => {
     try {
-      await insertTeam({
+      await teamJoin({
         variables: {
-          team: {
-            ...team,
-            user_teams: { data: [{}] },
-          },
+          ...team,
         },
       });
-      toast.success("Équipe créée !");
+      toast.success("Équipe rejointe !");
       disclosure.onClose();
     } catch (error) {
       toast.error("Une erreur est survenue");
@@ -44,10 +40,10 @@ export const TeamCreationModal = ({ disclosure }: TeamCreationModalProps) => {
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">
-              Création d&apos;une équipe
+              Rejoindre une équipe
             </ModalHeader>
             <ModalBody>
-              <TeamForm onSubmit={onTeamCreation} isLoading={loading} />
+              <TeamJoinForm onSubmit={onSubmit} isLoading={loading} />
             </ModalBody>
           </>
         )}

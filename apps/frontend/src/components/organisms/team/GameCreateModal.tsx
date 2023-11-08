@@ -7,8 +7,11 @@ import {
 } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import { useUserData } from "@nhost/nextjs";
-import { useInsertGameMutation } from "@/components/organisms/GameCreateModal.generated";
-import { GameForm, GameFormFieldsValue } from "@/components/organisms/GameForm";
+import { useInsertGameMutation } from "@/components/organisms/game/GameCreateModal.generated";
+import {
+  GameForm,
+  GameFormFieldsValue,
+} from "@/components/organisms/game/GameForm";
 
 export type GameCreateModalProps = {
   disclosure: ReturnType<typeof useDisclosure>;

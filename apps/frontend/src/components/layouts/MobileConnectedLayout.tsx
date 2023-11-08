@@ -47,8 +47,8 @@ export const MobileConnectedLayout = ({
       className={`flex flex-col ${className || ""}`}
       style={{ width: "100vw", height: "100dvh" }}
     >
-      <div className="w-full h-[calc(100%-6rem)] p-4 overflow-y-auto">
-        {children}
+      <div className="w-full h-[calc(100%-6rem)] relative">
+        <div className="w-full h-full p-4 overflow-y-auto">{children}</div>
       </div>
       <header className="w-full h-[6rem] px-1 py-4 flex shrink grow basis-0 justify-between items-center border-t-2">
         {NAVBAR_ITEMS.map(({ label, href, icon }, index) => (

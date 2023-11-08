@@ -7,12 +7,12 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { GameListCard } from "@/components/organisms/GameListCard";
+import { GameListCard } from "@/components/organisms/game/GameListCard";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 import { useGameListPageSubscription } from "@/components/pages/GameListPage.generated";
 import { PlusIcon } from "@/components/icons/PlusIcon";
 import { ContainerWrapper } from "@/components/molecules/ContainerWrapper";
-import { GameCreateModal } from "@/components/organisms/GameCreateModal";
+import { GameCreateModal } from "@/components/organisms/team/GameCreateModal";
 
 export const GameListPage = () => {
   const disclosure = useDisclosure();
@@ -45,7 +45,15 @@ export const GameListPage = () => {
                   ))}
                 </>
               ) : (
-                <span>Tu n&apos;as pas de match pour le moment</span>
+                <div className="flex flex-col gap-4 items-start">
+                  <span>
+                    Tu n&apos;as pas de match de prévu pour le moment pour le
+                    moment
+                  </span>
+                  <Button color="primary" onClick={disclosure.onOpen}>
+                    Créer un match
+                  </Button>
+                </div>
               )}
             </div>
             <GameCreateModal disclosure={disclosure} />

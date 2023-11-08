@@ -1,4 +1,4 @@
-import * as Types from '../../graphql/types';
+import * as Types from '../../../graphql/types';
 
 import { gql } from '@apollo/client';
 export type GameListCardFragment = { __typename?: 'games', id: any, timestamp: any, joinedByUser?: boolean | null, creator: { __typename?: 'users', email?: any | null }, user_games: Array<{ __typename?: 'user_game', id: any, user: { __typename?: 'users', email?: any | null } }> };

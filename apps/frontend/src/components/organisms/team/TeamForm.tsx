@@ -58,6 +58,8 @@ export const TeamForm = forwardRef(
               <Input
                 type="text"
                 label="Nom de l'équipe"
+                placeholder="Ex: Les champions"
+                labelPlacement="outside"
                 errorMessage={error?.message}
                 value={value}
                 onChange={onChange}
@@ -71,7 +73,9 @@ export const TeamForm = forwardRef(
               <Input
                 isRequired={false}
                 type="text"
-                label="Descritpion de l'équipe"
+                label="Description de l'équipe"
+                placeholder="Ex: Une équipe de champions"
+                labelPlacement="outside"
                 errorMessage={error?.message}
                 value={value || ""}
                 onChange={onChange}
