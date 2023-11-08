@@ -40,7 +40,9 @@ insert_permissions:
         user_id: x-hasura-User-Id
       columns:
         - description
+        - max_nb_of_registered_players
         - name
+        - nb_or_registered_players_trigger_mail_treshold
     comment: ""
 select_permissions:
   - role: user
@@ -48,6 +50,7 @@ select_permissions:
       columns:
         - description
         - id
+        - max_nb_of_registered_players
         - name
       filter:
         _or:
@@ -62,7 +65,9 @@ update_permissions:
     permission:
       columns:
         - description
+        - max_nb_of_registered_players
         - name
+        - nb_or_registered_players_trigger_mail_treshold
       filter:
         user_id:
           _eq: X-Hasura-User-Id

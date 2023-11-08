@@ -1,6 +1,6 @@
 import { CopyIcon } from "@/components/icons/CopyIcon";
-import { TeamDetailsFragment } from "@/components/organisms/TeamDetails.generated";
-import { TeamUpdateGateway } from "@/components/organisms/TeamUpdateGateway";
+import { TeamDetailsFragment } from "@/components/organisms/team/TeamDetails.generated";
+import { TeamUpdateModal } from "@/components/organisms/team/TeamUpdateModal";
 import { Button, useDisclosure } from "@nextui-org/react";
 import { useUserData } from "@nhost/nextjs";
 
@@ -28,7 +28,7 @@ export const TeamDetails = ({ fragment }: TeamDetailsProps) => {
       {canUpdate && (
         <>
           <Button onClick={updatDislosure.onOpen}>Modifier</Button>
-          <TeamUpdateGateway
+          <TeamUpdateModal
             defaultValues={fragment}
             disclosure={updatDislosure}
             teamId={fragment.id}

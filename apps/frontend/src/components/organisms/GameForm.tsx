@@ -3,7 +3,7 @@ import { Button, Checkbox, Input } from "@nextui-org/react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { forwardRef, useImperativeHandle } from "react";
-import { TeamSelect } from "@/components/organisms/TeamSelect";
+import { TeamSelect } from "@/components/organisms/team/TeamSelect";
 
 export const GameFormZodSchema = z.object({
   teamId: z.string().min(1, "L'équipe est obligatoire"),

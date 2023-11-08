@@ -1,6 +1,6 @@
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
-import { useTeamSelectQuery } from "@/components/organisms/TeamSelect.generated";
+import { useTeamSelectQuery } from "@/components/organisms/team/TeamSelect.generated";
 import { Select, SelectItem, SelectProps } from "@nextui-org/react";
 
 export type TeamSelectProps = Pick<

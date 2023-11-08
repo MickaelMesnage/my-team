@@ -7,8 +7,8 @@ import { ChangeEvent, forwardRef, useImperativeHandle } from "react";
 export const TeamFormZodSchema = z.object({
   name: z.string().min(1, "Le nom est obligatoire"),
   description: z.string().optional().nullable(),
-  nbPlayersMax: z.number().optional().nullable(),
-  nbPlayersTreshold: z.number().optional().nullable(),
+  maxNbOfRegisteredPlayers: z.number().optional().nullable(),
+  nbOrRegisteredPlayersTriggerMailTreshold: z.number().optional().nullable(),
 });
 
 export type TeamFormFieldsValue = z.infer<typeof TeamFormZodSchema>;
@@ -80,7 +80,7 @@ export const TeamForm = forwardRef(
           />
           <Controller
             control={control}
-            name="nbPlayersMax"
+            name="maxNbOfRegisteredPlayers"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <Input
                 isRequired={false}
@@ -104,7 +104,7 @@ export const TeamForm = forwardRef(
           />
           <Controller
             control={control}
-            name="nbPlayersTreshold"
+            name="nbOrRegisteredPlayersTriggerMailTreshold"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <Input
                 isRequired={false}

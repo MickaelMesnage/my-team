@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
-import { TeamListCardFragment } from "@/components/organisms/TeamListCard.generated";
+import { TeamListCardFragment } from "@/components/organisms/team/TeamListCard.generated";
 
 export type TeamListCardProps = {
   fragment: TeamListCardFragment;

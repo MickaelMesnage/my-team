@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import { useTeamByIdQuery } from "@/components/pageGraphqlRequests/TeamById.generated";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { TeamDetails } from "@/components/organisms/TeamDetails";
+import { TeamDetails } from "@/components/organisms/team/TeamDetails";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 
 export default function TeamByIdPage() {

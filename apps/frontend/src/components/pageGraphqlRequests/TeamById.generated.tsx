@@ -1,7 +1,7 @@
 import * as Types from '../../graphql/types';
 
 import { gql } from '@apollo/client';
-import { TeamDetailsFragmentDoc } from '../organisms/TeamDetails.generated';
+import { TeamDetailsFragmentDoc } from '../organisms/team/TeamDetails.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type TeamByIdQueryVariables = Types.Exact<{

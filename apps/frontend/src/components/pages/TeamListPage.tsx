@@ -7,12 +7,12 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { TeamListCard } from "@/components/organisms/TeamListCard";
-import { TeamCreationGateway } from "@/components/organisms/TeamCreationGateway";
+import { TeamListCard } from "@/components/organisms/team/TeamListCard";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 import { useTeamListPageSubscription } from "@/components/pages/TeamListPage.generated";
 import { PlusIcon } from "@/components/icons/PlusIcon";
 import { ContainerWrapper } from "@/components/molecules/ContainerWrapper";
+import { TeamCreationModal } from "@/components/organisms/team/TeamCreationModal";
 
 export const TeamListPage = () => {
   const disclosure = useDisclosure();
@@ -45,12 +45,17 @@ export const TeamListPage = () => {
                   ))}
                 </>
               ) : (
-                <span>
-                  Tu n&apos;as pas rejoins d&apos;équipe pour le moment
-                </span>
+                <div className="flex flex-col gap-4">
+                  <span>
+                    Tu n&apos;as pas rejoins d&apos;équipe pour le moment
+                  </span>
+                  <Button color="primary" onClick={disclosure.onOpen}>
+                    Rejoindre une équipe
+                  </Button>
+                </div>
               )}
             </div>
-            <TeamCreationGateway disclosure={disclosure} />
+            <TeamCreationModal disclosure={disclosure} />
           </div>
           <Dropdown placement="top-end">
             <DropdownTrigger className="absolute bottom-0 right-0 md:bottom-6 md:right-6">
