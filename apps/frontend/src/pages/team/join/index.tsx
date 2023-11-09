@@ -1,5 +1,4 @@
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { useTeamJoinMutation } from "@/components/pageGraphqlRequests/TeamJoin.generated";
 import { ApolloError } from "@apollo/client";
 import { Button } from "@nextui-org/react";
 import { useAuthenticationStatus } from "@nhost/nextjs";
@@ -9,13 +8,13 @@ import { toast } from "react-toastify";
 
 export default function TeamJoinPage() {
   const router = useRouter();
-  const [joinTeam, { loading }] = useTeamJoinMutation();
+  // const [joinTeam, { loading }] = useTeamJoinMutation();
   const { team_id } = router.query;
   const { isAuthenticated, isLoading } = useAuthenticationStatus();
 
   const onClick = async () => {
     try {
-      await joinTeam({ variables: { teamId: team_id } });
+      // await joinTeam({ variables: { teamId: team_id } });
       toast.success("Vous avez rejoint l'équipe");
       router.push("/team/list");
     } catch (error: any) {
@@ -63,9 +62,7 @@ export default function TeamJoinPage() {
     <main>
       <section>
         <h1>Rejoindre la team</h1>
-        <Button isLoading={loading} disabled={loading} onClick={onClick}>
-          Rejoindre
-        </Button>
+        <Button onClick={onClick}>Rejoindre</Button>
       </section>
     </main>
   );
