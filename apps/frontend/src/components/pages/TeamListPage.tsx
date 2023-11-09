@@ -38,7 +38,7 @@ export const TeamListPage = () => {
               Créer une nouvelle équipe
             </Button>
           </div>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-4 flex-wrap pb-32">
             {data && data.teams.length ? (
               <>
                 {data.teams.map((team) => (
@@ -60,7 +60,7 @@ export const TeamListPage = () => {
           <TeamJoinModal disclosure={joinDisclosure} />
         </div>
         <Dropdown placement="top-end">
-          <DropdownTrigger className="absolute bottom-6 right-6 md:bottom-6 md:right-6">
+          <DropdownTrigger className="absolute bottom-8 right-12">
             <button className="bg-primary p-4 rounded-full">
               <PlusIcon className="w-6 h-6" />
             </button>

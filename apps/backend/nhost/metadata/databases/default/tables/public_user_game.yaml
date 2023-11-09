@@ -37,7 +37,7 @@ select_permissions:
         game:
           team:
             user_teams:
-              userId:
+              user_id:
                 _eq: X-Hasura-User-Id
     comment: ""
 delete_permissions:

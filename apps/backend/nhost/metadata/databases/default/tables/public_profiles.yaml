@@ -12,6 +12,16 @@ object_relationships:
   - name: user
     using:
       foreign_key_constraint_on: user_id
+array_relationships:
+  - name: user_teams
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: user_id
+        insertion_order: null
+        remote_table:
+          name: user_team
+          schema: public
 insert_permissions:
   - role: user
     permission:
@@ -29,10 +39,11 @@ select_permissions:
         - user_id
       filter:
         _or:
-          - user:
-              user_teams:
-                userId:
-                  _eq: X-Hasura-User-Id
+          - user_teams:
+              team:
+                user_teams:
+                  user_id:
+                    _eq: X-Hasura-User-Id
           - user_id:
               _eq: X-Hasura-User-Id
     comment: ""

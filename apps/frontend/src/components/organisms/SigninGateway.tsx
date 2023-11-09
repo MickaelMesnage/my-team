@@ -31,7 +31,7 @@ export const SigninGateway = () => {
       );
 
       if (!isSuccess) throw new Error();
-      toast.success("Vous êtes connecté !");
+      // toast.success("Vous êtes connecté !");
       resetForm();
       router.push("/");
     } catch (error) {

@@ -1,13 +1,23 @@
 table:
   name: games
   schema: public
+configuration:
+  column_config:
+    team_id:
+      custom_name: teamId
+    user_id:
+      custom_name: userId
+  custom_column_names:
+    team_id: teamId
+    user_id: userId
+  custom_root_fields: {}
 object_relationships:
   - name: creator
     using:
-      foreign_key_constraint_on: userId
+      foreign_key_constraint_on: user_id
   - name: team
     using:
-      foreign_key_constraint_on: teamId
+      foreign_key_constraint_on: team_id
 array_relationships:
   - name: user_games
     using:
@@ -29,12 +39,12 @@ insert_permissions:
       check:
         team:
           user_teams:
-            userId:
+            user_id:
               _eq: X-Hasura-User-Id
       set:
-        userId: x-hasura-User-Id
+        user_id: x-hasura-User-Id
       columns:
-        - teamId
+        - team_id
         - timestamp
     comment: ""
 select_permissions:
@@ -43,16 +53,16 @@ select_permissions:
       columns:
         - created_at
         - id
-        - teamId
+        - team_id
         - timestamp
         - updated_at
-        - userId
+        - user_id
       computed_fields:
         - joinedByUser
       filter:
         team:
           user_teams:
-            userId:
+            user_id:
               _eq: X-Hasura-User-Id
     comment: ""
 update_permissions:

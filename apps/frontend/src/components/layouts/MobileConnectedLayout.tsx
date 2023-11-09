@@ -60,14 +60,21 @@ export const MobileConnectedLayout = ({
             {icon} <span className="text-xs">{label}</span>
           </Link>
         ))}
-        <Link
+        <button
+          className="flex flex-col gap-2 items-center"
+          onClick={onSignoutClick}
+        >
+          <LogoutIcon className="w-8 h-8" />
+          <span className="text-xs">Déconnecter</span>
+        </button>
+        {/* <Link
           href="#"
           onClick={onSignoutClick}
           className="flex flex-col gap-2 items-center"
         >
           <LogoutIcon className="w-8 h-8" />
           <span className="text-xs">Déconnecter</span>
-        </Link>
+        </Link> */}
       </header>
     </div>
   );

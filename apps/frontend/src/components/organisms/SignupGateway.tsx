@@ -26,7 +26,7 @@ export const SignupGateway = () => {
       });
       if (isError) throw new Error();
 
-      toast.success("Vous êtes inscris ! Vérifiez vos mails");
+      // toast.success("Vous êtes inscris ! Vérifiez vos mails");
       router.push("/");
     } catch (error) {
       toast.error("Une erreur est survenue");
