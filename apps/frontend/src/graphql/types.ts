@@ -4117,6 +4117,30 @@ export type Profiles = {
   /** An object relationship */
   user: Users;
   userId: Scalars['uuid'];
+  /** An array relationship */
+  user_teams: Array<User_Team>;
+  /** An aggregate relationship */
+  user_teams_aggregate: User_Team_Aggregate;
+};
+
+
+/** columns and relationships of "profiles" */
+export type ProfilesUser_TeamsArgs = {
+  distinct_on?: InputMaybe<Array<User_Team_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Team_Order_By>>;
+  where?: InputMaybe<User_Team_Bool_Exp>;
+};
+
+
+/** columns and relationships of "profiles" */
+export type ProfilesUser_Teams_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Team_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Team_Order_By>>;
+  where?: InputMaybe<User_Team_Bool_Exp>;
 };
 
 /** aggregated selection of "profiles" */
@@ -4149,6 +4173,8 @@ export type Profiles_Bool_Exp = {
   avatar?: InputMaybe<String_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
+  user_teams?: InputMaybe<User_Team_Bool_Exp>;
+  user_teams_aggregate?: InputMaybe<User_Team_Aggregate_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "profiles" */
@@ -4164,6 +4190,7 @@ export type Profiles_Insert_Input = {
   avatar?: InputMaybe<Scalars['String']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   userId?: InputMaybe<Scalars['uuid']>;
+  user_teams?: InputMaybe<User_Team_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -4208,6 +4235,7 @@ export type Profiles_Order_By = {
   avatar?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
   userId?: InputMaybe<Order_By>;
+  user_teams_aggregate?: InputMaybe<User_Team_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: profiles */
@@ -6117,7 +6145,7 @@ export type User_Team_Bool_Exp = {
 export enum User_Team_Constraint {
   /** unique or primary key constraint on columns "id" */
   UserTeamPkey = 'user_team_pkey',
-  /** unique or primary key constraint on columns "teamId", "userId" */
+  /** unique or primary key constraint on columns "user_id", "team_id" */
   UserTeamUserIdTeamIdKey = 'user_team_userId_teamId_key'
 }
 

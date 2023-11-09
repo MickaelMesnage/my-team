@@ -4,11 +4,15 @@ fragment GameListCard on games {
   joinedByUser
   creator {
     email
+    displayName
   }
   user_games {
-    id
     user {
       email
+      profile {
+        avatar
+      }
+      displayName
     }
   }
 }
