@@ -2752,6 +2752,143 @@ export type Files_Variance_Order_By = {
   size?: InputMaybe<Order_By>;
 };
 
+/** columns and relationships of "game_status" */
+export type Game_Status = {
+  __typename?: 'game_status';
+  value: Scalars['String'];
+};
+
+/** aggregated selection of "game_status" */
+export type Game_Status_Aggregate = {
+  __typename?: 'game_status_aggregate';
+  aggregate?: Maybe<Game_Status_Aggregate_Fields>;
+  nodes: Array<Game_Status>;
+};
+
+/** aggregate fields of "game_status" */
+export type Game_Status_Aggregate_Fields = {
+  __typename?: 'game_status_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Game_Status_Max_Fields>;
+  min?: Maybe<Game_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "game_status" */
+export type Game_Status_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Game_Status_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "game_status". All fields are combined with a logical 'AND'. */
+export type Game_Status_Bool_Exp = {
+  _and?: InputMaybe<Array<Game_Status_Bool_Exp>>;
+  _not?: InputMaybe<Game_Status_Bool_Exp>;
+  _or?: InputMaybe<Array<Game_Status_Bool_Exp>>;
+  value?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "game_status" */
+export enum Game_Status_Constraint {
+  /** unique or primary key constraint on columns "value" */
+  GameStatusPkey = 'game_status_pkey'
+}
+
+export enum Game_Status_Enum {
+  Cancel = 'cancel',
+  Create = 'create',
+  Validate = 'validate'
+}
+
+/** Boolean expression to compare columns of type "game_status_enum". All fields are combined with logical 'AND'. */
+export type Game_Status_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<Game_Status_Enum>;
+  _in?: InputMaybe<Array<Game_Status_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<Game_Status_Enum>;
+  _nin?: InputMaybe<Array<Game_Status_Enum>>;
+};
+
+/** input type for inserting data into table "game_status" */
+export type Game_Status_Insert_Input = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Game_Status_Max_Fields = {
+  __typename?: 'game_status_max_fields';
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Game_Status_Min_Fields = {
+  __typename?: 'game_status_min_fields';
+  value?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "game_status" */
+export type Game_Status_Mutation_Response = {
+  __typename?: 'game_status_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Game_Status>;
+};
+
+/** on_conflict condition type for table "game_status" */
+export type Game_Status_On_Conflict = {
+  constraint: Game_Status_Constraint;
+  update_columns?: Array<Game_Status_Update_Column>;
+  where?: InputMaybe<Game_Status_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "game_status". */
+export type Game_Status_Order_By = {
+  value?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: game_status */
+export type Game_Status_Pk_Columns_Input = {
+  value: Scalars['String'];
+};
+
+/** select columns of table "game_status" */
+export enum Game_Status_Select_Column {
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "game_status" */
+export type Game_Status_Set_Input = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "game_status" */
+export type Game_Status_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Game_Status_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Game_Status_Stream_Cursor_Value_Input = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "game_status" */
+export enum Game_Status_Update_Column {
+  /** column name */
+  Value = 'value'
+}
+
+export type Game_Status_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Game_Status_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Game_Status_Bool_Exp;
+};
+
 /** columns and relationships of "games" */
 export type Games = {
   __typename?: 'games';
@@ -2761,6 +2898,7 @@ export type Games = {
   id: Scalars['uuid'];
   /** A computed field, executes function "game_joined_by_user" */
   joinedByUser?: Maybe<Scalars['Boolean']>;
+  status?: Maybe<Game_Status_Enum>;
   /** An object relationship */
   team: Teams;
   teamId: Scalars['uuid'];
@@ -2824,6 +2962,7 @@ export type Games_Bool_Exp = {
   creator?: InputMaybe<Users_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   joinedByUser?: InputMaybe<Boolean_Comparison_Exp>;
+  status?: InputMaybe<Game_Status_Enum_Comparison_Exp>;
   team?: InputMaybe<Teams_Bool_Exp>;
   teamId?: InputMaybe<Uuid_Comparison_Exp>;
   timestamp?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -2844,6 +2983,7 @@ export type Games_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   creator?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']>;
+  status?: InputMaybe<Game_Status_Enum>;
   team?: InputMaybe<Teams_Obj_Rel_Insert_Input>;
   teamId?: InputMaybe<Scalars['uuid']>;
   timestamp?: InputMaybe<Scalars['timestamptz']>;
@@ -2903,6 +3043,7 @@ export type Games_Order_By = {
   creator?: InputMaybe<Users_Order_By>;
   id?: InputMaybe<Order_By>;
   joinedByUser?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
   team?: InputMaybe<Teams_Order_By>;
   teamId?: InputMaybe<Order_By>;
   timestamp?: InputMaybe<Order_By>;
@@ -2923,6 +3064,8 @@ export enum Games_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Status = 'status',
+  /** column name */
   TeamId = 'teamId',
   /** column name */
   Timestamp = 'timestamp',
@@ -2936,6 +3079,7 @@ export enum Games_Select_Column {
 export type Games_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
+  status?: InputMaybe<Game_Status_Enum>;
   teamId?: InputMaybe<Scalars['uuid']>;
   timestamp?: InputMaybe<Scalars['timestamptz']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -2954,6 +3098,7 @@ export type Games_Stream_Cursor_Input = {
 export type Games_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
+  status?: InputMaybe<Game_Status_Enum>;
   teamId?: InputMaybe<Scalars['uuid']>;
   timestamp?: InputMaybe<Scalars['timestamptz']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -2966,6 +3111,8 @@ export enum Games_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Id = 'id',
+  /** column name */
+  Status = 'status',
   /** column name */
   TeamId = 'teamId',
   /** column name */
@@ -3062,6 +3209,10 @@ export type Mutation_Root = {
   deleteVirus?: Maybe<Virus>;
   /** delete data from the table: "storage.virus" */
   deleteViruses?: Maybe<Virus_Mutation_Response>;
+  /** delete data from the table: "game_status" */
+  delete_game_status?: Maybe<Game_Status_Mutation_Response>;
+  /** delete single row from the table: "game_status" */
+  delete_game_status_by_pk?: Maybe<Game_Status>;
   /** delete data from the table: "games" */
   delete_games?: Maybe<Games_Mutation_Response>;
   /** delete single row from the table: "games" */
@@ -3130,6 +3281,10 @@ export type Mutation_Root = {
   insertVirus?: Maybe<Virus>;
   /** insert data into the table: "storage.virus" */
   insertViruses?: Maybe<Virus_Mutation_Response>;
+  /** insert data into the table: "game_status" */
+  insert_game_status?: Maybe<Game_Status_Mutation_Response>;
+  /** insert a single row into the table: "game_status" */
+  insert_game_status_one?: Maybe<Game_Status>;
   /** insert data into the table: "games" */
   insert_games?: Maybe<Games_Mutation_Response>;
   /** insert a single row into the table: "games" */
@@ -3218,6 +3373,12 @@ export type Mutation_Root = {
   update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
   /** update multiples rows of table: "storage.files" */
   update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
+  /** update data of the table: "game_status" */
+  update_game_status?: Maybe<Game_Status_Mutation_Response>;
+  /** update single row of the table: "game_status" */
+  update_game_status_by_pk?: Maybe<Game_Status>;
+  /** update multiples rows of table: "game_status" */
+  update_game_status_many?: Maybe<Array<Maybe<Game_Status_Mutation_Response>>>;
   /** update data of the table: "games" */
   update_games?: Maybe<Games_Mutation_Response>;
   /** update single row of the table: "games" */
@@ -3396,6 +3557,18 @@ export type Mutation_RootDeleteVirusArgs = {
 /** mutation root */
 export type Mutation_RootDeleteVirusesArgs = {
   where: Virus_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Game_StatusArgs = {
+  where: Game_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Game_Status_By_PkArgs = {
+  value: Scalars['String'];
 };
 
 
@@ -3624,6 +3797,20 @@ export type Mutation_RootInsertVirusArgs = {
 export type Mutation_RootInsertVirusesArgs = {
   objects: Array<Virus_Insert_Input>;
   on_conflict?: InputMaybe<Virus_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Game_StatusArgs = {
+  objects: Array<Game_Status_Insert_Input>;
+  on_conflict?: InputMaybe<Game_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Game_Status_OneArgs = {
+  object: Game_Status_Insert_Input;
+  on_conflict?: InputMaybe<Game_Status_On_Conflict>;
 };
 
 
@@ -3978,6 +4165,26 @@ export type Mutation_RootUpdate_Buckets_ManyArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Files_ManyArgs = {
   updates: Array<Files_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Game_StatusArgs = {
+  _set?: InputMaybe<Game_Status_Set_Input>;
+  where: Game_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Game_Status_By_PkArgs = {
+  _set?: InputMaybe<Game_Status_Set_Input>;
+  pk_columns: Game_Status_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Game_Status_ManyArgs = {
+  updates: Array<Game_Status_Updates>;
 };
 
 
@@ -4348,6 +4555,12 @@ export type Query_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "game_status" */
+  game_status: Array<Game_Status>;
+  /** fetch aggregated fields from the table: "game_status" */
+  game_status_aggregate: Game_Status_Aggregate;
+  /** fetch data from the table: "game_status" using primary key columns */
+  game_status_by_pk?: Maybe<Game_Status>;
   /** fetch data from the table: "games" */
   games: Array<Games>;
   /** fetch aggregated fields from the table: "games" */
@@ -4623,6 +4836,29 @@ export type Query_RootFilesAggregateArgs = {
 };
 
 
+export type Query_RootGame_StatusArgs = {
+  distinct_on?: InputMaybe<Array<Game_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Game_Status_Order_By>>;
+  where?: InputMaybe<Game_Status_Bool_Exp>;
+};
+
+
+export type Query_RootGame_Status_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Game_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Game_Status_Order_By>>;
+  where?: InputMaybe<Game_Status_Bool_Exp>;
+};
+
+
+export type Query_RootGame_Status_By_PkArgs = {
+  value: Scalars['String'];
+};
+
+
 export type Query_RootGamesArgs = {
   distinct_on?: InputMaybe<Array<Games_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4865,6 +5101,14 @@ export type Subscription_Root = {
   filesAggregate: Files_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.files" */
   files_stream: Array<Files>;
+  /** fetch data from the table: "game_status" */
+  game_status: Array<Game_Status>;
+  /** fetch aggregated fields from the table: "game_status" */
+  game_status_aggregate: Game_Status_Aggregate;
+  /** fetch data from the table: "game_status" using primary key columns */
+  game_status_by_pk?: Maybe<Game_Status>;
+  /** fetch data from the table in a streaming manner: "game_status" */
+  game_status_stream: Array<Game_Status>;
   /** fetch data from the table: "games" */
   games: Array<Games>;
   /** fetch aggregated fields from the table: "games" */
@@ -5221,6 +5465,36 @@ export type Subscription_RootFiles_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Files_Stream_Cursor_Input>>;
   where?: InputMaybe<Files_Bool_Exp>;
+};
+
+
+export type Subscription_RootGame_StatusArgs = {
+  distinct_on?: InputMaybe<Array<Game_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Game_Status_Order_By>>;
+  where?: InputMaybe<Game_Status_Bool_Exp>;
+};
+
+
+export type Subscription_RootGame_Status_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Game_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Game_Status_Order_By>>;
+  where?: InputMaybe<Game_Status_Bool_Exp>;
+};
+
+
+export type Subscription_RootGame_Status_By_PkArgs = {
+  value: Scalars['String'];
+};
+
+
+export type Subscription_RootGame_Status_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Game_Status_Stream_Cursor_Input>>;
+  where?: InputMaybe<Game_Status_Bool_Exp>;
 };
 
 

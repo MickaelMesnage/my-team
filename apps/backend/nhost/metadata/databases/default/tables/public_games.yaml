@@ -53,6 +53,7 @@ select_permissions:
       columns:
         - created_at
         - id
+        - status
         - team_id
         - timestamp
         - updated_at
@@ -69,6 +70,7 @@ update_permissions:
   - role: user
     permission:
       columns:
+        - status
         - timestamp
       filter:
         creator:

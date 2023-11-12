@@ -2,11 +2,14 @@ fragment GameListCard on games {
   id
   timestamp
   joinedByUser
+  status
   creator {
     email
     displayName
   }
   user_games {
+    id
+    userId
     user {
       email
       profile {

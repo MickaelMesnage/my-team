@@ -7,6 +7,7 @@
 - "!include auth_user_roles.yaml"
 - "!include auth_user_security_keys.yaml"
 - "!include auth_users.yaml"
+- "!include public_game_status.yaml"
 - "!include public_games.yaml"
 - "!include public_profiles.yaml"
 - "!include public_teams.yaml"

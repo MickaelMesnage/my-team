@@ -11,6 +11,8 @@ const {
   FRONTEND_URL,
 } = process.env;
 
+console.log({ ee: process.env });
+
 if (!NHOST_SUBDOMAIN) throw new Error("Nhost: No NHOST_SUBDOMAIN env var set");
 
 // const NHOST_ADMIN_SECRET = process.env.NHOST_ADMIN_SECRET;
@@ -30,7 +32,7 @@ if (!MJ_APIKEY_PRIVATE)
 if (!MJ_APIKEY_PUBLIC)
   throw new Error("Settings: No MJ_APIKEY_PUBLIC env var set");
 
-if (!FRONTEND_URL) throw new Error("Settings: No FRONTEND_URL env var set");
+// if (!FRONTEND_URL) throw new Error("Settings: No FRONTEND_URL env var set");
 
 export default {
   isLocal: NHOST_SUBDOMAIN === "local",

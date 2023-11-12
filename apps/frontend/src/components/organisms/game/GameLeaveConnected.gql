@@ -1,0 +1,5 @@
+mutation GameLeave($id: uuid!) {
+  delete_user_game_by_pk(id: $id) {
+    id
+  }
+}

@@ -33,12 +33,25 @@ select_permissions:
       columns:
         - created_at
         - id
+        - user_id
       filter:
         game:
           team:
             user_teams:
               user_id:
                 _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - game_id
+        - id
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
     comment: ""
 delete_permissions:
   - role: user
