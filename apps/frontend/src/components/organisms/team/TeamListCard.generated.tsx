@@ -1,7 +1,7 @@
 import * as Types from '../../../graphql/types';
 
 import { gql } from '@apollo/client';
-export type TeamListCardFragment = { __typename?: 'teams', id: any, name: string, description?: string | null, creator?: { __typename?: 'users', email?: any | null, displayName: string } | null, user_teams: Array<{ __typename?: 'user_team', user?: { __typename?: 'users', email?: any | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } | null }> };
+export type TeamListCardFragment = { __typename?: 'teams', id: string, name: string, description?: string | null, creator?: { __typename?: 'users', email?: string | null, displayName: string } | null, user_teams: Array<{ __typename?: 'user_team', user?: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } | null }> };
 
 export const TeamListCardFragmentDoc = gql`
     fragment TeamListCard on teams {

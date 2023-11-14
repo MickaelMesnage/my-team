@@ -19,3 +19,9 @@ generates:
       - typescript-react-apollo
     config:
       withHooks: true
+config:
+  # Set scalars to avoid "any" type
+  scalars:
+    uuid: string
+    timestamptz: string
+    citext: string

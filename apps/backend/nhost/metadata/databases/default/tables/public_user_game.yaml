@@ -32,6 +32,7 @@ select_permissions:
     permission:
       columns:
         - created_at
+        - game_id
         - id
         - user_id
       filter:

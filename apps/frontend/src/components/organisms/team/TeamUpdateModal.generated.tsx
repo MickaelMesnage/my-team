@@ -9,7 +9,7 @@ export type TeamUpdateMutationVariables = Types.Exact<{
 }>;
 
 
-export type TeamUpdateMutation = { __typename?: 'mutation_root', update_teams_by_pk?: { __typename?: 'teams', id: any } | null };
+export type TeamUpdateMutation = { __typename?: 'mutation_root', update_teams_by_pk?: { __typename?: 'teams', id: string } | null };
 
 
 export const TeamUpdateDocument = gql`

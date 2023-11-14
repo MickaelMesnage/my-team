@@ -8,7 +8,7 @@ export type InsertGameMutationVariables = Types.Exact<{
 }>;
 
 
-export type InsertGameMutation = { __typename?: 'mutation_root', insert_games_one?: { __typename?: 'games', id: any } | null };
+export type InsertGameMutation = { __typename?: 'mutation_root', insert_games_one?: { __typename?: 'games', id: string } | null };
 
 
 export const InsertGameDocument = gql`

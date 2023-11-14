@@ -12,10 +12,10 @@ export type Scalars = {
   Float: number;
   bigint: any;
   bytea: any;
-  citext: any;
+  citext: string;
   jsonb: any;
-  timestamptz: any;
-  uuid: any;
+  timestamptz: string;
+  uuid: string;
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */

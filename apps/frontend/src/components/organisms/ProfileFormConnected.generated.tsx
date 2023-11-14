@@ -9,14 +9,14 @@ export type UpdateUserMutationVariables = Types.Exact<{
 }>;
 
 
-export type UpdateUserMutation = { __typename?: 'mutation_root', updateUser?: { __typename?: 'users', id: any } | null };
+export type UpdateUserMutation = { __typename?: 'mutation_root', updateUser?: { __typename?: 'users', id: string } | null };
 
 export type UpdateProfileMutationVariables = Types.Exact<{
   profile: Types.Profiles_Insert_Input;
 }>;
 
 
-export type UpdateProfileMutation = { __typename?: 'mutation_root', insert_profiles_one?: { __typename?: 'profiles', userId: any } | null };
+export type UpdateProfileMutation = { __typename?: 'mutation_root', insert_profiles_one?: { __typename?: 'profiles', userId: string } | null };
 
 export type ProfileFormConnectedFragment = { __typename?: 'users', displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null };
 

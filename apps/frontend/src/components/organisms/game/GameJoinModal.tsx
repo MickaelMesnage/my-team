@@ -1,4 +1,5 @@
-import { useGameJoinMutation } from "@/components/organisms/game/GameJoinModal.generated";
+import { GameJoinConnectedFragment } from "@/components/organisms/game/GameJoinConnected.generated";
+import { GameJoinModalFragment } from "@/components/organisms/game/GameJoinModal.generated";
 import {
   Modal,
   ModalContent,
@@ -7,37 +8,28 @@ import {
   useDisclosure,
   Button,
 } from "@nextui-org/react";
-import { toast } from "react-toastify";
 
 export type GameJoinModalProps = {
   disclosure: ReturnType<typeof useDisclosure>;
-  gameId: string;
-  timestamp: Date;
+  fragment: GameJoinModalFragment;
+  loading: boolean;
+  onJoin: (fragment: GameJoinConnectedFragment) => Promise<void>;
 };
 
 export const GameJoinModal = ({
   disclosure,
-  gameId,
-  timestamp,
+  fragment,
+  loading,
+  onJoin,
 }: GameJoinModalProps) => {
   const { isOpen, onOpenChange, onClose } = disclosure;
+  const { timestamp } = fragment;
   const formattedDate = new Date(timestamp).toLocaleDateString();
   const formattedTime = new Date(timestamp).toLocaleTimeString();
 
-  const [joinGame, { loading }] = useGameJoinMutation();
-
   const onClick = async () => {
-    try {
-      await joinGame({
-        variables: {
-          gameId,
-        },
-      });
-      toast.success("Vous participez au match !");
-      onClose();
-    } catch (error) {
-      toast.error("Une erreur est survenue");
-    }
+    await onJoin(fragment);
+    onClose();
   };
 
   return (
@@ -55,7 +47,14 @@ export const GameJoinModal = ({
                   <Button color="default" onClick={onClose}>
                     Annuler
                   </Button>
-                  <Button onClick={onClick}>Participer</Button>
+                  <Button
+                    isLoading={loading}
+                    isDisabled={loading}
+                    onClick={onClick}
+                    color="primary"
+                  >
+                    Participer
+                  </Button>
                 </div>
               </div>
             </ModalBody>

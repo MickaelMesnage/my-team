@@ -34,6 +34,7 @@ export const GameCreateModal = ({ disclosure }: GameCreateModalProps) => {
             ...(game.participate && { user_games: { data: [{}] } }),
           },
         },
+        refetchQueries: ["GameListPage"],
       });
 
       toast.success("Match créé !");

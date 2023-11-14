@@ -1,4 +1,4 @@
-subscription GameListPage {
+query GameListPage {
   games {
     id
     ...GameListCard

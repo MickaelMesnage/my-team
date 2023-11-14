@@ -3,3 +3,12 @@ mutation GameLeave($id: uuid!) {
     id
   }
 }
+
+fragment GameLeaveConnected on games {
+  id
+  joinedByUser
+  user_games {
+    id
+    userId
+  }
+}

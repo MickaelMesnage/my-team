@@ -1,68 +1,56 @@
-import { useGameLeaveMutation } from "@/components/organisms/game/GameLeaveConnected.generated";
-import { GameListCardFragmentDoc } from "@/components/organisms/game/GameListCard.generated";
-import { gql } from "@apollo/client";
+import {
+  GameLeaveConnectedFragment,
+  GameLeaveConnectedFragmentDoc,
+  useGameLeaveMutation,
+} from "@/components/organisms/game/GameLeaveConnected.generated";
 import { useUserId } from "@nhost/nextjs";
 import React, { ReactNode, cache } from "react";
 import { toast } from "react-toastify";
 
 export type GameLeaveConnectedProps = {
   render: (
-    onLeave: (gameId: string, id: string) => void,
+    onLeave: (fragment: GameLeaveConnectedFragment) => void,
     loading: boolean
   ) => ReactNode;
 };
 
 export const GameLeaveConnected = ({ render }: GameLeaveConnectedProps) => {
   const userId = useUserId();
-
-  const [isLoading, setIsLoading] = React.useState(false);
   const [leaveGame, { loading }] = useGameLeaveMutation();
 
   if (!userId) throw new Error("GameLeaveConnected: User id is undefined");
 
-  const onLeave = async (gameId: string, id: string) => {
+  const onLeave = async (fragment: GameLeaveConnectedFragment) => {
     try {
-      setIsLoading(true);
+      const userGameId = fragment.user_games.find(
+        (e) => e.userId === userId
+      )?.id;
+
+      if (!userGameId)
+        throw new Error("GameLeaveConnected: User Id not consistent");
+
       await leaveGame({
         variables: {
-          id,
+          id: userGameId,
         },
-        // refetchQueries: [GameListPageDocument],
-        // update: (cache) => {
-        //   const cacheId = cache.identify({
-        //     __typename: "user_game",
-        //     id,
-        //   });
-
-        //   cache.evict({ id: cacheId });
-        //   cache.gc();
-        // },
+        // Update in cache to prevent loading if response ok
         update: (cache) => {
           cache.writeFragment({
             id: cache.identify({
               __typename: "games",
-              id: gameId,
+              id: fragment.id,
             }),
-            fragment: GameListCardFragmentDoc,
+            fragment: GameLeaveConnectedFragmentDoc,
             data: {
+              ...fragment,
+              user_games: fragment.user_games.filter(
+                (e) => e.id !== userGameId
+              ),
               joinedByUser: false,
             },
           });
-          cache.gc();
-          // cache.modify({
-          //   id: cache.identify({
-          //     __typename: "games",
-          //     id: gameId,
-          //   }),
-          //   fields: {
-          //     joinedByUser(_cachedJoinedByUser) {
-          //       return false;
-          //     },
-          //   },
-          // });
         },
       });
-      setIsLoading(false);
       toast.success("Vous avez annulé votre participation !");
     } catch (error) {
       toast.error("Une erreur est survenue");
@@ -70,5 +58,5 @@ export const GameLeaveConnected = ({ render }: GameLeaveConnectedProps) => {
     }
   };
 
-  return <div>{render(onLeave, isLoading)}</div>;
+  return <div>{render(onLeave, loading)}</div>;
 };

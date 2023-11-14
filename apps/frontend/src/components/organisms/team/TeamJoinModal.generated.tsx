@@ -8,7 +8,7 @@ export type TeamJoinMutationVariables = Types.Exact<{
 }>;
 
 
-export type TeamJoinMutation = { __typename?: 'mutation_root', insert_user_team_one?: { __typename?: 'user_team', id: any } | null };
+export type TeamJoinMutation = { __typename?: 'mutation_root', insert_user_team_one?: { __typename?: 'user_team', id: string } | null };
 
 
 export const TeamJoinDocument = gql`

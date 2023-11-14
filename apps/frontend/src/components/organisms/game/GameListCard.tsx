@@ -1,33 +1,21 @@
-import { useRouter } from "next/router";
-import { Button, Card, CardBody, useDisclosure, user } from "@nextui-org/react";
+import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
 import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
 import { GameJoinModal } from "@/components/organisms/game/GameJoinModal";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { AvatarList } from "@/components/molecules/AvatarList";
 import { isPast } from "date-fns";
 import { Game_Status_Enum } from "@/graphql/types";
 import { GameLeaveConnected } from "@/components/organisms/game/GameLeaveConnected";
-import { useUserId } from "@nhost/nextjs";
+import { GameJoinConnected } from "@/components/organisms/game/GameJoinConnected";
 
 export type GameListCardProps = {
   fragment: GameListCardFragment;
 };
 
 export const GameListCard = ({ fragment }: GameListCardProps) => {
-  const userId = useUserId();
-  console.log({ fragment });
-
-  if (!userId) throw new Error("GameListCard: User id is undefined");
-
-  useEffect(() => {
-    console.log("new fragment joined");
-  }, [fragment.joinedByUser]);
-
   const isGamePast = useMemo(() => {
     return isPast(new Date(fragment.timestamp));
   }, [fragment.timestamp]);
-
-  const hasJoined = !!fragment.user_games.find((e) => e.userId === userId);
 
   const canJoin =
     !isGamePast &&
@@ -48,11 +36,6 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
       avatarURL: user_team.user?.profile?.avatar || undefined,
     }));
   }, [fragment.user_games]);
-
-  const userGameId = useMemo(() => {
-    return fragment.user_games.find((user_game) => user_game.userId === userId)
-      ?.id;
-  }, [fragment.user_games, userId]);
 
   const formattedDate = new Date(fragment.timestamp).toLocaleDateString();
   const formattedTime = new Date(fragment.timestamp).toLocaleTimeString();
@@ -80,24 +63,26 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
                 render={(onLeave, loading) => (
                   <Button
                     isDisabled={loading}
-                    isLoading={loading}
                     color="primary"
-                    onClick={() => onLeave(fragment.id, userGameId)}
+                    onClick={() => onLeave(fragment)}
                   >
                     Ne plus participer
                   </Button>
                 )}
               />
             )}
-            {fragment.joinedByUser && <span>joinedbyuser</span>}
-            {hasJoined && <span>hasjoined</span>}
           </div>
         </CardBody>
       </Card>
-      <GameJoinModal
-        disclosure={disclosure}
-        timestamp={fragment.timestamp}
-        gameId={fragment.id}
+      <GameJoinConnected
+        render={(onJoin, loading) => (
+          <GameJoinModal
+            disclosure={disclosure}
+            fragment={fragment}
+            onJoin={onJoin}
+            loading={loading}
+          />
+        )}
       />
     </>
   );

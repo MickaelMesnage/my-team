@@ -8,9 +8,20 @@ export type GameLeaveMutationVariables = Types.Exact<{
 }>;
 
 
-export type GameLeaveMutation = { __typename?: 'mutation_root', delete_user_game_by_pk?: { __typename?: 'user_game', id: any } | null };
+export type GameLeaveMutation = { __typename?: 'mutation_root', delete_user_game_by_pk?: { __typename?: 'user_game', id: string } | null };
 
+export type GameLeaveConnectedFragment = { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string }> };
 
+export const GameLeaveConnectedFragmentDoc = gql`
+    fragment GameLeaveConnected on games {
+  id
+  joinedByUser
+  user_games {
+    id
+    userId
+  }
+}
+    `;
 export const GameLeaveDocument = gql`
     mutation GameLeave($id: uuid!) {
   delete_user_game_by_pk(id: $id) {

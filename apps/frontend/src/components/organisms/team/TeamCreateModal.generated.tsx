@@ -8,7 +8,7 @@ export type InsertTeamMutationVariables = Types.Exact<{
 }>;
 
 
-export type InsertTeamMutation = { __typename?: 'mutation_root', insert_teams_one?: { __typename?: 'teams', id: any } | null };
+export type InsertTeamMutation = { __typename?: 'mutation_root', insert_teams_one?: { __typename?: 'teams', id: string } | null };
 
 
 export const InsertTeamDocument = gql`

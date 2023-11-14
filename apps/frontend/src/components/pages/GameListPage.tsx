@@ -9,14 +9,14 @@ import {
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
 import { GameListCard } from "@/components/organisms/game/GameListCard";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
-import { useGameListPageSubscription } from "@/components/pages/GameListPage.generated";
 import { PlusIcon } from "@/components/icons/PlusIcon";
 import { ContainerWrapper } from "@/components/molecules/ContainerWrapper";
 import { GameCreateModal } from "@/components/organisms/game/GameCreateModal";
+import { useGameListPageQuery } from "@/components/pages/GameListPage.generated";
 
 export const GameListPage = () => {
   const disclosure = useDisclosure();
-  const { data, error, loading } = useGameListPageSubscription();
+  const { data, error, loading } = useGameListPageQuery();
 
   if (loading) {
     return <CenteredSpinner />;

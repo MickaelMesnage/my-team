@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 export type TeamSelectQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type TeamSelectQuery = { __typename?: 'query_root', teams: Array<{ __typename?: 'teams', id: any, name: string }> };
+export type TeamSelectQuery = { __typename?: 'query_root', teams: Array<{ __typename?: 'teams', id: string, name: string }> };
 
 
 export const TeamSelectDocument = gql`
