@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { Button, Card, CardBody, useDisclosure, user } from "@nextui-org/react";
 import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
 import { GameJoinModal } from "@/components/organisms/game/GameJoinModal";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { AvatarList } from "@/components/molecules/AvatarList";
 import { isPast } from "date-fns";
 import { Game_Status_Enum } from "@/graphql/types";
@@ -19,17 +19,20 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
 
   if (!userId) throw new Error("GameListCard: User id is undefined");
 
+  useEffect(() => {
+    console.log("new fragment joined");
+  }, [fragment.joinedByUser]);
+
   const isGamePast = useMemo(() => {
     return isPast(new Date(fragment.timestamp));
   }, [fragment.timestamp]);
 
-  const canJoin = useMemo(() => {
-    return (
-      !isGamePast &&
-      !fragment.joinedByUser &&
-      fragment.status === Game_Status_Enum.Create
-    );
-  }, [isGamePast, fragment.joinedByUser, fragment.status]);
+  const hasJoined = !!fragment.user_games.find((e) => e.userId === userId);
+
+  const canJoin =
+    !isGamePast &&
+    !fragment.joinedByUser &&
+    fragment.status === Game_Status_Enum.Create;
 
   const canLeave = useMemo(() => {
     return (
@@ -60,7 +63,7 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
     <>
       <Card className="w-full max-w-xs">
         <CardBody>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-start gap-2">
             <span>Créé par {fragment.creator?.displayName}</span>
             <span>
               {formattedDate} - {formattedTime}
@@ -79,13 +82,15 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
                     isDisabled={loading}
                     isLoading={loading}
                     color="primary"
-                    onClick={() => onLeave(userGameId)}
+                    onClick={() => onLeave(fragment.id, userGameId)}
                   >
                     Ne plus participer
                   </Button>
                 )}
               />
             )}
+            {fragment.joinedByUser && <span>joinedbyuser</span>}
+            {hasJoined && <span>hasjoined</span>}
           </div>
         </CardBody>
       </Card>
