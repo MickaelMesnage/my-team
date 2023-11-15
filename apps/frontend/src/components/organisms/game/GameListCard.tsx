@@ -1,18 +1,20 @@
 import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
 import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
 import { GameJoinModal } from "@/components/organisms/game/GameJoinModal";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { AvatarList } from "@/components/molecules/AvatarList";
 import { isPast } from "date-fns";
 import { Game_Status_Enum } from "@/graphql/types";
 import { GameLeaveConnected } from "@/components/organisms/game/GameLeaveConnected";
 import { GameJoinConnected } from "@/components/organisms/game/GameJoinConnected";
+import { on } from "events";
 
 export type GameListCardProps = {
   fragment: GameListCardFragment;
 };
 
 export const GameListCard = ({ fragment }: GameListCardProps) => {
+  useEffect(() => console.log("fragment has changes"), [fragment]);
   const isGamePast = useMemo(() => {
     return isPast(new Date(fragment.timestamp));
   }, [fragment.timestamp]);
@@ -60,21 +62,24 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
             )}
             {canLeave && (
               <GameLeaveConnected
+                fragment={fragment}
                 render={(onLeave, loading) => (
                   <Button
                     isDisabled={loading}
                     color="primary"
-                    onClick={() => onLeave(fragment)}
+                    onClick={onLeave}
                   >
                     Ne plus participer
                   </Button>
                 )}
               />
             )}
+            joinedByUser: {JSON.stringify(fragment.joinedByUser)}
           </div>
         </CardBody>
       </Card>
       <GameJoinConnected
+        fragment={fragment}
         render={(onJoin, loading) => (
           <GameJoinModal
             disclosure={disclosure}

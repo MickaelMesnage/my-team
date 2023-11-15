@@ -8,7 +8,7 @@ export type GameLeaveMutationVariables = Types.Exact<{
 }>;
 
 
-export type GameLeaveMutation = { __typename?: 'mutation_root', delete_user_game_by_pk?: { __typename?: 'user_game', id: string } | null };
+export type GameLeaveMutation = { __typename?: 'mutation_root', delete_user_game_by_pk?: { __typename?: 'user_game', id: string, game: { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string }> } } | null };
 
 export type GameLeaveConnectedFragment = { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string }> };
 
@@ -26,9 +26,12 @@ export const GameLeaveDocument = gql`
     mutation GameLeave($id: uuid!) {
   delete_user_game_by_pk(id: $id) {
     id
+    game {
+      ...GameLeaveConnected
+    }
   }
 }
-    `;
+    ${GameLeaveConnectedFragmentDoc}`;
 export type GameLeaveMutationFn = Apollo.MutationFunction<GameLeaveMutation, GameLeaveMutationVariables>;
 
 /**

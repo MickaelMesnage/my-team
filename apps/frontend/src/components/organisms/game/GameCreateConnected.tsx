@@ -3,6 +3,7 @@ import { useUserData } from "@nhost/nextjs";
 import { GameFormFieldsValue } from "@/components/organisms/game/GameForm";
 import { ReactNode } from "react";
 import { useInsertGameMutation } from "@/components/organisms/game/GameCreateConnected.generated";
+import { useRouter } from "next/router";
 
 export type GameCreateConnectedProps = {
   render: (
@@ -13,6 +14,7 @@ export type GameCreateConnectedProps = {
 
 export const GameCreateConnected = ({ render }: GameCreateConnectedProps) => {
   const user = useUserData();
+  const router = useRouter();
   const [insertTeam, { loading }] = useInsertGameMutation();
 
   if (!user?.id) throw new Error("GameCreateConnected: User not logged");
@@ -33,6 +35,7 @@ export const GameCreateConnected = ({ render }: GameCreateConnectedProps) => {
       toast.success("Match créé !");
     } catch (error) {
       toast.error("Une erreur est survenue");
+      router.push("/");
     }
   };
 

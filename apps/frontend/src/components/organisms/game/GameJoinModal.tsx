@@ -1,5 +1,6 @@
 import { GameJoinConnectedFragment } from "@/components/organisms/game/GameJoinConnected.generated";
 import { GameJoinModalFragment } from "@/components/organisms/game/GameJoinModal.generated";
+import { useApolloClient } from "@apollo/client";
 import {
   Modal,
   ModalContent,
@@ -13,7 +14,7 @@ export type GameJoinModalProps = {
   disclosure: ReturnType<typeof useDisclosure>;
   fragment: GameJoinModalFragment;
   loading: boolean;
-  onJoin: (fragment: GameJoinConnectedFragment) => Promise<void>;
+  onJoin: () => Promise<void>;
 };
 
 export const GameJoinModal = ({
@@ -28,7 +29,7 @@ export const GameJoinModal = ({
   const formattedTime = new Date(timestamp).toLocaleTimeString();
 
   const onClick = async () => {
-    await onJoin(fragment);
+    await onJoin();
     onClose();
   };
 

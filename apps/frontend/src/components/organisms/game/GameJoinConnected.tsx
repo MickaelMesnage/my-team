@@ -3,51 +3,54 @@ import {
   GameJoinConnectedFragmentDoc,
   useGameJoinMutation,
 } from "@/components/organisms/game/GameJoinConnected.generated";
+import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { toast } from "react-toastify";
 
 export type GameJoinConnectedProps = {
-  render: (
-    onJoin: (fragment: GameJoinConnectedFragment) => Promise<void>,
-    loading: boolean
-  ) => ReactNode;
+  fragment: GameJoinConnectedFragment;
+  render: (onJoin: () => Promise<void>, loading: boolean) => ReactNode;
 };
 
-export const GameJoinConnected = ({ render }: GameJoinConnectedProps) => {
+export const GameJoinConnected = ({
+  fragment,
+  render,
+}: GameJoinConnectedProps) => {
+  const router = useRouter();
   const [joinGame, { loading }] = useGameJoinMutation();
 
-  const onJoin = async (fragment: GameJoinConnectedFragment) => {
+  const onJoin = async () => {
     try {
+      console.log("onjoin start", fragment.id);
       await joinGame({
         variables: {
           gameId: fragment.id,
         },
         // Update in cache to prevent loading if response ok
         update: (cache, { data }) => {
-          const userGameAdded = data?.insert_user_game_one;
-          if (!userGameAdded)
-            throw new Error(
-              "GameJoinConnected: User game added not consistent"
-            );
+          console.log({ join: data?.insert_user_game_one?.game });
 
-          cache.writeFragment({
-            id: cache.identify({
-              __typename: "games",
-              id: fragment.id,
-            }),
-            fragment: GameJoinConnectedFragmentDoc,
-            data: {
-              ...fragment,
-              user_games: [...fragment.user_games, userGameAdded],
-              joinedByUser: false,
-            },
-          });
+          console.log(
+            cache.writeFragment({
+              id: cache.identify({
+                __typename: "games",
+                id: fragment.id,
+              }),
+              fragment: GameJoinConnectedFragmentDoc,
+              data: data?.insert_user_game_one?.game,
+            })
+          );
+          // cache.gc();
         },
         // refetchQueries: ["GameListPage"],
       });
+      console.log("ok");
+      console.log("onjoin end");
       toast.success("Vous participez au match !");
     } catch (error) {
+      console.log({ error });
       toast.error("Une erreur est survenue");
+      router.push("/");
     }
   };
 

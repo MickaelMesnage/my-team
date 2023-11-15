@@ -17,7 +17,10 @@ import { GameCreateConnected } from "@/components/organisms/game/GameCreateConne
 
 export const GameListPage = () => {
   const disclosure = useDisclosure();
-  const { data, error, loading } = useGameListPageQuery();
+  console.log("dddd");
+  const { data, error, loading } = useGameListPageQuery({
+    fetchPolicy: "cache-first",
+  });
 
   if (loading) {
     return <CenteredSpinner />;

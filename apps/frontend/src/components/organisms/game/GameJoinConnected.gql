@@ -3,6 +3,9 @@ mutation GameJoin($gameId: uuid!) {
     id
     userId
     gameId
+    game {
+      ...GameJoinConnected
+    }
   }
 }
 
