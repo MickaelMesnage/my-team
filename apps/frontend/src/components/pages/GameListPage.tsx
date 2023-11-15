@@ -13,6 +13,7 @@ import { PlusIcon } from "@/components/icons/PlusIcon";
 import { ContainerWrapper } from "@/components/molecules/ContainerWrapper";
 import { GameCreateModal } from "@/components/organisms/game/GameCreateModal";
 import { useGameListPageQuery } from "@/components/pages/GameListPage.generated";
+import { GameCreateConnected } from "@/components/organisms/game/GameCreateConnected";
 
 export const GameListPage = () => {
   const disclosure = useDisclosure();
@@ -56,7 +57,15 @@ export const GameListPage = () => {
                 </div>
               )}
             </div>
-            <GameCreateModal disclosure={disclosure} />
+            <GameCreateConnected
+              render={(onCreate, loading) => (
+                <GameCreateModal
+                  disclosure={disclosure}
+                  onCreateGame={onCreate}
+                  loading={loading}
+                />
+              )}
+            />
           </div>
           <Dropdown placement="top-end">
             <DropdownTrigger className="absolute bottom-8 right-12">

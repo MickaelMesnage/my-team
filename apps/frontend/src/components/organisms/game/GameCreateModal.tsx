@@ -5,9 +5,6 @@ import {
   ModalBody,
   useDisclosure,
 } from "@nextui-org/react";
-import { toast } from "react-toastify";
-import { useUserData } from "@nhost/nextjs";
-import { useInsertGameMutation } from "@/components/organisms/game/GameCreateModal.generated";
 import {
   GameForm,
   GameFormFieldsValue,
@@ -15,33 +12,20 @@ import {
 
 export type GameCreateModalProps = {
   disclosure: ReturnType<typeof useDisclosure>;
+  onCreateGame: (game: GameFormFieldsValue) => Promise<void>;
+  loading?: boolean;
 };
 
-export const GameCreateModal = ({ disclosure }: GameCreateModalProps) => {
+export const GameCreateModal = ({
+  disclosure,
+  onCreateGame,
+  loading,
+}: GameCreateModalProps) => {
   const { isOpen, onOpenChange } = disclosure;
-  const user = useUserData();
-  const [insertTeam, { loading }] = useInsertGameMutation();
 
-  if (!user?.id) throw new Error("GameCreateModal: User not logged");
-
-  const onCreateGame = async (game: GameFormFieldsValue) => {
-    try {
-      await insertTeam({
-        variables: {
-          game: {
-            timestamp: new Date(`${game.date} ${game.time}`).toISOString(),
-            teamId: game.teamId,
-            ...(game.participate && { user_games: { data: [{}] } }),
-          },
-        },
-        refetchQueries: ["GameListPage"],
-      });
-
-      toast.success("Match créé !");
-      disclosure.onClose();
-    } catch (error) {
-      toast.error("Une erreur est survenue");
-    }
+  const onSubmit = async (game: GameFormFieldsValue) => {
+    await onCreateGame(game);
+    disclosure.onClose();
   };
 
   return (
@@ -53,7 +37,7 @@ export const GameCreateModal = ({ disclosure }: GameCreateModalProps) => {
               Création d&apos;un match
             </ModalHeader>
             <ModalBody>
-              <GameForm onSubmit={onCreateGame} />
+              <GameForm onSubmit={onSubmit} isLoading={loading} />
             </ModalBody>
           </>
         )}

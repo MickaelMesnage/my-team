@@ -58,5 +58,5 @@ export const GameLeaveConnected = ({ render }: GameLeaveConnectedProps) => {
     }
   };
 
-  return <div>{render(onLeave, loading)}</div>;
+  return <>{render(onLeave, loading)}</>;
 };

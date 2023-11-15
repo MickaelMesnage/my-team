@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 export type GameJoinConnectedProps = {
   render: (
-    onLeave: (fragment: GameJoinConnectedFragment) => Promise<void>,
+    onJoin: (fragment: GameJoinConnectedFragment) => Promise<void>,
     loading: boolean
   ) => ReactNode;
 };
