@@ -21,31 +21,27 @@ export const GameJoinConnected = ({
 
   const onJoin = async () => {
     try {
-      console.log("onjoin start", fragment.id);
       await joinGame({
         variables: {
           gameId: fragment.id,
         },
         // Update in cache to prevent loading if response ok
         update: (cache, { data }) => {
-          console.log({ join: data?.insert_user_game_one?.game });
+          const gameUpdated = data?.insert_user_game_one?.game;
 
-          console.log(
-            cache.writeFragment({
-              id: cache.identify({
-                __typename: "games",
-                id: fragment.id,
-              }),
-              fragment: GameJoinConnectedFragmentDoc,
-              data: data?.insert_user_game_one?.game,
-            })
-          );
-          // cache.gc();
+          if (!gameUpdated)
+            throw new Error("GameJoinConnected: updatedGame not consistent");
+
+          cache.writeFragment({
+            id: cache.identify({
+              __typename: "games",
+              id: fragment.id,
+            }),
+            fragment: GameJoinConnectedFragmentDoc,
+            data: gameUpdated,
+          });
         },
-        // refetchQueries: ["GameListPage"],
       });
-      console.log("ok");
-      console.log("onjoin end");
       toast.success("Vous participez au match !");
     } catch (error) {
       console.log({ error });

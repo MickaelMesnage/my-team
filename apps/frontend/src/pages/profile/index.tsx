@@ -1,4 +1,3 @@
-import { ProfileFormConnected } from "@/components/organisms/ProfileFormConnected";
 import { ProfilePage } from "@/components/pages/ProfilePage";
 import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { ReactElement } from "react";

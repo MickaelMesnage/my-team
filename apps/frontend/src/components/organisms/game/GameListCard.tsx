@@ -1,20 +1,17 @@
-import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@nextui-org/react";
 import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
-import { GameJoinModal } from "@/components/organisms/game/GameJoinModal";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { AvatarList } from "@/components/molecules/AvatarList";
 import { isPast } from "date-fns";
 import { Game_Status_Enum } from "@/graphql/types";
 import { GameLeaveConnected } from "@/components/organisms/game/GameLeaveConnected";
 import { GameJoinConnected } from "@/components/organisms/game/GameJoinConnected";
-import { on } from "events";
 
 export type GameListCardProps = {
   fragment: GameListCardFragment;
 };
 
 export const GameListCard = ({ fragment }: GameListCardProps) => {
-  useEffect(() => console.log("fragment has changes"), [fragment]);
   const isGamePast = useMemo(() => {
     return isPast(new Date(fragment.timestamp));
   }, [fragment.timestamp]);
@@ -42,8 +39,6 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
   const formattedDate = new Date(fragment.timestamp).toLocaleDateString();
   const formattedTime = new Date(fragment.timestamp).toLocaleTimeString();
 
-  const disclosure = useDisclosure();
-
   return (
     <>
       <Card className="w-full max-w-xs">
@@ -56,9 +51,14 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
             <span>Nombre de participants: {fragment.user_games.length}</span>
             <AvatarList userList={userList} />
             {canJoin && (
-              <Button color="primary" onClick={disclosure.onOpen}>
-                Participer
-              </Button>
+              <GameJoinConnected
+                fragment={fragment}
+                render={(onJoin, loading) => (
+                  <Button color="primary" onClick={onJoin} isDisabled={loading}>
+                    Rejoindre
+                  </Button>
+                )}
+              />
             )}
             {canLeave && (
               <GameLeaveConnected
@@ -74,21 +74,9 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
                 )}
               />
             )}
-            joinedByUser: {JSON.stringify(fragment.joinedByUser)}
           </div>
         </CardBody>
       </Card>
-      <GameJoinConnected
-        fragment={fragment}
-        render={(onJoin, loading) => (
-          <GameJoinModal
-            disclosure={disclosure}
-            fragment={fragment}
-            onJoin={onJoin}
-            loading={loading}
-          />
-        )}
-      />
     </>
   );
 };

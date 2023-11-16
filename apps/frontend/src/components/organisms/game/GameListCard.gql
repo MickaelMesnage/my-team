@@ -19,6 +19,6 @@ fragment GameListCard on games {
     }
   }
   ...GameJoinConnected
-  # ...GameJoinModal
+  ...GameJoinModal
   ...GameLeaveConnected
 }

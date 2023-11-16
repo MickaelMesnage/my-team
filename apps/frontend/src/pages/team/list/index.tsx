@@ -1,6 +1,6 @@
-import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { ReactElement } from "react";
 import { TeamListPage } from "@/components/pages/TeamListPage";
+import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 
 export default function Page() {
   return (

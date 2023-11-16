@@ -1,9 +1,8 @@
-import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import { CenteredSpinner } from "@/components/molecules/CenteredSpinner";
-import { TeamDetails } from "@/components/organisms/team/TeamDetails";
 import { ErrorHandler } from "@/components/molecules/ErrorHandler";
+import { ConnectedLayout } from "@/components/layouts/ConnectedLayout";
 
 export default function TeamByIdPage() {
   const router = useRouter();
@@ -31,5 +30,5 @@ export default function TeamByIdPage() {
 }
 
 TeamByIdPage.getLayout = function getLayout(page: ReactElement) {
-  return <AuthenticatedRoute>{page}</AuthenticatedRoute>;
+  return <ConnectedLayout>{page}</ConnectedLayout>;
 };

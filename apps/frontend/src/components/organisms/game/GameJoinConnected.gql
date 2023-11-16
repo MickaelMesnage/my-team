@@ -1,8 +1,6 @@
 mutation GameJoin($gameId: uuid!) {
   insert_user_game_one(object: { gameId: $gameId }) {
     id
-    userId
-    gameId
     game {
       ...GameJoinConnected
     }

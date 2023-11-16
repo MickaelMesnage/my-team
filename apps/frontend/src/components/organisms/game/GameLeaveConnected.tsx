@@ -39,22 +39,17 @@ export const GameLeaveConnected = ({
         },
         // Update in cache to prevent loading if response ok
         update: (cache, { data }) => {
-          console.log({ leave: data?.delete_user_game_by_pk?.game });
-          console.log(
-            cache.writeFragment({
-              id: cache.identify({
-                __typename: "games",
-                id: fragment.id,
-              }),
-              fragment: GameLeaveConnectedFragmentDoc,
-              data: data?.delete_user_game_by_pk?.game,
-            })
-          );
-          console.log("ok");
-          // cache.evict({
-          //   id: cache.identify({ __typename: "user_game", id: userGameId }),
-          // });
-          // cache.gc();
+          const game = data?.delete_user_game_by_pk?.game;
+
+          if (!game) throw new Error("GameLeaveConnected: game not consistent");
+          cache.writeFragment({
+            id: cache.identify({
+              __typename: "games",
+              id: fragment.id,
+            }),
+            fragment: GameLeaveConnectedFragmentDoc,
+            data: data?.delete_user_game_by_pk?.game,
+          });
         },
       });
       toast.success("Vous avez annulé votre participation !");

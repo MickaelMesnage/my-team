@@ -1,6 +1,5 @@
 import { GameJoinConnectedFragment } from "@/components/organisms/game/GameJoinConnected.generated";
 import { GameJoinModalFragment } from "@/components/organisms/game/GameJoinModal.generated";
-import { useApolloClient } from "@apollo/client";
 import {
   Modal,
   ModalContent,

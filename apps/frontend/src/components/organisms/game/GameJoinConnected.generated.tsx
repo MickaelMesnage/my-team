@@ -8,7 +8,7 @@ export type GameJoinMutationVariables = Types.Exact<{
 }>;
 
 
-export type GameJoinMutation = { __typename?: 'mutation_root', insert_user_game_one?: { __typename?: 'user_game', id: string, userId: string, gameId: string, game: { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string }> } } | null };
+export type GameJoinMutation = { __typename?: 'mutation_root', insert_user_game_one?: { __typename?: 'user_game', id: string, game: { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string }> } } | null };
 
 export type GameJoinConnectedFragment = { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string }> };
 
@@ -27,8 +27,6 @@ export const GameJoinDocument = gql`
     mutation GameJoin($gameId: uuid!) {
   insert_user_game_one(object: {gameId: $gameId}) {
     id
-    userId
-    gameId
     game {
       ...GameJoinConnected
     }

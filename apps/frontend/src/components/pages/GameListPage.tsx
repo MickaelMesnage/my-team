@@ -17,9 +17,8 @@ import { GameCreateConnected } from "@/components/organisms/game/GameCreateConne
 
 export const GameListPage = () => {
   const disclosure = useDisclosure();
-  console.log("dddd");
   const { data, error, loading } = useGameListPageQuery({
-    fetchPolicy: "cache-first",
+    // nextFetchPolicy: "cache-only",
   });
 
   if (loading) {
