@@ -33,7 +33,7 @@ export const TeamListPage = () => {
       <ContainerWrapper>
         <div className="w-full h-full">
           <div className="w-full flex items-center justify-between mb-4">
-            <h1>Liste de mes équipes</h1>
+            <h1>Mes équipes</h1>
             <Button className="hidden" onClick={createDisclosure.onOpen}>
               Créer une nouvelle équipe
             </Button>

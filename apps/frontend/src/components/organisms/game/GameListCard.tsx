@@ -41,7 +41,7 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
 
   return (
     <>
-      <Card className="w-full max-w-xs">
+      <Card className="w-full max-w-md">
         <CardBody>
           <div className="flex flex-col items-start gap-2">
             <span>Créé par {fragment.creator?.displayName}</span>

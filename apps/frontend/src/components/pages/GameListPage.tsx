@@ -32,7 +32,7 @@ export const GameListPage = () => {
   return (
     <section className="w-full h-full">
       <ContainerWrapper>
-        <div className="w-full h-full relative">
+        <div className="w-full h-full">
           <div className="w-full flex items-center justify-between mb-4">
             <h1>Mes matchs</h1>
             <Button className="hidden" onClick={disclosure.onOpen}>

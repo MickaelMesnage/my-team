@@ -29,7 +29,7 @@ export const GameCreateConnected = ({ render }: GameCreateConnectedProps) => {
             ...(game.participate && { user_games: { data: [{}] } }),
           },
         },
-        //refetchQueries: ["GameListPage"],
+        refetchQueries: ["GameListPage"],
       });
 
       toast.success("Match créé !");
