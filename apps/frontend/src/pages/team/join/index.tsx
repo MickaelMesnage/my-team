@@ -24,6 +24,7 @@ export default function TeamJoinPage() {
           error.graphQLErrors[0].extensions.code === "constraint-violation"
         ) {
           toast.success("Vous aviez déjà rejoint cette équipe petit coquin");
+          router.push("/team/list");
           return;
         }
       }

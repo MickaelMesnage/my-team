@@ -7,7 +7,7 @@ const defaultOptions = {} as const;
 export type TeamListPageSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type TeamListPageSubscription = { __typename?: 'subscription_root', teams: Array<{ __typename?: 'teams', id: string, name: string, description?: string | null, creator?: { __typename?: 'users', email?: string | null, displayName: string } | null, user_teams: Array<{ __typename?: 'user_team', user?: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } | null }> }> };
+export type TeamListPageSubscription = { __typename?: 'subscription_root', teams: Array<{ __typename?: 'teams', id: string, name: string, description?: string | null, gameFullTreshold?: number | null, creator?: { __typename?: 'users', id: string, email?: string | null, displayName: string } | null, user_teams: Array<{ __typename?: 'user_team', user?: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } | null }> }> };
 
 
 export const TeamListPageDocument = gql`

@@ -47,10 +47,11 @@ export const TeamListPage = () => {
               </>
             ) : (
               <div className="flex flex-col gap-4 items-start">
-                <span>
-                  Tu n&apos;as pas rejoins d&apos;équipe pour le moment
-                </span>
+                <span>Tu n&apos;as pas d&apos;équipe pour le moment</span>
                 <Button color="primary" onClick={createDisclosure.onOpen}>
+                  Créer une équipe
+                </Button>
+                <Button color="primary" onClick={joinDisclosure.onOpen}>
                   Rejoindre une équipe
                 </Button>
               </div>

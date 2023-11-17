@@ -3,7 +3,6 @@ import {
   TeamFormFieldsValue,
   TeamFormProps,
 } from "@/components/organisms/team/TeamForm";
-import { useTeamUpdateMutation } from "@/components/organisms/team/TeamUpdateModal.generated";
 import {
   Modal,
   ModalContent,
@@ -14,27 +13,27 @@ import {
 import { toast } from "react-toastify";
 
 export type TeamUpdateModalProps = {
-  teamId: string;
+  onTeamUpdate: (data: TeamFormFieldsValue) => Promise<void>;
+  loading: boolean;
   disclosure: ReturnType<typeof useDisclosure>;
 } & Pick<TeamFormProps, "defaultValues">;
 
 export const TeamUpdateModal = ({
-  teamId,
   disclosure,
   defaultValues,
+  onTeamUpdate,
+  loading,
 }: TeamUpdateModalProps) => {
-  const { isOpen, onOpenChange } = disclosure;
-  const [updateTeam, { loading }] = useTeamUpdateMutation();
+  const { isOpen, onOpenChange, onClose } = disclosure;
 
-  const onTeamUpdate = async (data: TeamFormFieldsValue) => {
+  const onSubmit = async (data: TeamFormFieldsValue) => {
     try {
-      await updateTeam({
-        variables: { data, teamId },
-      });
-      toast.success("Équipe Modifiée !");
-      disclosure.onClose();
+      await onTeamUpdate(data);
+      toast.success("L'équipe a été modifiée !");
+      onClose();
     } catch (error) {
       toast.error("Une erreur est survenue");
+      console.log({ error });
     }
   };
 
@@ -48,7 +47,7 @@ export const TeamUpdateModal = ({
             </ModalHeader>
             <ModalBody>
               <TeamForm
-                onSubmit={onTeamUpdate}
+                onSubmit={onSubmit}
                 defaultValues={defaultValues}
                 isLoading={loading}
               />

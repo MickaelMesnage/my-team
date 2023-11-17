@@ -3,6 +3,7 @@ fragment TeamListCard on teams {
   name
   description
   creator {
+    id
     email
     displayName
   }
@@ -15,4 +16,5 @@ fragment TeamListCard on teams {
       displayName
     }
   }
+  ...TeamUpdateConnected
 }

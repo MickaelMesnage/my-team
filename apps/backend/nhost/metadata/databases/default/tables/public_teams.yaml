@@ -3,15 +3,21 @@ table:
   schema: public
 configuration:
   column_config:
+    created_at:
+      custom_name: createdAt
     game_almost_full_treshold:
       custom_name: gameAlmostFullTreshold
     game_full_treshold:
       custom_name: gameFullTreshold
+    updated_at:
+      custom_name: updatedAt
     user_id:
       custom_name: userId
   custom_column_names:
+    created_at: createdAt
     game_almost_full_treshold: gameAlmostFullTreshold
     game_full_treshold: gameFullTreshold
+    updated_at: updatedAt
     user_id: userId
   custom_root_fields: {}
 object_relationships:

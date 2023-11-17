@@ -11,7 +11,16 @@ export type TeamUpdateMutationVariables = Types.Exact<{
 
 export type TeamUpdateMutation = { __typename?: 'mutation_root', update_teams_by_pk?: { __typename?: 'teams', id: string } | null };
 
+export type TeamUpdateConnectedFragment = { __typename?: 'teams', id: string, name: string, description?: string | null, gameFullTreshold?: number | null };
 
+export const TeamUpdateConnectedFragmentDoc = gql`
+    fragment TeamUpdateConnected on teams {
+  id
+  name
+  description
+  gameFullTreshold
+}
+    `;
 export const TeamUpdateDocument = gql`
     mutation TeamUpdate($teamId: uuid!, $data: teams_set_input!) {
   update_teams_by_pk(pk_columns: {id: $teamId}, _set: $data) {

@@ -3,3 +3,10 @@ mutation TeamUpdate($teamId: uuid!, $data: teams_set_input!) {
     id
   }
 }
+
+fragment TeamUpdateConnected on teams {
+  id
+  name
+  description
+  gameFullTreshold
+}
