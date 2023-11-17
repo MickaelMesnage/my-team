@@ -9,7 +9,7 @@ export type EmailData = {
 
 const TEMPLATE_ID = 5288063;
 
-export const sendEmailWhenNbRegisteredPlayersReached = async (
+export const sendEmailWhenGameFull = async (
   toEmail: string,
   data: EmailData
 ) => {

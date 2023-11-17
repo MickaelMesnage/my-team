@@ -1,6 +1,11 @@
 import { z } from "zod";
-import { GameInformationsDocument } from "../_gql/graphql";
-import { sendEmailWhenNbRegisteredPlayersReached } from "../_project_utils/sendEmailWhenNbRegisteredPlayersReached";
+import {
+  GameInformationsDocument,
+  Game_Status_Enum,
+  UpdateGameDocument,
+} from "../_gql/graphql";
+import { sendEmailWhenGameAlmostFull } from "../_project_utils/sendEmailWhenGameAlmostFull";
+import { sendEmailWhenGameFull } from "../_project_utils/sendEmailWhenGameFull";
 import { FunctionContext } from "../_utils/getContext";
 import { graphQLRequest } from "../_utils/graphQLRequest";
 import { guardAuthAdmin } from "../_utils/guardAuthAdmin";
@@ -54,21 +59,46 @@ export default route(async (context: FunctionContext) => {
     creator: { email: emailCreator },
     user_games: listOfParticipants,
     timestamp,
-    team: { name: teamName, nbOrRegisteredPlayersTriggerMailTreshold },
+    status,
+    team: { name: teamName, gameFullTreshold, gameAlmostFullTreshold },
   } = games_by_pk;
 
   if (!emailCreator)
     throw new Error("Insert user game handler: emailCreator is null");
 
   if (
-    nbOrRegisteredPlayersTriggerMailTreshold &&
-    listOfParticipants.length === nbOrRegisteredPlayersTriggerMailTreshold
+    gameAlmostFullTreshold &&
+    listOfParticipants.length === gameAlmostFullTreshold
   ) {
-    await sendEmailWhenNbRegisteredPlayersReached(emailCreator, {
+    // No email for now
+    await sendEmailWhenGameAlmostFull();
+  }
+
+  if (gameFullTreshold && listOfParticipants.length === gameFullTreshold) {
+    await graphQLRequest(UpdateGameDocument, {
+      gameId: newGame.game_id,
+      data: {
+        status: Game_Status_Enum.Full,
+      },
+    });
+    await sendEmailWhenGameFull(emailCreator, {
       teamName,
       gameDate: dateModel.format(new Date(timestamp)),
       gameTime: timeModel.format(new Date(timestamp)),
       gameUrl: `${settings.frontend_url}/game/${newGame.game_id}`,
+    });
+  }
+
+  if (
+    gameFullTreshold &&
+    status === Game_Status_Enum.Full &&
+    listOfParticipants.length < gameFullTreshold
+  ) {
+    await graphQLRequest(UpdateGameDocument, {
+      gameId: newGame.game_id,
+      data: {
+        status: Game_Status_Enum.Create,
+      },
     });
   }
 });

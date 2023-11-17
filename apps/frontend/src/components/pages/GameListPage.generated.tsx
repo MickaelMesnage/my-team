@@ -4,15 +4,17 @@ import { gql } from '@apollo/client';
 import { GameListCardFragmentDoc } from '../organisms/game/GameListCard.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type GameListPageQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GameListPageQueryVariables = Types.Exact<{
+  where: Types.Games_Bool_Exp;
+}>;
 
 
-export type GameListPageQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', id: string, timestamp: string, joinedByUser?: boolean | null, status?: Types.Game_Status_Enum | null, creator: { __typename?: 'users', email?: string | null, displayName: string }, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string, user: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } }> }> };
+export type GameListPageQuery = { __typename?: 'query_root', games: Array<{ __typename?: 'games', id: string, timestamp: string, joinedByUser?: boolean | null, status: Types.Game_Status_Enum, creator: { __typename?: 'users', email?: string | null, displayName: string }, team: { __typename?: 'teams', name: string }, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string, user: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } }> }> };
 
 
 export const GameListPageDocument = gql`
-    query GameListPage {
-  games {
+    query GameListPage($where: games_bool_exp!) {
+  games(where: $where) {
     id
     ...GameListCard
   }
@@ -31,10 +33,11 @@ export const GameListPageDocument = gql`
  * @example
  * const { data, loading, error } = useGameListPageQuery({
  *   variables: {
+ *      where: // value for 'where'
  *   },
  * });
  */
-export function useGameListPageQuery(baseOptions?: Apollo.QueryHookOptions<GameListPageQuery, GameListPageQueryVariables>) {
+export function useGameListPageQuery(baseOptions: Apollo.QueryHookOptions<GameListPageQuery, GameListPageQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GameListPageQuery, GameListPageQueryVariables>(GameListPageDocument, options);
       }

@@ -8,9 +8,9 @@ export type GameJoinMutationVariables = Types.Exact<{
 }>;
 
 
-export type GameJoinMutation = { __typename?: 'mutation_root', insert_user_game_one?: { __typename?: 'user_game', id: string, game: { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string }> } } | null };
+export type GameJoinMutation = { __typename?: 'mutation_root', insert_user_game_one?: { __typename?: 'user_game', id: string, game: { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string, user: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } }> } } | null };
 
-export type GameJoinConnectedFragment = { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string }> };
+export type GameJoinConnectedFragment = { __typename?: 'games', id: string, joinedByUser?: boolean | null, user_games: Array<{ __typename?: 'user_game', id: string, userId: string, gameId: string, user: { __typename?: 'users', email?: string | null, displayName: string, profile?: { __typename?: 'profiles', avatar?: string | null } | null } }> };
 
 export const GameJoinConnectedFragmentDoc = gql`
     fragment GameJoinConnected on games {
@@ -20,6 +20,13 @@ export const GameJoinConnectedFragmentDoc = gql`
     id
     userId
     gameId
+    user {
+      email
+      profile {
+        avatar
+      }
+      displayName
+    }
   }
 }
     `;

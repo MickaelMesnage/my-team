@@ -7,6 +7,9 @@ fragment GameListCard on games {
     email
     displayName
   }
+  team {
+    name
+  }
   user_games {
     id
     userId

@@ -7,8 +7,8 @@ import { ChangeEvent, forwardRef, useImperativeHandle } from "react";
 export const TeamFormZodSchema = z.object({
   name: z.string().min(1, "Le nom est obligatoire"),
   description: z.string().optional().nullable(),
-  maxNbOfRegisteredPlayers: z.number().optional().nullable(),
-  nbOrRegisteredPlayersTriggerMailTreshold: z.number().optional().nullable(),
+  gameFullTreshold: z.number().optional().nullable(),
+  // gameAlmostFullTreshold: z.number().optional().nullable(),
 });
 
 export type TeamFormFieldsValue = z.infer<typeof TeamFormZodSchema>;
@@ -84,7 +84,7 @@ export const TeamForm = forwardRef(
           />
           <Controller
             control={control}
-            name="maxNbOfRegisteredPlayers"
+            name="gameFullTreshold"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <Input
                 isRequired={false}
@@ -93,22 +93,20 @@ export const TeamForm = forwardRef(
                 placeholder="Ex: 10"
                 labelPlacement="outside"
                 errorMessage={error?.message}
-                // value={value || undefined}
                 // Bug of nextui
                 value={
                   value !== null && value !== undefined ? value.toString() : ""
                 }
                 inputMode="numeric"
-                // value={value as string}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   onChange(event.target.valueAsNumber)
                 }
               />
             )}
           />
-          <Controller
+          {/* <Controller
             control={control}
-            name="nbOrRegisteredPlayersTriggerMailTreshold"
+            name="gameAlmostFullTreshold"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <Input
                 isRequired={false}
@@ -127,7 +125,7 @@ export const TeamForm = forwardRef(
                 }
               />
             )}
-          />
+          /> */}
           <Button
             isDisabled={isLoading}
             isLoading={isLoading}

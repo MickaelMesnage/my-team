@@ -14,11 +14,21 @@ import { ContainerWrapper } from "@/components/molecules/ContainerWrapper";
 import { GameCreateModal } from "@/components/organisms/game/GameCreateModal";
 import { useGameListPageQuery } from "@/components/pages/GameListPage.generated";
 import { GameCreateConnected } from "@/components/organisms/game/GameCreateConnected";
+import { Game_Status_Enum } from "@/graphql/types";
+import { useMemo } from "react";
 
 export const GameListPage = () => {
   const disclosure = useDisclosure();
+  const today = useMemo(() => new Date(), []);
   const { data, error, loading } = useGameListPageQuery({
-    // nextFetchPolicy: "cache-only",
+    variables: {
+      where: {
+        _or: [
+          { timestamp: { _gte: today.toISOString() } },
+          { status: { _eq: Game_Status_Enum.Validate } },
+        ],
+      },
+    },
   });
 
   if (loading) {

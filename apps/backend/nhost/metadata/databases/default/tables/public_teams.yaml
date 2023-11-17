@@ -3,15 +3,15 @@ table:
   schema: public
 configuration:
   column_config:
-    max_nb_of_registered_players:
-      custom_name: maxNbOfRegisteredPlayers
-    nb_or_registered_players_trigger_mail_treshold:
-      custom_name: nbOrRegisteredPlayersTriggerMailTreshold
+    game_almost_full_treshold:
+      custom_name: gameAlmostFullTreshold
+    game_full_treshold:
+      custom_name: gameFullTreshold
     user_id:
       custom_name: userId
   custom_column_names:
-    max_nb_of_registered_players: maxNbOfRegisteredPlayers
-    nb_or_registered_players_trigger_mail_treshold: nbOrRegisteredPlayersTriggerMailTreshold
+    game_almost_full_treshold: gameAlmostFullTreshold
+    game_full_treshold: gameFullTreshold
     user_id: userId
   custom_root_fields: {}
 object_relationships:
@@ -40,9 +40,9 @@ insert_permissions:
         user_id: x-hasura-User-Id
       columns:
         - description
-        - max_nb_of_registered_players
+        - game_full_treshold
         - name
-        - nb_or_registered_players_trigger_mail_treshold
+        - game_almost_full_treshold
     comment: ""
 select_permissions:
   - role: user
@@ -50,7 +50,7 @@ select_permissions:
       columns:
         - description
         - id
-        - max_nb_of_registered_players
+        - game_full_treshold
         - name
       filter:
         _or:
@@ -65,9 +65,9 @@ update_permissions:
     permission:
       columns:
         - description
-        - max_nb_of_registered_players
+        - game_full_treshold
         - name
-        - nb_or_registered_players_trigger_mail_treshold
+        - game_almost_full_treshold
       filter:
         user_id:
           _eq: X-Hasura-User-Id

@@ -1,4 +1,4 @@
-import { Button, Card, CardBody } from "@nextui-org/react";
+import { Button, Card, CardBody, Chip } from "@nextui-org/react";
 import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
 import { useMemo } from "react";
 import { AvatarList } from "@/components/molecules/AvatarList";
@@ -6,28 +6,19 @@ import { isPast } from "date-fns";
 import { Game_Status_Enum } from "@/graphql/types";
 import { GameLeaveConnected } from "@/components/organisms/game/GameLeaveConnected";
 import { GameJoinConnected } from "@/components/organisms/game/GameJoinConnected";
+import { useGame } from "@/components/organisms/game/useGame";
 
 export type GameListCardProps = {
   fragment: GameListCardFragment;
 };
 
 export const GameListCard = ({ fragment }: GameListCardProps) => {
-  const isGamePast = useMemo(() => {
-    return isPast(new Date(fragment.timestamp));
-  }, [fragment.timestamp]);
-
-  const canJoin =
-    !isGamePast &&
-    !fragment.joinedByUser &&
-    fragment.status === Game_Status_Enum.Create;
-
-  const canLeave = useMemo(() => {
-    return (
-      !isGamePast &&
-      fragment.joinedByUser &&
-      fragment.status === Game_Status_Enum.Create
-    );
-  }, [isGamePast, fragment.joinedByUser, fragment.status]);
+  const { formattedDate, formattedTime, canJoin, canLeave, statusLabel } =
+    useGame({
+      date: new Date(fragment.timestamp),
+      joinedByUser: !!fragment.joinedByUser,
+      status: fragment.status,
+    });
 
   const userList = useMemo(() => {
     return fragment.user_games.map((user_team) => ({
@@ -36,14 +27,13 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
     }));
   }, [fragment.user_games]);
 
-  const formattedDate = new Date(fragment.timestamp).toLocaleDateString();
-  const formattedTime = new Date(fragment.timestamp).toLocaleTimeString();
-
   return (
     <>
       <Card className="w-full max-w-md">
         <CardBody>
           <div className="flex flex-col items-start gap-2">
+            <span>Équipe: {fragment.team.name}</span>
+            <Chip>{statusLabel}</Chip>
             <span>Créé par {fragment.creator?.displayName}</span>
             <span>
               {formattedDate} - {formattedTime}

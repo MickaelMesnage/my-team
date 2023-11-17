@@ -1,5 +1,5 @@
-query GameListPage {
-  games {
+query GameListPage($where: games_bool_exp!) {
+  games(where: $where) {
     id
     ...GameListCard
   }

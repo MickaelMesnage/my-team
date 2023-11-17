@@ -2797,6 +2797,7 @@ export enum Game_Status_Constraint {
 export enum Game_Status_Enum {
   Cancel = 'cancel',
   Create = 'create',
+  Full = 'full',
   Validate = 'validate'
 }
 
@@ -2898,7 +2899,7 @@ export type Games = {
   id: Scalars['uuid'];
   /** A computed field, executes function "game_joined_by_user" */
   joinedByUser?: Maybe<Scalars['Boolean']>;
-  status?: Maybe<Game_Status_Enum>;
+  status: Game_Status_Enum;
   /** An object relationship */
   team: Teams;
   teamId: Scalars['uuid'];
@@ -5713,10 +5714,10 @@ export type Teams = {
   /** An object relationship */
   creator?: Maybe<Users>;
   description?: Maybe<Scalars['String']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Int']>;
+  gameFullTreshold?: Maybe<Scalars['Int']>;
   id: Scalars['uuid'];
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Int']>;
   name: Scalars['String'];
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Int']>;
   userId: Scalars['uuid'];
   /** An array relationship */
   user_teams: Array<User_Team>;
@@ -5810,14 +5811,14 @@ export type Teams_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Teams_Avg_Fields = {
   __typename?: 'teams_avg_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "teams" */
 export type Teams_Avg_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "teams". All fields are combined with a logical 'AND'. */
@@ -5827,10 +5828,10 @@ export type Teams_Bool_Exp = {
   _or?: InputMaybe<Array<Teams_Bool_Exp>>;
   creator?: InputMaybe<Users_Bool_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
+  gameAlmostFullTreshold?: InputMaybe<Int_Comparison_Exp>;
+  gameFullTreshold?: InputMaybe<Int_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Int_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Int_Comparison_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
   user_teams?: InputMaybe<User_Team_Bool_Exp>;
   user_teams_aggregate?: InputMaybe<User_Team_Aggregate_Bool_Exp>;
@@ -5844,18 +5845,18 @@ export enum Teams_Constraint {
 
 /** input type for incrementing numeric columns in table "teams" */
 export type Teams_Inc_Input = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Scalars['Int']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Scalars['Int']>;
+  gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
+  gameFullTreshold?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "teams" */
 export type Teams_Insert_Input = {
   creator?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   description?: InputMaybe<Scalars['String']>;
+  gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
+  gameFullTreshold?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['uuid']>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Scalars['Int']>;
   userId?: InputMaybe<Scalars['uuid']>;
   user_teams?: InputMaybe<User_Team_Arr_Rel_Insert_Input>;
 };
@@ -5864,20 +5865,20 @@ export type Teams_Insert_Input = {
 export type Teams_Max_Fields = {
   __typename?: 'teams_max_fields';
   description?: Maybe<Scalars['String']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Int']>;
+  gameFullTreshold?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Int']>;
   userId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "teams" */
 export type Teams_Max_Order_By = {
   description?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
 };
 
@@ -5885,20 +5886,20 @@ export type Teams_Max_Order_By = {
 export type Teams_Min_Fields = {
   __typename?: 'teams_min_fields';
   description?: Maybe<Scalars['String']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Int']>;
+  gameFullTreshold?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Int']>;
   userId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "teams" */
 export type Teams_Min_Order_By = {
   description?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
 };
 
@@ -5929,10 +5930,10 @@ export type Teams_On_Conflict = {
 export type Teams_Order_By = {
   creator?: InputMaybe<Users_Order_By>;
   description?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
   user_teams_aggregate?: InputMaybe<User_Team_Aggregate_Order_By>;
 };
@@ -5947,13 +5948,13 @@ export enum Teams_Select_Column {
   /** column name */
   Description = 'description',
   /** column name */
+  GameAlmostFullTreshold = 'gameAlmostFullTreshold',
+  /** column name */
+  GameFullTreshold = 'gameFullTreshold',
+  /** column name */
   Id = 'id',
   /** column name */
-  MaxNbOfRegisteredPlayers = 'maxNbOfRegisteredPlayers',
-  /** column name */
   Name = 'name',
-  /** column name */
-  NbOrRegisteredPlayersTriggerMailTreshold = 'nbOrRegisteredPlayersTriggerMailTreshold',
   /** column name */
   UserId = 'userId'
 }
@@ -5961,50 +5962,50 @@ export enum Teams_Select_Column {
 /** input type for updating data in table "teams" */
 export type Teams_Set_Input = {
   description?: InputMaybe<Scalars['String']>;
+  gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
+  gameFullTreshold?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['uuid']>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Scalars['Int']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate stddev on columns */
 export type Teams_Stddev_Fields = {
   __typename?: 'teams_stddev_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "teams" */
 export type Teams_Stddev_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Teams_Stddev_Pop_Fields = {
   __typename?: 'teams_stddev_pop_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "teams" */
 export type Teams_Stddev_Pop_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Teams_Stddev_Samp_Fields = {
   __typename?: 'teams_stddev_samp_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "teams" */
 export type Teams_Stddev_Samp_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** Streaming cursor of the table "teams" */
@@ -6018,24 +6019,24 @@ export type Teams_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Teams_Stream_Cursor_Value_Input = {
   description?: InputMaybe<Scalars['String']>;
+  gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
+  gameFullTreshold?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['uuid']>;
-  maxNbOfRegisteredPlayers?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Scalars['Int']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate sum on columns */
 export type Teams_Sum_Fields = {
   __typename?: 'teams_sum_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Int']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Int']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Int']>;
+  gameFullTreshold?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "teams" */
 export type Teams_Sum_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "teams" */
@@ -6043,13 +6044,13 @@ export enum Teams_Update_Column {
   /** column name */
   Description = 'description',
   /** column name */
+  GameAlmostFullTreshold = 'gameAlmostFullTreshold',
+  /** column name */
+  GameFullTreshold = 'gameFullTreshold',
+  /** column name */
   Id = 'id',
   /** column name */
-  MaxNbOfRegisteredPlayers = 'maxNbOfRegisteredPlayers',
-  /** column name */
   Name = 'name',
-  /** column name */
-  NbOrRegisteredPlayersTriggerMailTreshold = 'nbOrRegisteredPlayersTriggerMailTreshold',
   /** column name */
   UserId = 'userId'
 }
@@ -6066,40 +6067,40 @@ export type Teams_Updates = {
 /** aggregate var_pop on columns */
 export type Teams_Var_Pop_Fields = {
   __typename?: 'teams_var_pop_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "teams" */
 export type Teams_Var_Pop_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Teams_Var_Samp_Fields = {
   __typename?: 'teams_var_samp_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "teams" */
 export type Teams_Var_Samp_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Teams_Variance_Fields = {
   __typename?: 'teams_variance_fields';
-  maxNbOfRegisteredPlayers?: Maybe<Scalars['Float']>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: Maybe<Scalars['Float']>;
+  gameAlmostFullTreshold?: Maybe<Scalars['Float']>;
+  gameFullTreshold?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "teams" */
 export type Teams_Variance_Order_By = {
-  maxNbOfRegisteredPlayers?: InputMaybe<Order_By>;
-  nbOrRegisteredPlayersTriggerMailTreshold?: InputMaybe<Order_By>;
+  gameAlmostFullTreshold?: InputMaybe<Order_By>;
+  gameFullTreshold?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */

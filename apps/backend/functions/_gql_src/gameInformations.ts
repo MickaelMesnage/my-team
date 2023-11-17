@@ -10,11 +10,13 @@ gql(`
         }
         team {
             name
-            nbOrRegisteredPlayersTriggerMailTreshold
+            gameFullTreshold
+            gameAlmostFullTreshold
         }
         user_games {
             userId
         }
+        status
     }
   }
 `);

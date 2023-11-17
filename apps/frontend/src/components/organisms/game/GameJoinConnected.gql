@@ -14,5 +14,12 @@ fragment GameJoinConnected on games {
     id
     userId
     gameId
+    user {
+      email
+      profile {
+        avatar
+      }
+      displayName
+    }
   }
 }
