@@ -1,4 +1,3 @@
-import { useTeamJoinMutation } from "@/components/organisms/team/TeamJoinModal.generated";
 import {
   Modal,
   ModalContent,
@@ -13,20 +12,21 @@ import {
 } from "@/components/organisms/team/TeamJoinForm";
 
 export type TeamJoinModalProps = {
+  onTeamJoin: (teamId: string) => Promise<void>;
+  loading?: boolean;
   disclosure: ReturnType<typeof useDisclosure>;
 };
 
-export const TeamJoinModal = ({ disclosure }: TeamJoinModalProps) => {
+export const TeamJoinModal = ({
+  disclosure,
+  onTeamJoin,
+  loading = false,
+}: TeamJoinModalProps) => {
   const { isOpen, onOpenChange } = disclosure;
-  const [teamJoin, { loading }] = useTeamJoinMutation();
 
-  const onSubmit = async (team: TeamJoinFormFieldsValue) => {
+  const onSubmit = async ({ teamId }: TeamJoinFormFieldsValue) => {
     try {
-      await teamJoin({
-        variables: {
-          ...team,
-        },
-      });
+      await onTeamJoin(teamId);
       toast.success("Équipe rejointe !");
       disclosure.onClose();
     } catch (error) {

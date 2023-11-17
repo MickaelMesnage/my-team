@@ -14,6 +14,7 @@ import { PlusIcon } from "@/components/icons/PlusIcon";
 import { ContainerWrapper } from "@/components/molecules/ContainerWrapper";
 import { TeamCreateModal } from "@/components/organisms/team/TeamCreateModal";
 import { TeamJoinModal } from "@/components/organisms/team/TeamJoinModal";
+import { TeamJoinConnected } from "@/components/organisms/team/TeamJoinConnected";
 
 export const TeamListPage = () => {
   const createDisclosure = useDisclosure();
@@ -58,7 +59,15 @@ export const TeamListPage = () => {
             )}
           </div>
           <TeamCreateModal disclosure={createDisclosure} />
-          <TeamJoinModal disclosure={joinDisclosure} />
+          <TeamJoinConnected
+            render={(onTeamjoin, loading) => (
+              <TeamJoinModal
+                onTeamJoin={onTeamjoin}
+                loading={loading}
+                disclosure={joinDisclosure}
+              />
+            )}
+          />
         </div>
         <Dropdown placement="top-end">
           <DropdownTrigger className="absolute bottom-8 right-12">
