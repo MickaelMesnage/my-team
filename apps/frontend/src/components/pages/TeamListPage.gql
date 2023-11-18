@@ -1,5 +1,5 @@
 subscription TeamListPage {
-  teams(order_by: { createdAt: asc }) {
+  teams {
     id
     name
     ...TeamListCard
