@@ -51,7 +51,7 @@ export const TeamListCard = ({ fragment }: TeamListCardProps) => {
 
             <Dropdown placement="bottom-end">
               <DropdownTrigger className="cursor-pointer">
-                <Button isIconOnly>
+                <Button variant="light" isIconOnly>
                   <BurgerIcon className="w-6 h-auto" />
                 </Button>
               </DropdownTrigger>

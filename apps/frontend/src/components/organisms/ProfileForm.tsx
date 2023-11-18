@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "@nextui-org/react";
-import { Controller, FormProvider, set, useForm } from "react-hook-form";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { convertImageToBase64 } from "@/utils/convertImageToBase64";
@@ -20,6 +20,7 @@ export type ProfileFormProps = {
   onSubmit: (data: ProfileFormFieldsValue) => Promise<void>;
   defaultValues?: ProfileFormFieldsValue;
 };
+
 export const ProfileForm = forwardRef(
   ({ onSubmit, defaultValues, isLoading = false }: ProfileFormProps, ref) => {
     const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -109,7 +110,7 @@ export const ProfileForm = forwardRef(
                 }}
               />
               <Button onClick={() => hiddenFileInput.current?.click()}>
-                Ajouter un avatar
+                {base64Image ? "Modifier" : "Ajouter"} un avatar
               </Button>
             </div>
             {base64ImageError?.message && (
