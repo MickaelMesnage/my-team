@@ -56,12 +56,12 @@ export const TeamListCard = ({ fragment }: TeamListCardProps) => {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Actions" variant="flat">
-                <DropdownItem
+                {/* <DropdownItem
                   onClick={copyComputedShareURLToClipboard}
                   key="copy-shared-url"
                 >
                   Copier le lien de partage
-                </DropdownItem>
+                </DropdownItem> */}
                 <DropdownItem
                   onClick={copyGameIdToClipboard}
                   key="necopy-game-id"
