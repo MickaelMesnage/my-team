@@ -1,4 +1,4 @@
-import { ConnectedLayout } from "@/components/layouts/ConnectedLayout";
+import { AuthenticatedRoute } from "@/components/providers/AuthenticatedRoute";
 import { Inter } from "next/font/google";
 import { ReactElement } from "react";
 
@@ -9,5 +9,5 @@ export default function Page() {
 }
 
 Page.getLayout = function getLayout(page: ReactElement) {
-  return <ConnectedLayout>{page}</ConnectedLayout>;
+  return <AuthenticatedRoute>{page}</AuthenticatedRoute>;
 };
