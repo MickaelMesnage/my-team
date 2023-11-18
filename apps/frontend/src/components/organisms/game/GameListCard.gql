@@ -6,6 +6,7 @@ fragment GameListCard on games {
   creator {
     email
     displayName
+    id
   }
   team {
     name
@@ -21,7 +22,5 @@ fragment GameListCard on games {
       displayName
     }
   }
-  ...GameJoinConnected
   ...GameJoinModal
-  ...GameLeaveConnected
 }

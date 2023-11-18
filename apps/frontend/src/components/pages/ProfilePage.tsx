@@ -3,6 +3,7 @@ import { ErrorHandler } from "@/components/molecules/ErrorHandler";
 import { ProfileFormConnected } from "@/components/organisms/ProfileFormConnected";
 import { useProfilePageSubscription } from "@/components/pages/ProfilePage.generated";
 import { useUserId } from "@nhost/nextjs";
+import { ContainerWrapper } from "../molecules/ContainerWrapper";
 
 export const ProfilePage = () => {
   const userId = useUserId();

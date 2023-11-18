@@ -14,7 +14,9 @@ export const DesktopConnectedLayout = ({
       style={{ width: "100vw", height: "100dvh" }}
     >
       <Header className="w-full h-[5rem]" />
-      <div className="h-[calc(100%-5rem)] overflow-y-auto">{children}</div>
+      <div className="h-[calc(100%-5rem)] overflow-y-auto">
+        <ContainerWrapper>{children}</ContainerWrapper>
+      </div>
     </div>
   );
 };

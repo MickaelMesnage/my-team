@@ -2895,7 +2895,7 @@ export type Game_Status_Updates = {
 /** columns and relationships of "games" */
 export type Games = {
   __typename?: 'games';
-  created_at: Scalars['timestamptz'];
+  createdAt: Scalars['timestamptz'];
   /** An object relationship */
   creator: Users;
   id: Scalars['uuid'];
@@ -2906,7 +2906,7 @@ export type Games = {
   team: Teams;
   teamId: Scalars['uuid'];
   timestamp: Scalars['timestamptz'];
-  updated_at: Scalars['timestamptz'];
+  updatedAt: Scalars['timestamptz'];
   userId: Scalars['uuid'];
   /** An array relationship */
   user_games: Array<User_Game>;
@@ -2961,7 +2961,7 @@ export type Games_Bool_Exp = {
   _and?: InputMaybe<Array<Games_Bool_Exp>>;
   _not?: InputMaybe<Games_Bool_Exp>;
   _or?: InputMaybe<Array<Games_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   creator?: InputMaybe<Users_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   joinedByUser?: InputMaybe<Boolean_Comparison_Exp>;
@@ -2969,7 +2969,7 @@ export type Games_Bool_Exp = {
   team?: InputMaybe<Teams_Bool_Exp>;
   teamId?: InputMaybe<Uuid_Comparison_Exp>;
   timestamp?: InputMaybe<Timestamptz_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
   user_games?: InputMaybe<User_Game_Bool_Exp>;
   user_games_aggregate?: InputMaybe<User_Game_Aggregate_Bool_Exp>;
@@ -2983,14 +2983,14 @@ export enum Games_Constraint {
 
 /** input type for inserting data into table "games" */
 export type Games_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
   creator?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']>;
   status?: InputMaybe<Game_Status_Enum>;
   team?: InputMaybe<Teams_Obj_Rel_Insert_Input>;
   teamId?: InputMaybe<Scalars['uuid']>;
   timestamp?: InputMaybe<Scalars['timestamptz']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
   user_games?: InputMaybe<User_Game_Arr_Rel_Insert_Input>;
 };
@@ -2998,22 +2998,22 @@ export type Games_Insert_Input = {
 /** aggregate max on columns */
 export type Games_Max_Fields = {
   __typename?: 'games_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   teamId?: Maybe<Scalars['uuid']>;
   timestamp?: Maybe<Scalars['timestamptz']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   userId?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate min on columns */
 export type Games_Min_Fields = {
   __typename?: 'games_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   teamId?: Maybe<Scalars['uuid']>;
   timestamp?: Maybe<Scalars['timestamptz']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   userId?: Maybe<Scalars['uuid']>;
 };
 
@@ -3042,7 +3042,7 @@ export type Games_On_Conflict = {
 
 /** Ordering options when selecting data from "games". */
 export type Games_Order_By = {
-  created_at?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
   creator?: InputMaybe<Users_Order_By>;
   id?: InputMaybe<Order_By>;
   joinedByUser?: InputMaybe<Order_By>;
@@ -3050,7 +3050,7 @@ export type Games_Order_By = {
   team?: InputMaybe<Teams_Order_By>;
   teamId?: InputMaybe<Order_By>;
   timestamp?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
   user_games_aggregate?: InputMaybe<User_Game_Aggregate_Order_By>;
 };
@@ -3063,7 +3063,7 @@ export type Games_Pk_Columns_Input = {
 /** select columns of table "games" */
 export enum Games_Select_Column {
   /** column name */
-  CreatedAt = 'created_at',
+  CreatedAt = 'createdAt',
   /** column name */
   Id = 'id',
   /** column name */
@@ -3073,19 +3073,19 @@ export enum Games_Select_Column {
   /** column name */
   Timestamp = 'timestamp',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updatedAt',
   /** column name */
   UserId = 'userId'
 }
 
 /** input type for updating data in table "games" */
 export type Games_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
   status?: InputMaybe<Game_Status_Enum>;
   teamId?: InputMaybe<Scalars['uuid']>;
   timestamp?: InputMaybe<Scalars['timestamptz']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -3099,19 +3099,19 @@ export type Games_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Games_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
   status?: InputMaybe<Game_Status_Enum>;
   teamId?: InputMaybe<Scalars['uuid']>;
   timestamp?: InputMaybe<Scalars['timestamptz']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
 /** update columns of table "games" */
 export enum Games_Update_Column {
   /** column name */
-  CreatedAt = 'created_at',
+  CreatedAt = 'createdAt',
   /** column name */
   Id = 'id',
   /** column name */
@@ -3121,7 +3121,7 @@ export enum Games_Update_Column {
   /** column name */
   Timestamp = 'timestamp',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updatedAt',
   /** column name */
   UserId = 'userId'
 }
@@ -5713,6 +5713,7 @@ export type Subscription_RootVirusesAggregateArgs = {
 /** columns and relationships of "teams" */
 export type Teams = {
   __typename?: 'teams';
+  createdAt?: Maybe<Scalars['timestamptz']>;
   /** An object relationship */
   creator?: Maybe<Users>;
   description?: Maybe<Scalars['String']>;
@@ -5720,6 +5721,7 @@ export type Teams = {
   gameFullTreshold?: Maybe<Scalars['Int']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   userId: Scalars['uuid'];
   /** An array relationship */
   user_teams: Array<User_Team>;
@@ -5828,12 +5830,14 @@ export type Teams_Bool_Exp = {
   _and?: InputMaybe<Array<Teams_Bool_Exp>>;
   _not?: InputMaybe<Teams_Bool_Exp>;
   _or?: InputMaybe<Array<Teams_Bool_Exp>>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   creator?: InputMaybe<Users_Bool_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   gameAlmostFullTreshold?: InputMaybe<Int_Comparison_Exp>;
   gameFullTreshold?: InputMaybe<Int_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
   user_teams?: InputMaybe<User_Team_Bool_Exp>;
   user_teams_aggregate?: InputMaybe<User_Team_Aggregate_Bool_Exp>;
@@ -5853,12 +5857,14 @@ export type Teams_Inc_Input = {
 
 /** input type for inserting data into table "teams" */
 export type Teams_Insert_Input = {
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
   creator?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   description?: InputMaybe<Scalars['String']>;
   gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
   gameFullTreshold?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
   user_teams?: InputMaybe<User_Team_Arr_Rel_Insert_Input>;
 };
@@ -5866,42 +5872,50 @@ export type Teams_Insert_Input = {
 /** aggregate max on columns */
 export type Teams_Max_Fields = {
   __typename?: 'teams_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   gameAlmostFullTreshold?: Maybe<Scalars['Int']>;
   gameFullTreshold?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   userId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "teams" */
 export type Teams_Max_Order_By = {
+  createdAt?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   gameAlmostFullTreshold?: InputMaybe<Order_By>;
   gameFullTreshold?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Teams_Min_Fields = {
   __typename?: 'teams_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   gameAlmostFullTreshold?: Maybe<Scalars['Int']>;
   gameFullTreshold?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   userId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "teams" */
 export type Teams_Min_Order_By = {
+  createdAt?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   gameAlmostFullTreshold?: InputMaybe<Order_By>;
   gameFullTreshold?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
 };
 
@@ -5930,12 +5944,14 @@ export type Teams_On_Conflict = {
 
 /** Ordering options when selecting data from "teams". */
 export type Teams_Order_By = {
+  createdAt?: InputMaybe<Order_By>;
   creator?: InputMaybe<Users_Order_By>;
   description?: InputMaybe<Order_By>;
   gameAlmostFullTreshold?: InputMaybe<Order_By>;
   gameFullTreshold?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
   user_teams_aggregate?: InputMaybe<User_Team_Aggregate_Order_By>;
 };
@@ -5948,6 +5964,8 @@ export type Teams_Pk_Columns_Input = {
 /** select columns of table "teams" */
 export enum Teams_Select_Column {
   /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
   Description = 'description',
   /** column name */
   GameAlmostFullTreshold = 'gameAlmostFullTreshold',
@@ -5958,16 +5976,20 @@ export enum Teams_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
   UserId = 'userId'
 }
 
 /** input type for updating data in table "teams" */
 export type Teams_Set_Input = {
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
   description?: InputMaybe<Scalars['String']>;
   gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
   gameFullTreshold?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -6020,11 +6042,13 @@ export type Teams_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Teams_Stream_Cursor_Value_Input = {
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
   description?: InputMaybe<Scalars['String']>;
   gameAlmostFullTreshold?: InputMaybe<Scalars['Int']>;
   gameFullTreshold?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -6044,6 +6068,8 @@ export type Teams_Sum_Order_By = {
 /** update columns of table "teams" */
 export enum Teams_Update_Column {
   /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
   Description = 'description',
   /** column name */
   GameAlmostFullTreshold = 'gameAlmostFullTreshold',
@@ -6053,6 +6079,8 @@ export enum Teams_Update_Column {
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  UpdatedAt = 'updatedAt',
   /** column name */
   UserId = 'userId'
 }
@@ -7567,7 +7595,7 @@ export type GameInformationsQueryVariables = Exact<{
 }>;
 
 
-export type GameInformationsQuery = { __typename?: 'query_root', games_by_pk?: { __typename?: 'games', timestamp: string, status: Game_Status_Enum, creator: { __typename?: 'users', email?: string | null }, team: { __typename?: 'teams', name: string, gameFullTreshold?: number | null, gameAlmostFullTreshold?: number | null }, user_games: Array<{ __typename?: 'user_game', userId: string }> } | null };
+export type GameInformationsQuery = { __typename?: 'query_root', games_by_pk?: { __typename?: 'games', timestamp: string, status: Game_Status_Enum, creator: { __typename?: 'users', id: string, email?: string | null }, team: { __typename?: 'teams', name: string, gameFullTreshold?: number | null, gameAlmostFullTreshold?: number | null }, user_games: Array<{ __typename?: 'user_game', userId: string }> } | null };
 
 export type UpdateGameMutationVariables = Exact<{
   gameId: Scalars['uuid'];
@@ -7578,5 +7606,5 @@ export type UpdateGameMutationVariables = Exact<{
 export type UpdateGameMutation = { __typename?: 'mutation_root', update_games_by_pk?: { __typename?: 'games', id: string } | null };
 
 
-export const GameInformationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"gameInformations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"gameId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"games_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"gameId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"creator"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"team"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"gameFullTreshold"}},{"kind":"Field","name":{"kind":"Name","value":"gameAlmostFullTreshold"}}]}},{"kind":"Field","name":{"kind":"Name","value":"user_games"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<GameInformationsQuery, GameInformationsQueryVariables>;
+export const GameInformationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"gameInformations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"gameId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"games_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"gameId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"timestamp"}},{"kind":"Field","name":{"kind":"Name","value":"creator"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"team"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"gameFullTreshold"}},{"kind":"Field","name":{"kind":"Name","value":"gameAlmostFullTreshold"}}]}},{"kind":"Field","name":{"kind":"Name","value":"user_games"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<GameInformationsQuery, GameInformationsQueryVariables>;
 export const UpdateGameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateGame"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"gameId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"data"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"games_set_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_games_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"gameId"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"data"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateGameMutation, UpdateGameMutationVariables>;

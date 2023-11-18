@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            email\n        }\n        team {\n            name\n            gameFullTreshold\n            gameAlmostFullTreshold\n        }\n        user_games {\n            userId\n        }\n        status\n    }\n  }\n": types.GameInformationsDocument,
+    "\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            id\n            email\n        }\n        team {\n            name\n            gameFullTreshold\n            gameAlmostFullTreshold\n        }\n        user_games {\n            userId\n        }\n        status\n    }\n  }\n": types.GameInformationsDocument,
     "\n  mutation updateGame ($gameId: uuid!, $data: games_set_input!) {\n    update_games_by_pk(pk_columns: {id: $gameId}, _set: $data) {\n      id\n    }\n  }\n": types.UpdateGameDocument,
 };
 
@@ -34,7 +34,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            email\n        }\n        team {\n            name\n            gameFullTreshold\n            gameAlmostFullTreshold\n        }\n        user_games {\n            userId\n        }\n        status\n    }\n  }\n"): (typeof documents)["\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            email\n        }\n        team {\n            name\n            gameFullTreshold\n            gameAlmostFullTreshold\n        }\n        user_games {\n            userId\n        }\n        status\n    }\n  }\n"];
+export function gql(source: "\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            id\n            email\n        }\n        team {\n            name\n            gameFullTreshold\n            gameAlmostFullTreshold\n        }\n        user_games {\n            userId\n        }\n        status\n    }\n  }\n"): (typeof documents)["\n  query gameInformations ($gameId: uuid!) {\n    games_by_pk(id: $gameId) {\n        timestamp\n        creator {\n            id\n            email\n        }\n        team {\n            name\n            gameFullTreshold\n            gameAlmostFullTreshold\n        }\n        user_games {\n            userId\n        }\n        status\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

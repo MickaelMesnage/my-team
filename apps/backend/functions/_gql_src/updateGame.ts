@@ -5,6 +5,7 @@ gql(`
   mutation updateGame ($gameId: uuid!, $data: games_set_input!) {
     update_games_by_pk(pk_columns: {id: $gameId}, _set: $data) {
       id
+      status
     }
   }
 `);

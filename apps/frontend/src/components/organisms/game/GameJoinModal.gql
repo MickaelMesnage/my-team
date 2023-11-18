@@ -1,5 +1,4 @@
 fragment GameJoinModal on games {
   id
   timestamp
-  ...GameJoinConnected
 }

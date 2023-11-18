@@ -2,23 +2,28 @@ import { Button, Card, CardBody, Chip } from "@nextui-org/react";
 import { GameListCardFragment } from "@/components/organisms/game/GameListCard.generated";
 import { useMemo } from "react";
 import { AvatarList } from "@/components/molecules/AvatarList";
-import { isPast } from "date-fns";
-import { Game_Status_Enum } from "@/graphql/types";
 import { GameLeaveConnected } from "@/components/organisms/game/GameLeaveConnected";
 import { GameJoinConnected } from "@/components/organisms/game/GameJoinConnected";
 import { useGame } from "@/components/organisms/game/useGame";
+import { GameValidConnected } from "@/components/organisms/game/GameValidConnected";
 
 export type GameListCardProps = {
   fragment: GameListCardFragment;
 };
 
 export const GameListCard = ({ fragment }: GameListCardProps) => {
-  const { formattedDate, formattedTime, canJoin, canLeave, statusLabel } =
-    useGame({
-      date: new Date(fragment.timestamp),
-      joinedByUser: !!fragment.joinedByUser,
-      status: fragment.status,
-    });
+  const {
+    formattedDate,
+    formattedTime,
+    canJoin,
+    canLeave,
+    canValid,
+    statusLabel,
+  } = useGame({
+    ...fragment,
+    date: new Date(fragment.timestamp),
+    joinedByUser: !!fragment.joinedByUser,
+  });
 
   const userList = useMemo(() => {
     return fragment.user_games.map((user_team) => ({
@@ -42,9 +47,12 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
             <AvatarList userList={userList} />
             {canJoin && (
               <GameJoinConnected
-                fragment={fragment}
                 render={(onJoin, loading) => (
-                  <Button color="primary" onClick={onJoin} isDisabled={loading}>
+                  <Button
+                    color="primary"
+                    onClick={() => onJoin(fragment.id)}
+                    isDisabled={loading}
+                  >
                     Rejoindre
                   </Button>
                 )}
@@ -60,6 +68,19 @@ export const GameListCard = ({ fragment }: GameListCardProps) => {
                     onClick={onLeave}
                   >
                     Ne plus participer
+                  </Button>
+                )}
+              />
+            )}
+            {canValid && (
+              <GameValidConnected
+                render={(onValid, loading) => (
+                  <Button
+                    color="primary"
+                    isDisabled={loading}
+                    onClick={() => onValid(fragment.id)}
+                  >
+                    Valider
                   </Button>
                 )}
               />

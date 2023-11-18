@@ -34,6 +34,7 @@ if (!MJ_APIKEY_PUBLIC)
 
 // if (!FRONTEND_URL) throw new Error("Settings: No FRONTEND_URL env var set");
 
+console.log(process.env);
 export default {
   isLocal: NHOST_SUBDOMAIN === "local",
   nhost_webhook_secret: NHOST_WEBHOOK_SECRET,

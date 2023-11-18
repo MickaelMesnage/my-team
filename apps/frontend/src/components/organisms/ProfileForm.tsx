@@ -57,7 +57,10 @@ export const ProfileForm = forwardRef(
 
     return (
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-4 items-start"
+        >
           <Controller
             control={control}
             name="nickname"
@@ -80,7 +83,7 @@ export const ProfileForm = forwardRef(
             <div className="flex gap-4 mt-2">
               {base64Image ? (
                 <Image
-                  className="rounded-full"
+                  className="w-10 h-10 rounded-full"
                   alt=""
                   src={base64Image}
                   width="40"

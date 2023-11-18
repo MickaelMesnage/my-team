@@ -6,6 +6,7 @@ gql(`
     games_by_pk(id: $gameId) {
         timestamp
         creator {
+            id
             email
         }
         team {

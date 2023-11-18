@@ -1,11 +1,10 @@
 import {
   GameLeaveConnectedFragment,
-  GameLeaveConnectedFragmentDoc,
   useGameLeaveMutation,
 } from "@/components/organisms/game/GameLeaveConnected.generated";
 import { useUserId } from "@nhost/nextjs";
 import { useRouter } from "next/router";
-import React, { ReactNode, cache } from "react";
+import React, { ReactNode } from "react";
 import { toast } from "react-toastify";
 
 export type GameLeaveConnectedProps = {
@@ -36,20 +35,6 @@ export const GameLeaveConnected = ({
       await leaveGame({
         variables: {
           id: userGameId,
-        },
-        // Update in cache to prevent loading if response ok
-        update: (cache, { data }) => {
-          const game = data?.delete_user_game_by_pk?.game;
-
-          if (!game) throw new Error("GameLeaveConnected: game not consistent");
-          cache.writeFragment({
-            id: cache.identify({
-              __typename: "games",
-              id: fragment.id,
-            }),
-            fragment: GameLeaveConnectedFragmentDoc,
-            data: data?.delete_user_game_by_pk?.game,
-          });
         },
       });
       toast.success("Vous avez annulé votre participation !");

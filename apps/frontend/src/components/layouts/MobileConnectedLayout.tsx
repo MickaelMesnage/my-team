@@ -6,6 +6,7 @@ import { GameIcon } from "@/components/icons/GameIcon";
 import { ProfileIcon } from "@/components/icons/ProfileIcon";
 import { useSignOut } from "@nhost/nextjs";
 import { LogoutIcon } from "@/components/icons/LogoutIcon";
+import { ContainerWrapper } from "../molecules/ContainerWrapper";
 
 export type MobileConnectedLayoutProps = ComponentProps<"div">;
 
@@ -48,7 +49,9 @@ export const MobileConnectedLayout = ({
       style={{ width: "100vw", height: "100dvh" }}
     >
       <div className="w-full h-[calc(100%-6rem)] relative">
-        <div className="w-full h-full p-4 overflow-y-auto">{children}</div>
+        <div className="w-full h-full overflow-y-auto">
+          <ContainerWrapper>{children}</ContainerWrapper>
+        </div>
       </div>
       <header className="w-full h-[6rem] px-1 py-4 flex shrink grow basis-0 justify-between items-center border-t-2">
         {NAVBAR_ITEMS.map(({ label, href, icon }, index) => (

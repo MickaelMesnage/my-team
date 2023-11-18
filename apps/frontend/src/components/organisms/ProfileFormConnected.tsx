@@ -8,14 +8,12 @@ import {
   useUpdateUserMutation,
 } from "@/components/organisms/ProfileFormConnected.generated";
 import { useUserId } from "@nhost/nextjs";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 export type ProfileFormConnectedProps = Pick<ProfileFormProps, "defaultValues">;
 
 export const ProfileFormConnected = (props: ProfileFormConnectedProps) => {
-  const router = useRouter();
   const userId = useUserId();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [updateUser] = useUpdateUserMutation();
