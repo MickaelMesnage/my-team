@@ -12,7 +12,7 @@ export type TeamListPageSubscription = { __typename?: 'subscription_root', teams
 
 export const TeamListPageDocument = gql`
     subscription TeamListPage {
-  teams {
+  teams(order_by: {createdAt: asc}) {
     id
     name
     ...TeamListCard

@@ -1,5 +1,5 @@
 subscription GameListPage($where: games_bool_exp!) {
-  games(where: $where, order_by: { createdAt: asc }) {
+  games(where: $where, order_by: { timestamp: asc }) {
     id
     ...GameListCard
   }

@@ -14,7 +14,7 @@ export type GameListPageSubscription = { __typename?: 'subscription_root', games
 
 export const GameListPageDocument = gql`
     subscription GameListPage($where: games_bool_exp!) {
-  games(where: $where) {
+  games(where: $where, order_by: {timestamp: asc}) {
     id
     ...GameListCard
   }
